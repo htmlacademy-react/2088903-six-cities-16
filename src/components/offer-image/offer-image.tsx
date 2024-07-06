@@ -22,12 +22,12 @@ const Favorite: Style = {
 };
 
 type OfferImageProps = {
-  imagePath: string;
-  isFavorite?: boolean;
+  previewImage: string;
+  isFavoritesCard?: boolean;
 }
 
-function OfferImage({imagePath, isFavorite = false}: OfferImageProps): ReactElement {
-  const imageStyle: Style = isFavorite ? Favorite : Cities;
+function OfferImage({previewImage, isFavoritesCard = false}: OfferImageProps): ReactElement {
+  const imageStyle: Style = isFavoritesCard ? Favorite : Cities;
   const {width, height, wrapperClass} = imageStyle;
 
   const imageWrapperClasses = cn('place-card__image-wrapper', wrapperClass);
@@ -35,7 +35,7 @@ function OfferImage({imagePath, isFavorite = false}: OfferImageProps): ReactElem
   return (
     <div className={imageWrapperClasses}>
       <Link to={AppRoute.Offer}>
-        <img className="place-card__image" src={imagePath} width={width} height={height} alt="Photo studio"/>
+        <img className="place-card__image" src={previewImage} width={width} height={height} alt="Photo studio"/>
       </Link>
     </div>
   );
