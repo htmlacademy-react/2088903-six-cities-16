@@ -33,7 +33,7 @@ type CardBookmarkProps = {
   isOffer?: boolean;
 }
 
-function CardBookmark({isFavorite, isOffer = false}: CardBookmarkProps): ReactElement {
+function Bookmark({isFavorite, isOffer = false}: CardBookmarkProps): ReactElement {
   const [active, setActive] = useState(isFavorite);
 
   const cardStyle: Style = isOffer ? offerStyle : placeCardStyle;
@@ -44,15 +44,11 @@ function CardBookmark({isFavorite, isOffer = false}: CardBookmarkProps): ReactEl
       [activeClass]: active,
     });
 
-  const handleClick = () => {
-    setActive(!active);
-  };
-
   return (
     <button
       className={buttonClassNames}
       type="button"
-      onClick={handleClick}
+      onClick={() => setActive(!active)}
     >
       <svg className={iconClass} width={width} height={height}>
         <use xlinkHref="#icon-bookmark"></use>
@@ -62,4 +58,4 @@ function CardBookmark({isFavorite, isOffer = false}: CardBookmarkProps): ReactEl
   );
 }
 
-export default CardBookmark;
+export default Bookmark;

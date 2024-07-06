@@ -1,7 +1,7 @@
 import {ReactElement} from 'react';
 import Header from '../../components/header/header.tsx';
 import Footer from '../../components/footer/footer.tsx';
-import FavoritesList from '../../components/favorites-list/favorites-list.tsx';
+import FavoritesList from '../../components/favorites/favorites-list/favorites-list.tsx';
 
 
 function FavoritesPage(): ReactElement {

@@ -1,6 +1,6 @@
 import {ReactElement} from 'react';
 import Header from '../../components/header/header.tsx';
-import OfferGallery from '../../components/offer-gallery/offer-gallery.tsx';
+import Gallery from '../../components/gallery/gallery.tsx';
 import NearPlaces from '../../components/near-places/near-places.tsx';
 
 function OfferPage(): ReactElement {
@@ -10,7 +10,7 @@ function OfferPage(): ReactElement {
       <main className="page__main page__main--offer">
         <section className="offer">
           <div className="offer__gallery-container container">
-            <OfferGallery/>
+            <Gallery/>
           </div>
           <div className="offer__container container">
             <div className="offer__wrapper">

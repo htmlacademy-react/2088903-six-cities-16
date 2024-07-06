@@ -1,9 +1,8 @@
 import {ReactElement} from 'react';
-import {Link} from 'react-router-dom';
-import {AppRoute} from '../../const/const.ts';
 import {getRatingPercentage} from '../../utils/utils.ts';
-import CardMark from '../common/card-mark/card-mark.tsx';
-import CardBookmark from '../common/card-bookmark/card-bookmark.tsx';
+import Badge from '../common/badge/badge.tsx';
+import Bookmark from '../common/bookmark';
+import OfferImage from '../offer-image/offer-image.tsx';
 
 type PlaceCardProps = {
   title: string;
@@ -29,22 +28,17 @@ function OfferCard({
   return (
     <article className="cities__card place-card">
       {
-        isPremium ? <CardMark text={'Premium'}/> : null
+        isPremium ? <Badge text={'Premium'}/> : null
       }
-      <div className="cities__image-wrapper place-card__image-wrapper">
-        <Link to={AppRoute.Offer}>
-          <img className="place-card__image" src={previewImage} width="260" height="200"
-            alt={title}
-          />
-        </Link>
-      </div>
+      <OfferImage imagePath={previewImage}/>
+
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <CardBookmark isFavorite={isFavorite}/>
+          <Bookmark isFavorite={isFavorite}/>
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
