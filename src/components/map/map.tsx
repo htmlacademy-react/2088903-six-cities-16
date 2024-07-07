@@ -1,8 +1,12 @@
 import {ReactElement} from 'react';
 
-function Map(): ReactElement {
+type MapProps = {
+  hoveredCard: string;
+}
+
+function Map({hoveredCard}: MapProps): ReactElement {
   return (
-    <section className="cities__map map"></section>
+    <section className="cities__map map">{hoveredCard}</section>
   );
 }
 

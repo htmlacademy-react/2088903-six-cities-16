@@ -4,7 +4,6 @@ import {Favorite, Offer} from '../../../types/types.ts';
 import FavoritesLocation from '../favorites-location/favorites-location.tsx';
 
 function FavoritesList(): ReactElement {
-
   const favoritesSorted: Favorite = favorites.reduce((acc: Favorite, currentOffer: Offer) => {
     const cityName = currentOffer.city.name;
 
@@ -18,7 +17,11 @@ function FavoritesList(): ReactElement {
   return (
     <ul className="favorites__list">
       {Object.entries(favoritesSorted).map(([city, offers]) => (
-        <FavoritesLocation key={city} city={city} offers={offers}/>
+        <FavoritesLocation
+          key={city}
+          city={city}
+          offers={offers}
+        />
       ))}
     </ul>
   );

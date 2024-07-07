@@ -5,6 +5,7 @@ import OfferInfo from '../offer-info/offer-info.tsx';
 import cn from 'classnames';
 
 type PlaceCardProps = {
+  id: string;
   title: string;
   type: string;
   price: number;
@@ -13,9 +14,11 @@ type PlaceCardProps = {
   isFavorite: boolean;
   isPremium: boolean;
   isFavoritesCard?: boolean;
+  setHoveredCard?: (id: string) => void;
 };
 
 function OfferCard({
+  id,
   title,
   type,
   price,
@@ -24,6 +27,7 @@ function OfferCard({
   isPremium,
   previewImage,
   isFavoritesCard = false,
+  setHoveredCard,
 }: PlaceCardProps): ReactElement {
 
   const cardClassNames = cn('place-card', {
@@ -31,12 +35,22 @@ function OfferCard({
     'favorites__card': isFavoritesCard,
   });
 
+  const handleMouseEnter = () => setHoveredCard ? setHoveredCard(id) : null;
+  const handleMouseLeave = () => setHoveredCard ? setHoveredCard('') : null;
+
   return (
-    <article className={cardClassNames}>
+    <article
+      className={cardClassNames}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       {
         isPremium ? <Badge text={'Premium'}/> : null
       }
-      <OfferImage previewImage={previewImage} isFavoritesCard={isFavoritesCard}/>
+      <OfferImage
+        previewImage={previewImage}
+        isFavoritesCard={isFavoritesCard}
+      />
       <OfferInfo
         title={title}
         type={type}

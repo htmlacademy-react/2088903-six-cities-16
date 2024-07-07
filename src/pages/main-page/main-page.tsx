@@ -12,6 +12,7 @@ type MainPageProps = {
 
 function MainPage({offers}: MainPageProps): ReactElement {
   const [activeTab, setActiveTab] = useState('Paris');
+  const [hoveredCard, setHoveredCard] = useState('');
 
   return (
     <>
@@ -28,9 +29,13 @@ function MainPage({offers}: MainPageProps): ReactElement {
           />
           <div className="cities">
             <div className="cities__places-container container">
-              <OffersList offers={offers} activeTab={activeTab}/>
+              <OffersList
+                offers={offers}
+                activeTab={activeTab}
+                setHoveredCard={setHoveredCard}
+              />
               <div className="cities__right-section">
-                <Map/>
+                <Map hoveredCard={hoveredCard}/>
               </div>
             </div>
           </div>

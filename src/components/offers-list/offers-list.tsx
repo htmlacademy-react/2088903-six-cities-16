@@ -3,13 +3,14 @@ import {Offer, Offers} from '../../types/types.ts';
 import OfferCard from '../offer-card/offer-card.tsx';
 import SortForm from '../sort-form/sort-form.tsx';
 
+
 type OffersListProps = {
   offers: Offers;
   activeTab: string;
+  setHoveredCard?: (id: string) => void;
 };
 
-function OffersList({offers, activeTab}: OffersListProps): ReactElement {
-
+function OffersList({offers, activeTab, setHoveredCard}: OffersListProps): ReactElement {
   const activeOffers: Offers = offers.filter((offer: Offer) => offer.city.name === activeTab);
 
   return (
@@ -22,6 +23,7 @@ function OffersList({offers, activeTab}: OffersListProps): ReactElement {
           activeOffers.map((offer: Offer): ReactElement => (
             <OfferCard
               key={offer.id}
+              id={offer.id}
               title={offer.title}
               type={offer.type}
               price={offer.price}
@@ -29,6 +31,7 @@ function OffersList({offers, activeTab}: OffersListProps): ReactElement {
               isFavorite={offer.isFavorite}
               isPremium={offer.isPremium}
               previewImage={offer.previewImage}
+              setHoveredCard={setHoveredCard}
             />
           ))
         }
