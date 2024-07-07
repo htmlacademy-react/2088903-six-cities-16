@@ -30,13 +30,13 @@ const offerStyle: Style = {
 
 type BookmarkProps = {
   isFavorite: boolean;
-  isOfferCard?: boolean;
+  ifOfferDetail?: boolean;
 }
 
-function Bookmark({isFavorite, isOfferCard = false}: BookmarkProps): ReactElement {
+function Bookmark({isFavorite, ifOfferDetail = false}: BookmarkProps): ReactElement {
   const [active, setActive] = useState(isFavorite);
 
-  const cardStyle: Style = isOfferCard ? offerStyle : placeCardStyle;
+  const cardStyle: Style = ifOfferDetail ? offerStyle : placeCardStyle;
   const {width, height, description, buttonClass, activeClass, iconClass} = cardStyle;
 
   const buttonClassNames = cn(

@@ -1,5 +1,5 @@
 import {ReactElement} from 'react';
-import Badge from '../common/badge/badge.tsx';
+import Badge from '../../common/badge/badge.tsx';
 import OfferImage from '../offer-image/offer-image.tsx';
 import OfferInfo from '../offer-info/offer-info.tsx';
 import cn from 'classnames';
@@ -45,7 +45,7 @@ function OfferCard({
       onMouseLeave={handleMouseLeave}
     >
       {
-        isPremium ? <Badge text={'Premium'}/> : null
+        isPremium ? <Badge/> : null
       }
       <OfferImage
         previewImage={previewImage}

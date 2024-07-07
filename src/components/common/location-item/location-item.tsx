@@ -1,16 +1,18 @@
 import {ReactElement} from 'react';
 import * as classNames from 'classnames';
+import {Link} from 'react-router-dom';
+import {AppRoute} from '../../../const/const.ts';
 
 type LocationItemProps = {
   city: string;
   activeTab: string;
-  clickHandler: () => void;
+  handleClick: () => void;
 }
 
 function LocationItem({
   city,
   activeTab,
-  clickHandler,
+  handleClick,
 }: LocationItemProps): ReactElement {
 
   const buttonClass = classNames({
@@ -20,9 +22,9 @@ function LocationItem({
 
   return (
     <li className="locations__item">
-      <a onClick={clickHandler} className={buttonClass}>
+      <Link to={AppRoute.Root} onClick={handleClick} className={buttonClass}>
         <span>{city}</span>
-      </a>
+      </Link>
     </li>
   );
 }

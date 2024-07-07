@@ -2,8 +2,24 @@ import {ReactElement} from 'react';
 import Header from '../../components/header/header.tsx';
 import Gallery from '../../components/gallery/gallery.tsx';
 import NearPlaces from '../../components/near-places/near-places.tsx';
+import Badge from '../../components/common/badge/badge.tsx';
+import {Navigate, useParams} from 'react-router-dom';
+import {Offer, Offers} from '../../types/types.ts';
+import Bookmark from '../../components/common/bookmark';
 
-function OfferPage(): ReactElement {
+type OfferPageProps = {
+  offers: Offers;
+};
+
+function OfferPage({offers}: OfferPageProps): ReactElement {
+  const {id} = useParams<{ id: string }>();
+  const currentOffer: Offer | undefined = offers.find((offer: Offer) => offer.id === id);
+  if (!currentOffer) {
+    return <Navigate to='*' replace/>;
+  }
+
+  const {title, price, isFavorite} = currentOffer;
+
   return (
     <div className="page">
       <Header/>
@@ -14,19 +30,12 @@ function OfferPage(): ReactElement {
           </div>
           <div className="offer__container container">
             <div className="offer__wrapper">
-              <div className="offer__mark">
-                <span>Premium</span>
-              </div>
+              <Badge ifOfferDetail/>
               <div className="offer__name-wrapper">
                 <h1 className="offer__name">
-                  Beautiful &amp; luxurious studio at great location
+                  {title}
                 </h1>
-                <button className="offer__bookmark-button button" type="button">
-                  <svg className="offer__bookmark-icon" width="31" height="33">
-                    <use xlinkHref="#icon-bookmark"></use>
-                  </svg>
-                  <span className="visually-hidden">To bookmarks</span>
-                </button>
+                <Bookmark isFavorite={isFavorite} ifOfferDetail/>
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">
@@ -47,7 +56,7 @@ function OfferPage(): ReactElement {
                 </li>
               </ul>
               <div className="offer__price">
-                <b className="offer__price-value">&euro;120</b>
+                <b className="offer__price-value">&euro;{price}</b>
                 <span className="offer__price-text">&nbsp;night</span>
               </div>
               <div className="offer__inside">

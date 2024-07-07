@@ -19,7 +19,7 @@ function Tabs({activeTab, setActiveTab}: TabsProps): ReactElement {
                 key={city}
                 city={city}
                 activeTab={activeTab}
-                clickHandler={() => setActiveTab(city)}
+                handleClick={() => setActiveTab(city)}
               />
             ))
           }

@@ -1,12 +1,22 @@
 import {ReactElement} from 'react';
+import cn from 'classnames';
 
 type CardMarkProps = {
-  text: string;
+  text?: string;
+  ifOfferDetail?: boolean;
 }
-const Badge = ({text}: CardMarkProps): ReactElement => (
-  <div className="place-card__mark">
-    <span>{text}</span>
-  </div>
-);
+
+function Badge({text = 'Premium', ifOfferDetail = false}: CardMarkProps): ReactElement {
+  const badgeClassNames = cn({
+    'offer__mark': ifOfferDetail,
+    'place-card__mark': !ifOfferDetail,
+  });
+
+  return (
+    <div className={badgeClassNames}>
+      <span>{text}</span>
+    </div>
+  );
+}
 
 export default Badge;

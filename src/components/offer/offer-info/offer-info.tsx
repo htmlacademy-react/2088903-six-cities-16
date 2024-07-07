@@ -1,6 +1,6 @@
 import {ReactElement} from 'react';
-import {getRatingPercentage} from '../../utils/utils.ts';
-import Bookmark from '../common/bookmark';
+import {getRatingPercentage} from '../../../utils/utils.ts';
+import Bookmark from '../../common/bookmark';
 
 type OfferInfoProps = {
   title: string;

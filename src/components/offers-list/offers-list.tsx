@@ -1,6 +1,6 @@
 import {ReactElement} from 'react';
 import {Offer, Offers} from '../../types/types.ts';
-import OfferCard from '../offer-card/offer-card.tsx';
+import OfferCard from '../offer/offer-card/offer-card.tsx';
 import SortForm from '../sort-form/sort-form.tsx';
 
 

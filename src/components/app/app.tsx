@@ -47,7 +47,7 @@ function App({offers}: AppProps): ReactElement {
           />
           <Route
             path={AppRoute.Offer}
-            element={<OfferPage/>}
+            element={<OfferPage offers={offers}/>}
           />
 
           <Route path="*" element={<NotFoundPage/>}/>

@@ -1,7 +1,6 @@
 import {ReactElement} from 'react';
 import cn from 'classnames';
 import {Link} from 'react-router-dom';
-import {AppRoute} from '../../const/const.ts';
 
 type Style = {
   width: number;
@@ -34,7 +33,7 @@ function OfferImage({previewImage, isFavoritesCard = false}: OfferImageProps): R
 
   return (
     <div className={imageWrapperClasses}>
-      <Link to={AppRoute.Offer}>
+      <Link to='/offer/a13b9fbd-1328-4e59-baad-7353729df28e'>
         <img className="place-card__image" src={previewImage} width={width} height={height} alt="Photo studio"/>
       </Link>
     </div>

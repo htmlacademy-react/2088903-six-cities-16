@@ -158,7 +158,7 @@ export const favorites: Offers = [
       'zoom': 8
     },
     'isFavorite': false,
-    'isPremium': false,
+    'isPremium': true,
     'rating': 4,
     'previewImage': 'https://15.design.htmlacademy.pro/static/hotel/5.jpg'
   },

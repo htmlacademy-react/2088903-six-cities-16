@@ -11,7 +11,7 @@ export const OFFER_GALLERY_IMAGES = [
 
 export enum AppRoute {
   Root = '/',
-  Offer = '/offer',
+  Offer = '/offer/:id',
   Favorites = '/favorites',
   Login = '/login'
 }
