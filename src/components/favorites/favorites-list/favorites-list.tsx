@@ -3,16 +3,17 @@ import {favorites} from '../../../mocks/favorites.ts';
 import {Favorite, Offer} from '../../../types/types.ts';
 import FavoritesLocation from '../favorites-location/favorites-location.tsx';
 
-function FavoritesList(): ReactElement {
-  const favoritesSorted: Favorite = favorites.reduce((acc: Favorite, currentOffer: Offer) => {
-    const cityName = currentOffer.city.name;
+const favoritesSorted: Favorite = favorites.reduce((acc: Favorite, currentOffer: Offer) => {
+  const cityName = currentOffer.city.name;
 
-    if (!acc[cityName]) {
-      acc[cityName] = [];
-    }
-    acc[cityName].push(currentOffer);
-    return acc;
-  }, {});
+  if (!acc[cityName]) {
+    acc[cityName] = [];
+  }
+  acc[cityName].push(currentOffer);
+  return acc;
+}, {});
+
+function FavoritesList(): ReactElement {
 
   return (
     <ul className="favorites__list">

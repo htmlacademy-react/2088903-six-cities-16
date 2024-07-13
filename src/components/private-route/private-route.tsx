@@ -4,12 +4,12 @@ import {AppRoute, AuthorizationStatus} from '../../const/const.ts';
 
 type PrivateRouteProps = {
   authorizationStatus: AuthorizationStatus;
-  isAuthorizationRequires: boolean;
+  isAuthorizationRequired: boolean;
   children: JSX.Element;
 }
 
-function PrivateRoute({authorizationStatus, isAuthorizationRequires, children}: PrivateRouteProps): JSX.Element {
-  if (isAuthorizationRequires) {
+function PrivateRoute({authorizationStatus, isAuthorizationRequired, children}: PrivateRouteProps): JSX.Element {
+  if (isAuthorizationRequired) {
     return (
       authorizationStatus === AuthorizationStatus.Auth
         ? children
@@ -18,11 +18,10 @@ function PrivateRoute({authorizationStatus, isAuthorizationRequires, children}: 
   }
 
   return (
-    !isAuthorizationRequires && authorizationStatus === AuthorizationStatus.Auth
+    !isAuthorizationRequired && authorizationStatus === AuthorizationStatus.Auth
       ? <Navigate to={AppRoute.Root}/>
       : children
   );
-
 }
 
 export default PrivateRoute;

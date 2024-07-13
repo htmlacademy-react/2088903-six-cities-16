@@ -5,7 +5,8 @@ import NearPlaces from '../../components/near-places/near-places.tsx';
 import Badge from '../../components/common/badge/badge.tsx';
 import {Navigate, useParams} from 'react-router-dom';
 import {Offer, Offers} from '../../types/types.ts';
-import Bookmark from '../../components/common/bookmark';
+import BookmarkToggle from '../../components/common/bookmark-toggle';
+import {AppRoute} from '../../const/const.ts';
 
 type OfferPageProps = {
   offers: Offers;
@@ -15,7 +16,7 @@ function OfferPage({offers}: OfferPageProps): ReactElement {
   const {id} = useParams<{ id: string }>();
   const currentOffer: Offer | undefined = offers.find((offer: Offer) => offer.id === id);
   if (!currentOffer) {
-    return <Navigate to='*' replace/>;
+    return <Navigate to={AppRoute.NotFound} replace/>;
   }
 
   const {title, price, isFavorite} = currentOffer;
@@ -35,7 +36,7 @@ function OfferPage({offers}: OfferPageProps): ReactElement {
                 <h1 className="offer__name">
                   {title}
                 </h1>
-                <Bookmark isFavorite={isFavorite} ifOfferDetail/>
+                <BookmarkToggle isFavorite={isFavorite} ifOfferDetail/>
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">

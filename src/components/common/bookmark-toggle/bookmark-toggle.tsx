@@ -33,7 +33,7 @@ type BookmarkProps = {
   ifOfferDetail?: boolean;
 }
 
-function Bookmark({isFavorite, ifOfferDetail = false}: BookmarkProps): ReactElement {
+function BookmarkToggle({isFavorite, ifOfferDetail = false}: BookmarkProps): ReactElement {
   const [active, setActive] = useState(isFavorite);
 
   const cardStyle: Style = ifOfferDetail ? offerStyle : placeCardStyle;
@@ -58,4 +58,4 @@ function Bookmark({isFavorite, ifOfferDetail = false}: BookmarkProps): ReactElem
   );
 }
 
-export default Bookmark;
+export default BookmarkToggle;

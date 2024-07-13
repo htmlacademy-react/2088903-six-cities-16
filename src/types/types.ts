@@ -60,6 +60,4 @@ type Comment = {
 
 export type Comments = Comment[];
 
-export type Favorite = {
-  [key: string]: Offers;
-};
+export type Favorite = Record<string, Offers>;

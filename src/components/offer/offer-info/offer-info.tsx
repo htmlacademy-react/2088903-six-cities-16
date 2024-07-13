@@ -1,6 +1,6 @@
 import {ReactElement} from 'react';
 import {getRatingPercentage} from '../../../utils/utils.ts';
-import Bookmark from '../../common/bookmark';
+import BookmarkToggle from '../../common/bookmark-toggle';
 
 type OfferInfoProps = {
   title: string;
@@ -26,7 +26,7 @@ function OfferInfo({
           <b className="place-card__price-value">&euro;{price}</b>
           <span className="place-card__price-text">&#47;&nbsp;night</span>
         </div>
-        <Bookmark isFavorite={isFavorite}/>
+        <BookmarkToggle isFavorite={isFavorite}/>
       </div>
       <div className="place-card__rating rating">
         <div className="place-card__stars rating__stars">

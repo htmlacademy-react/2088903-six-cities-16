@@ -28,7 +28,7 @@ function App({offers}: AppProps): ReactElement {
             element={
               <PrivateRoute
                 authorizationStatus={AuthorizationStatus.Auth}
-                isAuthorizationRequires
+                isAuthorizationRequired
               >
                 <FavoritesPage/>
               </PrivateRoute>
@@ -39,7 +39,7 @@ function App({offers}: AppProps): ReactElement {
             element={
               <PrivateRoute
                 authorizationStatus={AuthorizationStatus.NoAuth}
-                isAuthorizationRequires={false}
+                isAuthorizationRequired={false}
               >
                 <LoginPage/>
               </PrivateRoute>
@@ -49,7 +49,10 @@ function App({offers}: AppProps): ReactElement {
             path={AppRoute.Offer}
             element={<OfferPage offers={offers}/>}
           />
-
+          <Route
+            path={AppRoute.NotFound}
+            element={<NotFoundPage/>}
+          />
           <Route path="*" element={<NotFoundPage/>}/>
         </Routes>
       </BrowserRouter>
