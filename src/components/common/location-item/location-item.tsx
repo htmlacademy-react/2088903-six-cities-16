@@ -5,8 +5,8 @@ import {AppRoute} from '../../../const/const.ts';
 
 type LocationItemProps = {
   city: string;
-  activeTab: string;
-  handleClick: () => void;
+  activeTab?: string;
+  handleClick?: () => void | ReactElement;
 }
 
 function LocationItem({

@@ -1,5 +1,4 @@
 import {ReactElement} from 'react';
-import Header from '../../components/header/header.tsx';
 import Gallery from '../../components/gallery/gallery.tsx';
 import NearPlaces from '../../components/near-places/near-places.tsx';
 import Badge from '../../components/common/badge/badge.tsx';
@@ -7,9 +6,10 @@ import {Navigate, useParams} from 'react-router-dom';
 import {Offer, Offers} from '../../types/types.ts';
 import BookmarkToggle from '../../components/common/bookmark-toggle';
 import {AppRoute} from '../../const/const.ts';
+import Layout from '../../components/layout/layout.tsx';
 
 type OfferPageProps = {
-  offers: Offers;
+    offers: Offers;
 };
 
 function OfferPage({offers}: OfferPageProps): ReactElement {
@@ -22,9 +22,11 @@ function OfferPage({offers}: OfferPageProps): ReactElement {
   const {title, price, isFavorite} = currentOffer;
 
   return (
-    <div className="page">
-      <Header/>
-      <main className="page__main page__main--offer">
+    <Layout
+      title='Offer'
+      mainClass='page__main--offer'
+    >
+      <>
         <section className="offer">
           <div className="offer__gallery-container container">
             <Gallery/>
@@ -47,13 +49,13 @@ function OfferPage({offers}: OfferPageProps): ReactElement {
               </div>
               <ul className="offer__features">
                 <li className="offer__feature offer__feature--entire">
-                  Apartment
+                                    Apartment
                 </li>
                 <li className="offer__feature offer__feature--bedrooms">
-                  3 Bedrooms
+                                    3 Bedrooms
                 </li>
                 <li className="offer__feature offer__feature--adults">
-                  Max 4 adults
+                                    Max 4 adults
                 </li>
               </ul>
               <div className="offer__price">
@@ -64,41 +66,43 @@ function OfferPage({offers}: OfferPageProps): ReactElement {
                 <h2 className="offer__inside-title">What&apos;s inside</h2>
                 <ul className="offer__inside-list">
                   <li className="offer__inside-item">
-                    Wi-Fi
+                                        Wi-Fi
                   </li>
                   <li className="offer__inside-item">
-                    Washing machine
+                                        Washing machine
                   </li>
                   <li className="offer__inside-item">
-                    Towels
+                                        Towels
                   </li>
                   <li className="offer__inside-item">
-                    Heating
+                                        Heating
                   </li>
                   <li className="offer__inside-item">
-                    Coffee machine
+                                        Coffee machine
                   </li>
                   <li className="offer__inside-item">
-                    Baby seat
+                                        Baby seat
                   </li>
                   <li className="offer__inside-item">
-                    Kitchen
+                                        Kitchen
                   </li>
                   <li className="offer__inside-item">
-                    Dishwasher
+                                        Dishwasher
                   </li>
                   <li className="offer__inside-item">
-                    Cabel TV
+                                        Cabel TV
                   </li>
                   <li className="offer__inside-item">
-                    Fridge
+                                        Fridge
                   </li>
                 </ul>
               </div>
               <div className="offer__host">
                 <h2 className="offer__host-title">Meet the host</h2>
                 <div className="offer__host-user user">
-                  <div className="offer__avatar-wrapper offer__avatar-wrapper--pro user__avatar-wrapper">
+                  <div
+                    className="offer__avatar-wrapper offer__avatar-wrapper--pro user__avatar-wrapper"
+                  >
                     <img
                       className="offer__avatar user__avatar" src="img/avatar-angelina.jpg"
                       width="74" height="74" alt="Host avatar"
@@ -113,22 +117,28 @@ function OfferPage({offers}: OfferPageProps): ReactElement {
                 </div>
                 <div className="offer__description">
                   <p className="offer__text">
-                    A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The
-                    building is green and from 18th century.
+                                        A quiet cozy and picturesque that hides behind a a river by the unique lightness
+                                        of Amsterdam. The
+                                        building is green and from 18th century.
                   </p>
                   <p className="offer__text">
-                    An independent House, strategically located between Rembrand Square and National Opera, but where
-                    the bustle of the city comes to rest in this alley flowery and colorful.
+                                        An independent House, strategically located between Rembrand Square and National
+                                        Opera, but where
+                                        the bustle of the city comes to rest in this alley flowery and colorful.
                   </p>
                 </div>
               </div>
               <section className="offer__reviews reviews">
-                <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">1</span></h2>
+                <h2 className="reviews__title">
+                                    Reviews &middot;
+                  <span className="reviews__amount">1</span>
+                </h2>
                 <ul className="reviews__list">
                   <li className="reviews__item">
                     <div className="reviews__user user">
                       <div className="reviews__avatar-wrapper user__avatar-wrapper">
-                        <img className="reviews__avatar user__avatar" src="img/avatar-max.jpg" width="54" height="54"
+                        <img className="reviews__avatar user__avatar" src="img/avatar-max.jpg"
+                          width="54" height="54"
                           alt="Reviews avatar"
                         />
                       </div>
@@ -144,8 +154,9 @@ function OfferPage({offers}: OfferPageProps): ReactElement {
                         </div>
                       </div>
                       <p className="reviews__text">
-                        A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.
-                        The building is green and from 18th century.
+                                                A quiet cozy and picturesque that hides behind a a river by the unique
+                                                lightness of Amsterdam.
+                                                The building is green and from 18th century.
                       </p>
                       <time className="reviews__time" dateTime="2019-04-24">April 2019</time>
                     </div>
@@ -154,46 +165,61 @@ function OfferPage({offers}: OfferPageProps): ReactElement {
                 <form className="reviews__form form" action="#" method="post">
                   <label className="reviews__label form__label" htmlFor="review">Your review</label>
                   <div className="reviews__rating-form form__rating">
-                    <input className="form__rating-input visually-hidden" name="rating" value="5" id="5-stars"
+                    <input className="form__rating-input visually-hidden" name="rating" value="5"
+                      id="5-stars"
                       type="radio"
                     />
-                    <label htmlFor="5-stars" className="reviews__rating-label form__rating-label" title="perfect">
+                    <label htmlFor="5-stars" className="reviews__rating-label form__rating-label"
+                      title="perfect"
+                    >
                       <svg className="form__star-image" width="37" height="33">
                         <use xlinkHref="#icon-star"></use>
                       </svg>
                     </label>
 
-                    <input className="form__rating-input visually-hidden" name="rating" value="4" id="4-stars"
+                    <input className="form__rating-input visually-hidden" name="rating" value="4"
+                      id="4-stars"
                       type="radio"
                     />
-                    <label htmlFor="4-stars" className="reviews__rating-label form__rating-label" title="good">
+                    <label htmlFor="4-stars" className="reviews__rating-label form__rating-label"
+                      title="good"
+                    >
                       <svg className="form__star-image" width="37" height="33">
                         <use xlinkHref="#icon-star"></use>
                       </svg>
                     </label>
 
-                    <input className="form__rating-input visually-hidden" name="rating" value="3" id="3-stars"
+                    <input className="form__rating-input visually-hidden" name="rating" value="3"
+                      id="3-stars"
                       type="radio"
                     />
-                    <label htmlFor="3-stars" className="reviews__rating-label form__rating-label" title="not bad">
+                    <label htmlFor="3-stars" className="reviews__rating-label form__rating-label"
+                      title="not bad"
+                    >
                       <svg className="form__star-image" width="37" height="33">
                         <use xlinkHref="#icon-star"></use>
                       </svg>
                     </label>
 
-                    <input className="form__rating-input visually-hidden" name="rating" value="2" id="2-stars"
+                    <input className="form__rating-input visually-hidden" name="rating" value="2"
+                      id="2-stars"
                       type="radio"
                     />
-                    <label htmlFor="2-stars" className="reviews__rating-label form__rating-label" title="badly">
+                    <label htmlFor="2-stars" className="reviews__rating-label form__rating-label"
+                      title="badly"
+                    >
                       <svg className="form__star-image" width="37" height="33">
                         <use xlinkHref="#icon-star"></use>
                       </svg>
                     </label>
 
-                    <input className="form__rating-input visually-hidden" name="rating" value="1" id="1-star"
+                    <input className="form__rating-input visually-hidden" name="rating" value="1"
+                      id="1-star"
                       type="radio"
                     />
-                    <label htmlFor="1-star" className="reviews__rating-label form__rating-label" title="terribly">
+                    <label htmlFor="1-star" className="reviews__rating-label form__rating-label"
+                      title="terribly"
+                    >
                       <svg className="form__star-image" width="37" height="33">
                         <use xlinkHref="#icon-star"></use>
                       </svg>
@@ -205,10 +231,17 @@ function OfferPage({offers}: OfferPageProps): ReactElement {
                   </textarea>
                   <div className="reviews__button-wrapper">
                     <p className="reviews__help">
-                      To submit review please make sure to set <span className="reviews__star">rating</span> and
-                      describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
+                                            To submit review please make sure to set <span
+                        className="reviews__star"
+                      >rating
+                      </span> and
+                                            describe your stay with at least <b className="reviews__text-amount">50
+                                            characters
+                                                                             </b>.
                     </p>
-                    <button className="reviews__submit form__submit button" type="submit" disabled={false}>Submit
+                    <button className="reviews__submit form__submit button" type="submit"
+                      disabled={false}
+                    >Submit
                     </button>
                   </div>
                 </form>
@@ -220,8 +253,8 @@ function OfferPage({offers}: OfferPageProps): ReactElement {
         <div className="container">
           <NearPlaces/>
         </div>
-      </main>
-    </div>
+      </>
+    </Layout>
   );
 }
 
