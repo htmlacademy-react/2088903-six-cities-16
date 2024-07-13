@@ -1,6 +1,4 @@
-import {ReactElement} from 'react';
-
-function NearPlaces(): ReactElement {
+function NearPlaces() {
 
   return (
     <section className="near-places places">

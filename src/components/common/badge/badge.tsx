@@ -1,4 +1,3 @@
-import {ReactElement} from 'react';
 import cn from 'classnames';
 
 type CardMarkProps = {
@@ -6,7 +5,7 @@ type CardMarkProps = {
   ifOfferDetail?: boolean;
 }
 
-function Badge({text = 'Premium', ifOfferDetail = false}: CardMarkProps): ReactElement {
+function Badge({text = 'Premium', ifOfferDetail = false}: CardMarkProps) {
   const badgeClassNames = cn({
     'offer__mark': ifOfferDetail,
     'place-card__mark': !ifOfferDetail,

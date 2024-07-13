@@ -1,4 +1,3 @@
-import {ReactElement} from 'react';
 import {Offers} from '../../types/types.ts';
 import MainPage from '../../pages/main-page/main-page.tsx';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
@@ -14,7 +13,7 @@ type AppProps = {
   offers: Offers;
 };
 
-function App({offers}: AppProps): ReactElement {
+function App({offers}: AppProps) {
   return (
     <HelmetProvider>
       <BrowserRouter>

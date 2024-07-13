@@ -1,10 +1,8 @@
-import {ReactElement} from 'react';
-
 type OfferImageProps = {
   imagePath: string;
 }
 
-function OfferImage({imagePath}: OfferImageProps): ReactElement {
+function OfferImage({imagePath}: OfferImageProps) {
 
   return (
     <div className="offer__image-wrapper">

@@ -1,4 +1,3 @@
-import {ReactElement} from 'react';
 import cn from 'classnames';
 import {Link} from 'react-router-dom';
 
@@ -25,7 +24,7 @@ type OfferImageProps = {
   isFavoritesCard?: boolean;
 }
 
-function OfferImage({previewImage, isFavoritesCard = false}: OfferImageProps): ReactElement {
+function OfferImage({previewImage, isFavoritesCard = false}: OfferImageProps) {
   const imageStyle: Style = isFavoritesCard ? Favorite : Cities;
   const {width, height, wrapperClass} = imageStyle;
 

@@ -1,4 +1,3 @@
-import {ReactElement} from 'react';
 import {Offer, Offers} from '../../../types/types.ts';
 import OfferCard from '../../offer/offer-card/offer-card.tsx';
 import {Link} from 'react-router-dom';
@@ -9,7 +8,7 @@ type FavoritesLocationProps = {
   offers: Offers;
 }
 
-function FavoritesLocation({city, offers}: FavoritesLocationProps): ReactElement {
+function FavoritesLocation({city, offers}: FavoritesLocationProps) {
 
   return (
     <li className="favorites__locations-items">

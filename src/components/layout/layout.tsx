@@ -1,4 +1,4 @@
-import {ReactElement, ReactNode} from 'react';
+import {ReactNode} from 'react';
 import {Helmet} from 'react-helmet-async';
 import Header from '../header/header.tsx';
 import cn from 'classnames';
@@ -12,7 +12,7 @@ type LayoutProps = {
   showFooter?: boolean;
 }
 
-function Layout({title, children, pageClass = '', mainClass = '', showFooter = false}: LayoutProps): ReactElement {
+function Layout({title, children, pageClass = '', mainClass = '', showFooter = false}: LayoutProps) {
   const pageClassNames = cn('page', pageClass);
   const mainClassName = cn('page__main', mainClass);
 
