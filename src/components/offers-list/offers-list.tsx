@@ -10,7 +10,7 @@ type OffersListProps = {
   setHoveredCard?: (id: string) => void;
 };
 
-function OffersList({offers, activeTab, setHoveredCard}: OffersListProps): ReactElement {
+function OffersList({offers, activeTab, setHoveredCard}: OffersListProps) {
   const activeOffers: Offers = offers.filter((offer: Offer) => offer.city.name === activeTab);
 
   return (

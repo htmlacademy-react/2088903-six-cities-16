@@ -1,4 +1,3 @@
-import {ReactElement} from 'react';
 import {favorites} from '../../../mocks/favorites.ts';
 import {Favorite, Offer} from '../../../types/types.ts';
 import FavoritesLocation from '../favorites-location/favorites-location.tsx';
@@ -13,7 +12,7 @@ const favoritesSorted: Favorite = favorites.reduce((acc: Favorite, currentOffer:
   return acc;
 }, {});
 
-function FavoritesList(): ReactElement {
+function FavoritesList() {
 
   return (
     <ul className="favorites__list">

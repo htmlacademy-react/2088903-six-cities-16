@@ -1,4 +1,4 @@
-import {ReactElement, useMemo} from 'react';
+import {useMemo} from 'react';
 import {OFFER_GALLERY_IMAGES} from '../../const/const.ts';
 import GalleryImage from './gallery-image/gallery-image.tsx';
 import * as faker from 'faker';
@@ -9,7 +9,7 @@ type GalleryWithId = {
   image: string;
 }
 
-function Gallery(): ReactElement {
+function Gallery() {
 
   const galleryWithId: GalleryWithId[] = useMemo(() => OFFER_GALLERY_IMAGES.map((image) => ({
     id: faker.datatype.uuid(),

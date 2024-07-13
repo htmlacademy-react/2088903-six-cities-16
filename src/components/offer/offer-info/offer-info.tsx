@@ -1,4 +1,3 @@
-import {ReactElement} from 'react';
 import {getRatingPercentage} from '../../../utils/utils.ts';
 import BookmarkToggle from '../../common/bookmark-toggle';
 
@@ -16,7 +15,7 @@ function OfferInfo({
   price,
   rating,
   isFavorite
-}: OfferInfoProps): ReactElement {
+}: OfferInfoProps) {
 
 
   return (

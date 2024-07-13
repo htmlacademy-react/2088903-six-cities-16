@@ -1,4 +1,4 @@
-import {ReactElement, useState} from 'react';
+import {useState} from 'react';
 import cn from 'classnames';
 
 type Style = {
@@ -33,7 +33,7 @@ type BookmarkProps = {
   ifOfferDetail?: boolean;
 }
 
-function BookmarkToggle({isFavorite, ifOfferDetail = false}: BookmarkProps): ReactElement {
+function BookmarkToggle({isFavorite, ifOfferDetail = false}: BookmarkProps) {
   const [active, setActive] = useState(isFavorite);
 
   const cardStyle: Style = ifOfferDetail ? offerStyle : placeCardStyle;

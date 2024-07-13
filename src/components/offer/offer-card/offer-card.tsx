@@ -1,4 +1,3 @@
-import {ReactElement} from 'react';
 import Badge from '../../common/badge/badge.tsx';
 import OfferImage from '../offer-image/offer-image.tsx';
 import OfferInfo from '../offer-info/offer-info.tsx';
@@ -28,7 +27,7 @@ function OfferCard({
   previewImage,
   isFavoritesCard = false,
   setHoveredCard,
-}: PlaceCardProps): ReactElement {
+}: PlaceCardProps) {
 
   const cardClassNames = cn('place-card', {
     'cities__card': !isFavoritesCard,

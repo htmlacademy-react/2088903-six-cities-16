@@ -13,7 +13,7 @@ function LocationItem({
   city,
   activeTab,
   handleClick,
-}: LocationItemProps): ReactElement {
+}: LocationItemProps) {
 
   const buttonClass = classNames({
     'locations__item-link tabs__item': true,

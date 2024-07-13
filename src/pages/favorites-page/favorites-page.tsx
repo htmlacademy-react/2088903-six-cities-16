@@ -1,9 +1,8 @@
-import {ReactElement} from 'react';
 import FavoritesList from '../../components/favorites/favorites-list/favorites-list.tsx';
 import Layout from '../../components/layout/layout.tsx';
 
 
-function FavoritesPage(): ReactElement {
+function FavoritesPage() {
   return (
     <Layout
       title='Favorites'

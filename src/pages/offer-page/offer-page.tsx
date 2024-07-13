@@ -1,4 +1,3 @@
-import {ReactElement} from 'react';
 import Gallery from '../../components/gallery/gallery.tsx';
 import NearPlaces from '../../components/near-places/near-places.tsx';
 import Badge from '../../components/common/badge/badge.tsx';
@@ -9,10 +8,10 @@ import {AppRoute} from '../../const/const.ts';
 import Layout from '../../components/layout/layout.tsx';
 
 type OfferPageProps = {
-    offers: Offers;
+  offers: Offers;
 };
 
-function OfferPage({offers}: OfferPageProps): ReactElement {
+function OfferPage({offers}: OfferPageProps) {
   const {id} = useParams<{ id: string }>();
   const currentOffer: Offer | undefined = offers.find((offer: Offer) => offer.id === id);
   if (!currentOffer) {
@@ -49,13 +48,13 @@ function OfferPage({offers}: OfferPageProps): ReactElement {
               </div>
               <ul className="offer__features">
                 <li className="offer__feature offer__feature--entire">
-                                    Apartment
+                  Apartment
                 </li>
                 <li className="offer__feature offer__feature--bedrooms">
-                                    3 Bedrooms
+                  3 Bedrooms
                 </li>
                 <li className="offer__feature offer__feature--adults">
-                                    Max 4 adults
+                  Max 4 adults
                 </li>
               </ul>
               <div className="offer__price">
@@ -66,34 +65,34 @@ function OfferPage({offers}: OfferPageProps): ReactElement {
                 <h2 className="offer__inside-title">What&apos;s inside</h2>
                 <ul className="offer__inside-list">
                   <li className="offer__inside-item">
-                                        Wi-Fi
+                    Wi-Fi
                   </li>
                   <li className="offer__inside-item">
-                                        Washing machine
+                    Washing machine
                   </li>
                   <li className="offer__inside-item">
-                                        Towels
+                    Towels
                   </li>
                   <li className="offer__inside-item">
-                                        Heating
+                    Heating
                   </li>
                   <li className="offer__inside-item">
-                                        Coffee machine
+                    Coffee machine
                   </li>
                   <li className="offer__inside-item">
-                                        Baby seat
+                    Baby seat
                   </li>
                   <li className="offer__inside-item">
-                                        Kitchen
+                    Kitchen
                   </li>
                   <li className="offer__inside-item">
-                                        Dishwasher
+                    Dishwasher
                   </li>
                   <li className="offer__inside-item">
-                                        Cabel TV
+                    Cabel TV
                   </li>
                   <li className="offer__inside-item">
-                                        Fridge
+                    Fridge
                   </li>
                 </ul>
               </div>
@@ -117,20 +116,20 @@ function OfferPage({offers}: OfferPageProps): ReactElement {
                 </div>
                 <div className="offer__description">
                   <p className="offer__text">
-                                        A quiet cozy and picturesque that hides behind a a river by the unique lightness
-                                        of Amsterdam. The
-                                        building is green and from 18th century.
+                    A quiet cozy and picturesque that hides behind a a river by the unique lightness
+                    of Amsterdam. The
+                    building is green and from 18th century.
                   </p>
                   <p className="offer__text">
-                                        An independent House, strategically located between Rembrand Square and National
-                                        Opera, but where
-                                        the bustle of the city comes to rest in this alley flowery and colorful.
+                    An independent House, strategically located between Rembrand Square and National
+                    Opera, but where
+                    the bustle of the city comes to rest in this alley flowery and colorful.
                   </p>
                 </div>
               </div>
               <section className="offer__reviews reviews">
                 <h2 className="reviews__title">
-                                    Reviews &middot;
+                  Reviews &middot;
                   <span className="reviews__amount">1</span>
                 </h2>
                 <ul className="reviews__list">
@@ -154,9 +153,9 @@ function OfferPage({offers}: OfferPageProps): ReactElement {
                         </div>
                       </div>
                       <p className="reviews__text">
-                                                A quiet cozy and picturesque that hides behind a a river by the unique
-                                                lightness of Amsterdam.
-                                                The building is green and from 18th century.
+                        A quiet cozy and picturesque that hides behind a a river by the unique
+                        lightness of Amsterdam.
+                        The building is green and from 18th century.
                       </p>
                       <time className="reviews__time" dateTime="2019-04-24">April 2019</time>
                     </div>
@@ -231,13 +230,10 @@ function OfferPage({offers}: OfferPageProps): ReactElement {
                   </textarea>
                   <div className="reviews__button-wrapper">
                     <p className="reviews__help">
-                                            To submit review please make sure to set <span
-                        className="reviews__star"
-                      >rating
-                      </span> and
-                                            describe your stay with at least <b className="reviews__text-amount">50
-                                            characters
-                                                                             </b>.
+                      To submit review please make sure to set
+                      <span className="reviews__star">rating</span>
+                      and describe your stay with at least
+                      <b className="reviews__text-amount">50characters</b>.
                     </p>
                     <button className="reviews__submit form__submit button" type="submit"
                       disabled={false}

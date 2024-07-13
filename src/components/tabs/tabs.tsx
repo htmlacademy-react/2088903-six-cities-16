@@ -7,7 +7,7 @@ type TabsProps = {
   setActiveTab: (arg0: string) => void;
 }
 
-function Tabs({activeTab, setActiveTab}: TabsProps): ReactElement {
+function Tabs({activeTab, setActiveTab}: TabsProps) {
 
   return (
     <div className="tabs">

@@ -1,11 +1,10 @@
-import {ReactElement} from 'react';
 import LoginForm from '../../components/login-form/login-form.tsx';
 import LocationItem from '../../components/common/location-item/location-item.tsx';
 import Layout from '../../components/layout/layout.tsx';
 import {Navigate} from 'react-router-dom';
 import {AppRoute} from '../../const/const.ts';
 
-function LoginPage(): ReactElement {
+function LoginPage() {
   const currentCity = 'Amsterdam';
 
   const handleClick = () => <Navigate to={AppRoute.Root}/>;

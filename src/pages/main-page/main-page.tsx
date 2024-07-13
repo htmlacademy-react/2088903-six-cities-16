@@ -1,4 +1,4 @@
-import {ReactElement, useState} from 'react';
+import {useState} from 'react';
 import {Offers} from '../../types/types.ts';
 import Tabs from '../../components/tabs/tabs.tsx';
 import OffersList from '../../components/offers-list/offers-list.tsx';
@@ -9,7 +9,7 @@ type MainPageProps = {
   offers: Offers;
 };
 
-function MainPage({offers}: MainPageProps): ReactElement {
+function MainPage({offers}: MainPageProps) {
   const [activeTab, setActiveTab] = useState('Paris');
   const [hoveredCard, setHoveredCard] = useState('');
 

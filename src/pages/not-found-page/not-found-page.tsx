@@ -1,9 +1,8 @@
-import {ReactElement} from 'react';
 import {Link} from 'react-router-dom';
 import Layout from '../../components/layout/layout.tsx';
 
 
-function NotFoundPage(): ReactElement {
+function NotFoundPage() {
   return (
     <Layout
       title='Not found'
