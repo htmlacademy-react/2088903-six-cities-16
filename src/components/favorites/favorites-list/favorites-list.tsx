@@ -13,7 +13,7 @@ const favoritesSorted: Favorite = favorites.reduce((acc: Favorite, currentOffer:
 }, {});
 
 function FavoritesList() {
-
+  // нет переходов на страницу Offer - некорректные моки favorites.ts
   return (
     <ul className="favorites__list">
       {Object.entries(favoritesSorted).map(([city, offers]) => (

@@ -1,15 +1,15 @@
 import {Link} from 'react-router-dom';
 import Layout from '../../components/layout/layout.tsx';
 
-
 function NotFoundPage() {
   return (
     <Layout
       title='Not found'
+      pageClass='page--gray'
     >
       <div style={{textAlign: 'center', marginTop: '200px'}}>
-        <p>404 Страница не найдена!</p>
-        <Link to="/">Go to main page</Link>
+        <h1>404 Страница не найдена!</h1>
+        <Link to="/" className='form__submit button'>Go to main page</Link>
       </div>
     </Layout>
   );
