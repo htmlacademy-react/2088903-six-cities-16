@@ -5,12 +5,12 @@ import FavoritesPage from '../../pages/favorites-page/favorites-page.tsx';
 import NotFoundPage from '../../pages/not-found-page/not-found-page.tsx';
 import LoginPage from '../../pages/login-page/login-page.tsx';
 import OfferPage from '../../pages/offer-page/offer-page.tsx';
-import {AppRoute, AuthorizationStatus} from '../../const/const.ts';
+import {AppRoute, AuthorizationStatus, AuthorizationStatusType} from '../../const/const.ts';
 import {NoAuthOnlyRoute, PrivateRoute} from '../private-route/private-route.tsx';
 import {HelmetProvider} from 'react-helmet-async';
 import ErrorPage from '../../pages/error-page/error-page.tsx';
 
-const status = AuthorizationStatus.Auth;
+const status: AuthorizationStatusType = AuthorizationStatus.Auth;
 
 type AppProps = {
   offers: Offers;

@@ -9,8 +9,6 @@ export const OFFER_GALLERY_IMAGES = [
   'img/apartment-01.jpg'
 ];
 
-export type AppRoute = typeof AppRoute[keyof typeof AppRoute];
-
 export const AppRoute = {
   Root: '/',
   Offer: '/offer/:id',
@@ -18,6 +16,8 @@ export const AppRoute = {
   Login: '/login',
   NotFound: '/404',
 } as const;
+
+export type AuthorizationStatusType = typeof AuthorizationStatus[keyof typeof AuthorizationStatus];
 
 export const AuthorizationStatus = {
   Auth: 'AUTH',
