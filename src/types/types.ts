@@ -1,63 +1,63 @@
-export type Location = {
+export type TLocation = {
   latitude: number;
   longitude: number;
   zoom: number;
 }
 
-export type City = {
+export type TCity = {
   name: string;
-  location: Location;
+  location: TLocation;
 }
 
-export type User = {
+export type TUser = {
   name: string;
   avatarUrl: string;
   isPro: boolean;
 }
 
-export type FullUserInfo = User & {
+export type TFullUserInfo = TUser & {
   email: string;
   token: string;
 }
 
-export type Offer = {
+export type TOffer = {
   id: string;
   title: string;
   type: string;
   price: number;
-  city: City;
-  location: Location;
+  city: TCity;
+  location: TLocation;
   isFavorite: boolean;
   isPremium: boolean;
   rating: number;
   previewImage: string;
 };
 
-type OfferWithoutPreview = Omit<Offer, 'previewImage'>
+export type TOfferWithoutPreview = Omit<TOffer, 'previewImage'>
 
-export type FullOffer = OfferWithoutPreview & {
+export type TFullOffer = TOfferWithoutPreview & {
   description: string;
   bedrooms: number;
   goods: string[];
-  host: User;
+  host: TUser;
   images: string[];
   maxAdults: number;
 }
 
-export type Offers = Offer[];
+export type TOffers = TOffer[];
 
-export type FavoriteOffer = FullOffer & {
+export type TFavoriteOffer = TFullOffer & {
   previewImage: string;
 }
 
-type Comment = {
+export type TComment = {
   id: string;
   date: string;
-  user: User;
+  user: TUser;
   comment: string;
   rating: number;
 }
 
-export type Comments = Comment[];
+export type TComments = TComment[];
 
-export type Favorite = Record<string, Offers>;
+export type TFavorite = Record<string, TOffers>;

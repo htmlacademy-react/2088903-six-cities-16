@@ -1,17 +1,17 @@
 import {useState} from 'react';
-import {Offers} from '../../types/types.ts';
+import {TOffers} from '../../types/types.ts';
 import Tabs from '../../components/tabs/tabs.tsx';
 import OffersList from '../../components/offers-list/offers-list.tsx';
 import Map from '../../components/map/map.tsx';
 import Layout from '../../components/layout/layout.tsx';
 
 type MainPageProps = {
-  offers: Offers;
+  offers: TOffers;
 };
 
 function MainPage({offers}: MainPageProps) {
   const [activeTab, setActiveTab] = useState('Paris');
-  const [hoveredCard, setHoveredCard] = useState('');
+  const [selectedCard, setSelectedCard] = useState('');
 
   return (
     <Layout
@@ -30,10 +30,14 @@ function MainPage({offers}: MainPageProps) {
             <OffersList
               offers={offers}
               activeTab={activeTab}
-              setHoveredCard={setHoveredCard}
+              setselectedCard={setSelectedCard}
             />
             <div className="cities__right-section">
-              <Map hoveredCard={hoveredCard}/>
+              <Map
+                activeTab={activeTab}
+                offers={offers}
+                selectedCard={selectedCard}
+              />
             </div>
           </div>
         </div>

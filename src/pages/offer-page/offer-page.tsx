@@ -2,7 +2,7 @@ import Gallery from '../../components/gallery/gallery.tsx';
 import NearPlaces from '../../components/near-places/near-places.tsx';
 import Badge from '../../components/common/badge/badge.tsx';
 import {Navigate, useParams} from 'react-router-dom';
-import {Offer, Offers} from '../../types/types.ts';
+import {TOffer, TOffers} from '../../types/types.ts';
 import BookmarkToggle from '../../components/common/bookmark-toggle';
 import {AppRoute} from '../../const/const.ts';
 import Layout from '../../components/layout/layout.tsx';
@@ -14,12 +14,12 @@ import OfferRating from '../../components/offer/offer-rating/offer-rating.tsx';
 import OfferPrice from '../../components/offer/offer-price/offer-price.tsx';
 
 type OfferPageProps = {
-  offers: Offers;
+  offers: TOffers;
 };
 
 function OfferPage({offers}: OfferPageProps) {
   const {id} = useParams<{ id: string }>();
-  const currentOffer: Offer | undefined = offers.find((offer: Offer) => offer.id === id);
+  const currentOffer: TOffer | undefined = offers.find((offer: TOffer) => offer.id === id);
   if (!currentOffer) {
     return <Navigate to={AppRoute.NotFound} replace/>;
   }

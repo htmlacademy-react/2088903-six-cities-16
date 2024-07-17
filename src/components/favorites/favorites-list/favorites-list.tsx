@@ -1,8 +1,8 @@
 import {favorites} from '../../../mocks/favorites.ts';
-import {Favorite, Offer} from '../../../types/types.ts';
+import {TFavorite, TOffer} from '../../../types/types.ts';
 import FavoritesLocation from '../favorites-location/favorites-location.tsx';
 
-const favoritesSorted: Favorite = favorites.reduce((acc: Favorite, currentOffer: Offer) => {
+const favoritesSorted: TFavorite = favorites.reduce((acc: TFavorite, currentOffer: TOffer) => {
   const cityName = currentOffer.city.name;
 
   if (!acc[cityName]) {

@@ -1,11 +1,11 @@
-import {Offer, Offers} from '../../../types/types.ts';
+import {TOffer, TOffers} from '../../../types/types.ts';
 import OfferCard from '../../offer/offer-card/offer-card.tsx';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../../const/const.ts';
 
 type FavoritesLocationProps = {
   city: string;
-  offers: Offers;
+  offers: TOffers;
 }
 
 function FavoritesLocation({city, offers}: FavoritesLocationProps) {
@@ -21,7 +21,7 @@ function FavoritesLocation({city, offers}: FavoritesLocationProps) {
       </div>
       <div className="favorites__places">
         {
-          offers.map((offer: Offer) => (
+          offers.map((offer: TOffer) => (
             <OfferCard
               key={offer.id}
               id={offer.id}

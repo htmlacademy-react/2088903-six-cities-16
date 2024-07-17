@@ -1,17 +1,17 @@
 import {ReactElement} from 'react';
-import {Offer, Offers} from '../../types/types.ts';
+import {TOffer, TOffers} from '../../types/types.ts';
 import OfferCard from '../offer/offer-card/offer-card.tsx';
 import SortForm from '../sort-form/sort-form.tsx';
 
 
 type OffersListProps = {
-  offers: Offers;
+  offers: TOffers;
   activeTab: string;
-  setHoveredCard?: (id: string) => void;
+  setselectedCard?: (id: string) => void;
 };
 
-function OffersList({offers, activeTab, setHoveredCard}: OffersListProps) {
-  const activeOffers: Offers = offers.filter((offer: Offer) => offer.city.name === activeTab);
+function OffersList({offers, activeTab, setselectedCard}: OffersListProps) {
+  const activeOffers: TOffers = offers.filter((offer: TOffer) => offer.city.name === activeTab);
 
   return (
     <section className="cities__places places">
@@ -20,7 +20,7 @@ function OffersList({offers, activeTab, setHoveredCard}: OffersListProps) {
       <SortForm/>
       <div className="cities__places-list places__list tabs__content">
         {
-          activeOffers.map((offer: Offer): ReactElement => (
+          activeOffers.map((offer: TOffer): ReactElement => (
             <OfferCard
               key={offer.id}
               id={offer.id}
@@ -31,7 +31,7 @@ function OffersList({offers, activeTab, setHoveredCard}: OffersListProps) {
               isFavorite={offer.isFavorite}
               isPremium={offer.isPremium}
               previewImage={offer.previewImage}
-              setHoveredCard={setHoveredCard}
+              setselectedCard={setselectedCard}
             />
           ))
         }

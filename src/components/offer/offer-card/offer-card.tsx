@@ -13,7 +13,7 @@ type PlaceCardProps = {
   isFavorite: boolean;
   isPremium: boolean;
   isFavoritesCard?: boolean;
-  setHoveredCard?: (id: string) => void;
+  setselectedCard?: (id: string) => void;
 };
 
 function OfferCard({
@@ -26,7 +26,7 @@ function OfferCard({
   isPremium,
   previewImage,
   isFavoritesCard = false,
-  setHoveredCard,
+  setselectedCard,
 }: PlaceCardProps) {
 
   const cardClassNames = cn('place-card', {
@@ -34,8 +34,8 @@ function OfferCard({
     'favorites__card': isFavoritesCard,
   });
 
-  const handleMouseEnter = () => setHoveredCard ? setHoveredCard(id) : null;
-  const handleMouseLeave = () => setHoveredCard ? setHoveredCard('') : null;
+  const handleMouseEnter = () => setselectedCard ? setselectedCard(id) : null;
+  const handleMouseLeave = () => setselectedCard ? setselectedCard('') : null;
 
   return (
     <article

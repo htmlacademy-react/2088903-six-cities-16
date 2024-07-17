@@ -1,6 +1,6 @@
-import {Offers} from '../types/types.ts';
+import {TOffers} from '../types/types.ts';
 
-export const offers: Offers = [
+export const offers: TOffers = [
   {
     'id': 'a13b9fbd-1328-4e59-baad-7353729df28e',
     'title': 'House in countryside',
@@ -10,14 +10,14 @@ export const offers: Offers = [
     'city': {
       'name': 'Paris',
       'location': {
-        'latitude': 48.85661,
+        'latitude': 52.3909553943508,
         'longitude': 2.351499,
         'zoom': 13
       }
     },
     'location': {
-      'latitude': 48.868610000000004,
-      'longitude': 2.342499,
+      'latitude': 52.3909553943508,
+      'longitude': 4.85309666406198,
       'zoom': 16
     },
     'isFavorite': true,
@@ -39,8 +39,8 @@ export const offers: Offers = [
       }
     },
     'location': {
-      'latitude': 48.858610000000006,
-      'longitude': 2.330499,
+      'latitude': 52.3609553943508,
+      'longitude': 4.85309666406198,
       'zoom': 16
     },
     'isFavorite': false,
@@ -62,8 +62,8 @@ export const offers: Offers = [
       }
     },
     'location': {
-      'latitude': 48.834610000000005,
-      'longitude': 2.335499,
+      'latitude': 52.3909553943508,
+      'longitude': 4.929309666406198,
       'zoom': 16
     },
     'isFavorite': false,
@@ -85,8 +85,8 @@ export const offers: Offers = [
       }
     },
     'location': {
-      'latitude': 48.85761,
-      'longitude': 2.358499,
+      'latitude': 52.3809553943508,
+      'longitude': 4.939309666406198,
       'zoom': 16
     },
     'isFavorite': false,
@@ -108,8 +108,8 @@ export const offers: Offers = [
       }
     },
     'location': {
-      'latitude': 48.87561,
-      'longitude': 2.375499,
+      'latitude': 52.3809553943508,
+      'longitude': 4.893703165234089,
       'zoom': 16
     },
     'isFavorite': true,
