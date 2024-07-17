@@ -3,11 +3,9 @@ import Layout from '../../components/layout/layout.tsx';
 
 function ErrorPage() {
   const error = useRouteError();
+  const DEFAULT_MESSAGE = 'Something went wrong';
 
-  let message = 'Something went wrong';
-  if (error instanceof Error) {
-    message = error.message;
-  }
+  const message = (error instanceof Error) ? error.message : DEFAULT_MESSAGE;
 
   return (
     <Layout

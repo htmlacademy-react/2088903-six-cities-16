@@ -1,5 +1,5 @@
-import ReviewList from '../../review-list/review-list.tsx';
-import ReviewForm from '../../review-form/review-form.tsx';
+import ReviewList from '../../review/review-list/review-list.tsx';
+import ReviewForm from '../../review/review-form/review-form.tsx';
 
 function OfferReviews() {
   return (
