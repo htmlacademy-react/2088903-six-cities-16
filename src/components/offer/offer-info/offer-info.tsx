@@ -1,7 +1,10 @@
 import {getRatingPercentage} from '../../../utils/utils.ts';
 import BookmarkToggle from '../../common/bookmark-toggle';
+import {generatePath, Link} from 'react-router-dom';
+import {AppRoute} from '../../../const/const.ts';
 
 type OfferInfoProps = {
+  id: string;
   title: string;
   type: string;
   price: number;
@@ -10,6 +13,7 @@ type OfferInfoProps = {
 };
 
 function OfferInfo({
+  id,
   title,
   type,
   price,
@@ -17,6 +21,7 @@ function OfferInfo({
   isFavorite
 }: OfferInfoProps) {
 
+  const path = generatePath(AppRoute.Offer, {id});
 
   return (
     <div className="place-card__info">
@@ -34,7 +39,7 @@ function OfferInfo({
         </div>
       </div>
       <h2 className="place-card__name">
-        <a href="#">{title}</a>
+        <Link to={path}>{title}</Link>
       </h2>
       <p className="place-card__type">{type}</p>
     </div>

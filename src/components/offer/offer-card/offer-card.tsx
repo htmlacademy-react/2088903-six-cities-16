@@ -47,10 +47,12 @@ function OfferCard({
         isPremium ? <Badge/> : null
       }
       <OfferImage
+        id={id}
         previewImage={previewImage}
         isFavoritesCard={isFavoritesCard}
       />
       <OfferInfo
+        id={id}
         title={title}
         type={type}
         price={price}

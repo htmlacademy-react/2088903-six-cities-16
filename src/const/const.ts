@@ -9,16 +9,18 @@ export const OFFER_GALLERY_IMAGES = [
   'img/apartment-01.jpg'
 ];
 
-export enum AppRoute {
-  Root = '/',
-  Offer = '/offer/:id',
-  Favorites = '/favorites',
-  Login = '/login',
-  NotFound = '/404',
-}
+export const AppRoute = {
+  Root: '/',
+  Offer: '/offer/:id',
+  Favorites: '/favorites',
+  Login: '/login',
+  NotFound: '/404',
+} as const;
 
-export enum AuthorizationStatus {
-  Auth = 'AUTH',
-  NoAuth = 'NO_AUTH',
-  Unknown = 'UNKNOWN',
-}
+export type AuthorizationStatusType = typeof AuthorizationStatus[keyof typeof AuthorizationStatus];
+
+export const AuthorizationStatus = {
+  Auth: 'AUTH',
+  NoAuth: 'NO_AUTH',
+  Unknown: 'UNKNOWN',
+} as const;

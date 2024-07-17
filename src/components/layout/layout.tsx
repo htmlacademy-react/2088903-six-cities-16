@@ -26,7 +26,7 @@ function Layout({title, children, pageClass = '', mainClass = '', showFooter = f
         <main className={mainClassName}>
           {children}
         </main>
-        {showFooter ? <Footer/> : null}
+        {showFooter && <Footer/>}
       </div>
     </>
   );
