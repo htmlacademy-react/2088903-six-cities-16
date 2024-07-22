@@ -22,7 +22,7 @@ function App({offers}: AppProps) {
       children: [
         {
           index: true,
-          element: <MainPage offers={offers}/>,
+          element: <MainPage/>,
         },
         {
           path: AppRoute.Favorites,

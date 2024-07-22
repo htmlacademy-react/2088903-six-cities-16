@@ -1,16 +1,19 @@
 import {useState} from 'react';
-import {TOffers} from '../../types/types.ts';
 import Tabs from '../../components/tabs/tabs.tsx';
 import OffersList from '../../components/offers-list/offers-list.tsx';
 import Map from '../../components/map/map.tsx';
 import Layout from '../../components/layout/layout.tsx';
+import {useAppSelector} from '../../store';
 
-type MainPageProps = {
-  offers: TOffers;
-};
+// type MainPageProps = {
+//   offers: TOffers;
+// };
 
-function MainPage({offers}: MainPageProps) {
-  const [activeCity, setActiveCity] = useState('Paris');
+function MainPage() {
+  const offers = useAppSelector((state) => state.offersList);
+  const activeCity = useAppSelector((state) => state.activeCity);
+
+  // const [activeCity, setActiveCity] = useState('Paris');
   const [selectedCard, setSelectedCard] = useState('');
 
   return (
@@ -23,7 +26,7 @@ function MainPage({offers}: MainPageProps) {
         <h1 className="visually-hidden">Cities</h1>
         <Tabs
           activeCity={activeCity}
-          setActiveCity={(city: string) => setActiveCity(city)}
+          // setActiveCity={(city) => dispatch(selectCity(city))}
         />
         <div className="cities">
           <div className="cities__places-container container">
