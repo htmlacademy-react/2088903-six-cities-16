@@ -1,3 +1,5 @@
+import {TCities} from '../const/const.ts';
+
 export type TLocation = {
   latitude: number;
   longitude: number;
@@ -5,7 +7,7 @@ export type TLocation = {
 }
 
 export type TCity = {
-  name: string;
+  name: TCities;
   location: TLocation;
 }
 
@@ -60,4 +62,4 @@ export type TComment = {
 
 export type TComments = TComment[];
 
-export type TFavorite = Record<string, TOffers>;
+export type TFavorite = Record<TCities, TOffers>;

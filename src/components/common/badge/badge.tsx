@@ -1,18 +1,12 @@
-import cn from 'classnames';
-
 type CardMarkProps = {
-  text?: string;
-  ifOfferDetail?: boolean;
+  text?: 'Premium';
+  className?: 'offer' | 'place-card';
 }
 
-function Badge({text = 'Premium', ifOfferDetail = false}: CardMarkProps) {
-  const badgeClassNames = cn({
-    'offer__mark': ifOfferDetail,
-    'place-card__mark': !ifOfferDetail,
-  });
+function Badge({text = 'Premium', className = 'place-card'}: CardMarkProps) {
 
   return (
-    <div className={badgeClassNames}>
+    <div className={`${className}__mark`}>
       <span>{text}</span>
     </div>
   );

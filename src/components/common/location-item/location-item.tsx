@@ -1,23 +1,22 @@
 import {ReactElement} from 'react';
-import * as classNames from 'classnames';
+import cn from 'classnames';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../../const/const.ts';
 
 type LocationItemProps = {
   city: string;
-  activeTab?: string;
+  activeCity?: string;
   handleClick?: () => void | ReactElement;
 }
 
 function LocationItem({
   city,
-  activeTab,
+  activeCity,
   handleClick,
 }: LocationItemProps) {
 
-  const buttonClass = classNames({
-    'locations__item-link tabs__item': true,
-    'tabs__item--active': activeTab === city,
+  const buttonClass = cn('locations__item-link tabs__item', {
+    'tabs__item--active': activeCity === city,
   });
 
   return (

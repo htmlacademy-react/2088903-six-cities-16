@@ -3,11 +3,11 @@ import {CITIES} from '../../const/const.ts';
 import LocationItem from '../common/location-item/location-item.tsx';
 
 type TabsProps = {
-  activeTab: string;
-  setActiveTab: (arg0: string) => void;
+  activeCity: string;
+  setActiveCity: (arg0: string) => void;
 }
 
-function Tabs({activeTab, setActiveTab}: TabsProps) {
+function Tabs({activeCity, setActiveCity}: TabsProps) {
 
   return (
     <div className="tabs">
@@ -18,8 +18,8 @@ function Tabs({activeTab, setActiveTab}: TabsProps) {
               <LocationItem
                 key={city}
                 city={city}
-                activeTab={activeTab}
-                handleClick={() => setActiveTab(city)}
+                activeCity={activeCity}
+                handleClick={() => setActiveCity(city)}
               />
             ))
           }

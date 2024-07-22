@@ -12,7 +12,7 @@ type PlaceCardProps = {
   previewImage: string;
   isFavorite: boolean;
   isPremium: boolean;
-  isFavoritesCard?: boolean;
+  className?: 'cities' | 'favorites' | 'near-places';
   setSelectedCard?: (id: string) => void;
 };
 
@@ -25,14 +25,11 @@ function OfferCard({
   isFavorite,
   isPremium,
   previewImage,
-  isFavoritesCard = false,
+  className = 'cities',
   setSelectedCard,
 }: PlaceCardProps) {
 
-  const cardClassNames = cn('place-card', {
-    'cities__card': !isFavoritesCard,
-    'favorites__card': isFavoritesCard,
-  });
+  const cardClassNames = cn('place-card', `${className}__card`);
 
   const handleMouseEnter = () => setSelectedCard ? setSelectedCard(id) : null;
   const handleMouseLeave = () => setSelectedCard ? setSelectedCard('') : null;
@@ -49,7 +46,7 @@ function OfferCard({
       <OfferPreviewImage
         id={id}
         previewImage={previewImage}
-
+        className={className}
       />
       <OfferInfo
         id={id}

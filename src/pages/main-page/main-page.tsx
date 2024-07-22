@@ -10,7 +10,7 @@ type MainPageProps = {
 };
 
 function MainPage({offers}: MainPageProps) {
-  const [activeTab, setActiveTab] = useState('Paris');
+  const [activeCity, setActiveCity] = useState('Paris');
   const [selectedCard, setSelectedCard] = useState('');
 
   return (
@@ -22,19 +22,19 @@ function MainPage({offers}: MainPageProps) {
       <>
         <h1 className="visually-hidden">Cities</h1>
         <Tabs
-          activeTab={activeTab}
-          setActiveTab={(city: string) => setActiveTab(city)}
+          activeCity={activeCity}
+          setActiveCity={(city: string) => setActiveCity(city)}
         />
         <div className="cities">
           <div className="cities__places-container container">
             <OffersList
               offers={offers}
-              activeTab={activeTab}
+              activeCity={activeCity}
               setSelectedCard={setSelectedCard}
             />
             <div className="cities__right-section">
               <Map
-                activeTab={activeTab}
+                activeCity={activeCity}
                 offers={offers}
                 selectedCard={selectedCard}
               />

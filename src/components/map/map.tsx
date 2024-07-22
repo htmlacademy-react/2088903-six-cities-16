@@ -7,9 +7,10 @@ import {TPoints} from '../../types/map.ts';
 import {URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from '../../const/const.ts';
 
 type MapProps = {
-  activeTab: string;
+  activeCity: string;
   offers: TOffers;
   selectedCard: string;
+  className?: 'offer' | 'cities';
 }
 
 const defaultCustomIcon = new Icon({
@@ -24,8 +25,8 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-function Map({activeTab, offers, selectedCard}: MapProps) {
-  const activeOffers: TOffers = offers.filter((offer: TOffer) => offer.city.name === activeTab);
+function Map({activeCity, offers, selectedCard, className = 'cities'}: MapProps) {
+  const activeOffers: TOffers = offers.filter((offer: TOffer) => offer.city.name === activeCity);
   const points: TPoints = activeOffers.reduce((acc: TPoints, currentOffer: TOffer) => {
     acc.push({
       'id': currentOffer.id,
@@ -63,7 +64,12 @@ function Map({activeTab, offers, selectedCard}: MapProps) {
     }
   }, [map, points, selectedCard]);
 
-  return <section className="cities__map map" style={{height: '100%'}} ref={mapRef}></section>;
+  return (
+    <section className={`${className}__map map`}
+      style={{minHeight: '500px', height: '100%'}}
+      ref={mapRef}
+    >
+    </section>);
 }
 
 export default Map;

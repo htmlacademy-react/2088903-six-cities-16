@@ -12,19 +12,23 @@ import OfferReviews from '../../components/offer/offer-reviews/offer-reviews.tsx
 import OfferFeatures from '../../components/offer/offer-features/offer-features.tsx';
 import OfferRating from '../../components/offer/offer-rating/offer-rating.tsx';
 import OfferPrice from '../../components/offer/offer-price/offer-price.tsx';
+import {useState} from 'react';
+import Map from '../../components/map/map.tsx';
 
 type OfferPageProps = {
   offers: TOffers;
 };
 
 function OfferPage({offers}: OfferPageProps) {
+  const [selectedCard, setSelectedCard] = useState('');
   const {id} = useParams<{ id: string }>();
   const currentOffer: TOffer | undefined = offers.find((offer: TOffer) => offer.id === id);
   if (!currentOffer) {
     return <Navigate to={AppRoute.NotFound} replace/>;
   }
 
-  const {title, price, isFavorite} = currentOffer;
+  const offersNearby = offers.slice(0, 3);
+  const {title, price, city, isFavorite} = currentOffer;
 
   return (
     <Layout
@@ -38,12 +42,15 @@ function OfferPage({offers}: OfferPageProps) {
           </div>
           <div className="offer__container container">
             <div className="offer__wrapper">
-              <Badge ifOfferDetail/>
+              <Badge className='offer'/>
               <div className="offer__name-wrapper">
                 <h1 className="offer__name">
                   {title}
                 </h1>
-                <BookmarkToggle isFavorite={isFavorite} ifOfferDetail/>
+                <BookmarkToggle
+                  isFavorite={isFavorite}
+                  className='offer'
+                />
               </div>
               <OfferRating/>
               <OfferFeatures/>
@@ -53,11 +60,19 @@ function OfferPage({offers}: OfferPageProps) {
               <OfferReviews/>
             </div>
           </div>
-          <section className="offer__map map"></section>
-          {/*<Map activeTab={} offers={} selectedCard={}/>*/}
+          {/*<section className="offer__map map"></section>*/}
+          <Map
+            activeCity={city.name}
+            offers={offersNearby}
+            selectedCard={selectedCard}
+            className='offer'
+          />
         </section>
         <div className="container">
-          <NearPlaces/>
+          <NearPlaces
+            offersNearby={offersNearby}
+            setSelectedCard={setSelectedCard}
+          />
         </div>
       </>
     </Layout>

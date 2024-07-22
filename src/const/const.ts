@@ -1,4 +1,5 @@
-export const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
+export const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'] as const;
+export type TCities = (typeof CITIES)[number];
 
 export const OFFER_GALLERY_IMAGES = [
   'img/room.jpg',

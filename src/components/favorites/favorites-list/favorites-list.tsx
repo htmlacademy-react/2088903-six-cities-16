@@ -1,6 +1,7 @@
 import {favorites} from '../../../mocks/favorites.ts';
 import {TFavorite, TOffer} from '../../../types/types.ts';
 import FavoritesLocation from '../favorites-location/favorites-location.tsx';
+import {TCities} from '../../../const/const.ts';
 
 const favoritesSorted: TFavorite = favorites.reduce((acc: TFavorite, currentOffer: TOffer) => {
   const cityName = currentOffer.city.name;
@@ -10,7 +11,7 @@ const favoritesSorted: TFavorite = favorites.reduce((acc: TFavorite, currentOffe
   }
   acc[cityName].push(currentOffer);
   return acc;
-}, {});
+}, {} as TFavorite);
 
 function FavoritesList() {
   // нет переходов на страницу Offer - некорректные моки favorites.ts
@@ -19,7 +20,7 @@ function FavoritesList() {
       {Object.entries(favoritesSorted).map(([city, offers]) => (
         <FavoritesLocation
           key={city}
-          city={city}
+          city={city as TCities}
           offers={offers}
         />
       ))}

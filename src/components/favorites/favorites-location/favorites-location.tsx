@@ -1,10 +1,10 @@
 import {TOffer, TOffers} from '../../../types/types.ts';
 import OfferCard from '../../offer/offer-card/offer-card.tsx';
 import {Link} from 'react-router-dom';
-import {AppRoute} from '../../../const/const.ts';
+import {AppRoute, TCities} from '../../../const/const.ts';
 
 type FavoritesLocationProps = {
-  city: string;
+  city: TCities;
   offers: TOffers;
 }
 
@@ -32,7 +32,7 @@ function FavoritesLocation({city, offers}: FavoritesLocationProps) {
               previewImage={offer.previewImage}
               isFavorite={offer.isFavorite}
               isPremium={offer.isPremium}
-              isFavoritesCard
+              className = 'favorites'
             />
           )
           )
