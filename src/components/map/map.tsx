@@ -4,11 +4,10 @@ import 'leaflet/dist/leaflet.css';
 import {useEffect, useRef} from 'react';
 import useMap from '../../hooks/use-map.tsx';
 import {TPoints} from '../../types/map.ts';
-import {TCities, URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from '../../const/const.ts';
+import {URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from '../../const/const.ts';
 
 type MapProps = {
-  activeCity: TCities;
-  offers: TOffers;
+  activeOffers: TOffers;
   selectedCard: string;
   className?: 'offer' | 'cities';
 }
@@ -25,11 +24,7 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-function Map({activeCity, offers, selectedCard, className = 'cities'}: MapProps) {
-  const activeOffers: TOffers = offers.filter((offer: TOffer) => offer.city.name === activeCity);
-  const mapCity = activeOffers.length > 0 ? activeOffers[0].city : null;
-  // передавать на карту координаты городов
-
+function Map({activeOffers, selectedCard, className = 'cities'}: MapProps) {
   const points: TPoints = activeOffers.reduce((acc: TPoints, currentOffer: TOffer) => {
     acc.push({
       'id': currentOffer.id,
@@ -42,7 +37,7 @@ function Map({activeCity, offers, selectedCard, className = 'cities'}: MapProps)
 
   const mapRef = useRef(null);
 
-  const map = useMap(mapRef, mapCity);
+  const map = useMap(mapRef, activeOffers[0].city);
 
   useEffect(() => {
     if (map) {

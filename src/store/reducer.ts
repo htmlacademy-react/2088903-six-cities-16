@@ -18,6 +18,7 @@ const initialState = {
 const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(selectCity, (state: TState, action) => {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       state.activeCity = action.payload;
     });
 });

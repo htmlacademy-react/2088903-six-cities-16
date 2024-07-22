@@ -28,7 +28,7 @@ function OfferPage({offers}: OfferPageProps) {
   }
 
   const offersNearby = offers.slice(0, 3);
-  const {title, price, city, isFavorite} = currentOffer;
+  const {title, price, isFavorite} = currentOffer;
 
   return (
     <Layout
@@ -60,10 +60,8 @@ function OfferPage({offers}: OfferPageProps) {
               <OfferReviews/>
             </div>
           </div>
-          {/*<section className="offer__map map"></section>*/}
           <Map
-            activeCity={city.name}
-            offers={offersNearby}
+            activeOffers={offersNearby}
             selectedCard={selectedCard}
             className='offer'
           />

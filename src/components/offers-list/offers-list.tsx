@@ -5,18 +5,16 @@ import SortForm from '../sort-form/sort-form.tsx';
 
 
 type OffersListProps = {
-  offers: TOffers;
-  activeCity: string;
+  activeOffers: TOffers;
   setSelectedCard?: (id: string) => void;
 };
 
-function OffersList({offers, activeCity, setSelectedCard}: OffersListProps) {
-  const activeOffers: TOffers = offers.filter((offer: TOffer) => offer.city.name === activeCity);
+function OffersList({activeOffers, setSelectedCard}: OffersListProps) {
 
   return (
-    <section className="cities__places places">
+    <section className='cities__places places'>
       <h2 className="visually-hidden">Places</h2>
-      <b className="places__found">312 places to stay in Amsterdam</b>
+      <b className="places__found">{activeOffers.length} places to stay in Amsterdam</b>
       <SortForm/>
       <div className="cities__places-list places__list tabs__content">
         {
