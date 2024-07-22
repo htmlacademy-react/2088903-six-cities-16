@@ -30,7 +30,7 @@ function MainPage({offers}: MainPageProps) {
             <OffersList
               offers={offers}
               activeTab={activeTab}
-              setselectedCard={setSelectedCard}
+              setSelectedCard={setSelectedCard}
             />
             <div className="cities__right-section">
               <Map

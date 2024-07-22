@@ -13,10 +13,10 @@ function useMap(
     if (mapRef.current !== null && !isRenderedRef.current) {
       const instance = new Map(mapRef.current, {
         center: {
-          lat: 52.3909553943508,
-          lng: 4.85309666406198,
+          lat: city.location.latitude,
+          lng: city.location.longitude,
         },
-        zoom: 10
+        zoom: 12
       });
 
       const layer = new TileLayer(

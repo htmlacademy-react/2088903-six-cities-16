@@ -1,7 +1,7 @@
 import Badge from '../../common/badge/badge.tsx';
-import OfferImage from '../offer-image/offer-image.tsx';
 import OfferInfo from '../offer-info/offer-info.tsx';
 import cn from 'classnames';
+import OfferPreviewImage from '../offer-preview-image/offer-preview-image.tsx';
 
 type PlaceCardProps = {
   id: string;
@@ -13,7 +13,7 @@ type PlaceCardProps = {
   isFavorite: boolean;
   isPremium: boolean;
   isFavoritesCard?: boolean;
-  setselectedCard?: (id: string) => void;
+  setSelectedCard?: (id: string) => void;
 };
 
 function OfferCard({
@@ -26,7 +26,7 @@ function OfferCard({
   isPremium,
   previewImage,
   isFavoritesCard = false,
-  setselectedCard,
+  setSelectedCard,
 }: PlaceCardProps) {
 
   const cardClassNames = cn('place-card', {
@@ -34,8 +34,8 @@ function OfferCard({
     'favorites__card': isFavoritesCard,
   });
 
-  const handleMouseEnter = () => setselectedCard ? setselectedCard(id) : null;
-  const handleMouseLeave = () => setselectedCard ? setselectedCard('') : null;
+  const handleMouseEnter = () => setSelectedCard ? setSelectedCard(id) : null;
+  const handleMouseLeave = () => setSelectedCard ? setSelectedCard('') : null;
 
   return (
     <article
@@ -44,12 +44,12 @@ function OfferCard({
       onMouseLeave={handleMouseLeave}
     >
       {
-        isPremium ? <Badge/> : null
+        isPremium && <Badge/>
       }
-      <OfferImage
+      <OfferPreviewImage
         id={id}
         previewImage={previewImage}
-        isFavoritesCard={isFavoritesCard}
+
       />
       <OfferInfo
         id={id}

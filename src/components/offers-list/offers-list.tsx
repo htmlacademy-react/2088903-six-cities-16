@@ -7,10 +7,10 @@ import SortForm from '../sort-form/sort-form.tsx';
 type OffersListProps = {
   offers: TOffers;
   activeTab: string;
-  setselectedCard?: (id: string) => void;
+  setSelectedCard?: (id: string) => void;
 };
 
-function OffersList({offers, activeTab, setselectedCard}: OffersListProps) {
+function OffersList({offers, activeTab, setSelectedCard}: OffersListProps) {
   const activeOffers: TOffers = offers.filter((offer: TOffer) => offer.city.name === activeTab);
 
   return (
@@ -31,7 +31,7 @@ function OffersList({offers, activeTab, setselectedCard}: OffersListProps) {
               isFavorite={offer.isFavorite}
               isPremium={offer.isPremium}
               previewImage={offer.previewImage}
-              setselectedCard={setselectedCard}
+              setSelectedCard={setSelectedCard}
             />
           ))
         }

@@ -54,6 +54,7 @@ function OfferPage({offers}: OfferPageProps) {
             </div>
           </div>
           <section className="offer__map map"></section>
+          {/*<Map activeTab={} offers={} selectedCard={}/>*/}
         </section>
         <div className="container">
           <NearPlaces/>
