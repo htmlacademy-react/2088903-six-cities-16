@@ -9,8 +9,8 @@ export type TInitialState = {
   offersList: TOffers;
 }
 
-const initialState = {
-  activeCity: 'Paris' as TCities,
+const initialState: TInitialState = {
+  activeCity: 'Paris',
   offersList: offers,
 };
 
