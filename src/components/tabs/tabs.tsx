@@ -17,7 +17,6 @@ function Tabs({activeCity}: TabsProps) {
               <LocationItem
                 key={city}
                 city={city}
-                /* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */
                 activeCity={activeCity}
               />
             ))

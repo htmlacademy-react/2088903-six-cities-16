@@ -29,7 +29,6 @@ function MainPage() {
       <>
         <h1 className="visually-hidden">Cities</h1>
         <Tabs
-          /* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */
           activeCity={activeCity}
         />
         <div className="cities">
