@@ -1,46 +1,29 @@
 import {useState} from 'react';
 import cn from 'classnames';
 
-type Style = {
-  width: number;
-  height: number;
-  buttonClass: string;
-  activeClass: string;
-  iconClass: string;
-};
-
-const placeCardStyle: Style = {
+const PlaceCardStyle = {
   width: 18,
   height: 19,
-  buttonClass: 'place-card__bookmark-button',
-  activeClass: 'place-card__bookmark-button--active',
-  iconClass: 'place-card__bookmark-icon'
-};
+} as const;
 
-const offerStyle: Style = {
+const OfferStyle = {
   width: 31,
   height: 33,
-  buttonClass: 'offer__bookmark-button',
-  activeClass: 'offer__bookmark-button--active',
-  iconClass: 'offer__bookmark-icon'
-};
+} as const;
 
 type BookmarkProps = {
   isFavorite: boolean;
-  ifOfferDetail?: boolean;
+  className?: 'offer' | 'place-card';
 }
 
-function BookmarkToggle({isFavorite, ifOfferDetail = false}: BookmarkProps) {
+function BookmarkToggle({isFavorite, className = 'place-card'}: BookmarkProps) {
   const [active, setActive] = useState(isFavorite);
 
-  const cardStyle: Style = ifOfferDetail ? offerStyle : placeCardStyle;
-  const {width, height, buttonClass, activeClass, iconClass} = cardStyle;
+  const {width, height} = (className === 'place-card') ? PlaceCardStyle : OfferStyle;
   const label = `${isFavorite ? 'In' : 'To'} bookmarks`;
-  const buttonClassNames = cn(
-    'button', buttonClass, {
-      [activeClass]: active,
-    });
-
+  const buttonClassNames = cn('button', `${className}__bookmark-button`, {
+    [`${className}__bookmark-button--active`]: active,
+  });
 
   return (
     <button
@@ -48,7 +31,7 @@ function BookmarkToggle({isFavorite, ifOfferDetail = false}: BookmarkProps) {
       type="button"
       onClick={() => setActive(!active)}
     >
-      <svg className={iconClass} width={width} height={height}>
+      <svg className={`${className}__bookmark-icon`} width={width} height={height}>
         <use xlinkHref="#icon-bookmark"></use>
       </svg>
       <span className="visually-hidden">{label}</span>

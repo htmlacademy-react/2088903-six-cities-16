@@ -1,26 +1,45 @@
-import {ReactElement} from 'react';
-import {Offer, Offers} from '../../types/types.ts';
+import {ReactElement, useMemo, useState} from 'react';
+import {OfferModel} from '../../types/types.ts';
 import OfferCard from '../offer/offer-card/offer-card.tsx';
-import SortForm from '../sort-form/sort-form.tsx';
+import SortForm, {TSortTypes} from '../sort-form/sort-form.tsx';
 
 
 type OffersListProps = {
-  offers: Offers;
-  activeTab: string;
-  setHoveredCard?: (id: string) => void;
+  activeOffers: OfferModel[];
+  setSelectedCard?: (id: string) => void;
 };
 
-function OffersList({offers, activeTab, setHoveredCard}: OffersListProps) {
-  const activeOffers: Offers = offers.filter((offer: Offer) => offer.city.name === activeTab);
+function OffersList({activeOffers, setSelectedCard}: OffersListProps) {
+  const [sortType, setSortType] = useState<TSortTypes>('popular');
+  const [showSortForm, setShowSortForm] = useState(false);
+  const sortedOffers = useMemo(() => {
+    switch (sortType) {
+      case 'popular':
+        return activeOffers;
+      case 'priceToHigh':
+        return [...activeOffers].sort((a, b) => a.price - b.price);
+      case 'priceToLow':
+        return [...activeOffers].sort((a, b) => b.price - a.price);
+      case 'topRatedFirst':
+        return [...activeOffers].sort((a, b) => b.rating - a.rating);
+      default:
+        return activeOffers;
+    }
+  }, [activeOffers, sortType]);
 
   return (
-    <section className="cities__places places">
+    <section className='cities__places places'>
       <h2 className="visually-hidden">Places</h2>
-      <b className="places__found">312 places to stay in Amsterdam</b>
-      <SortForm/>
+      <b className="places__found">{activeOffers.length} places to stay in Amsterdam</b>
+      <SortForm
+        sortType={sortType}
+        setSortType={setSortType}
+        showSortForm={showSortForm}
+        setShowSortForm={setShowSortForm}
+      />
       <div className="cities__places-list places__list tabs__content">
         {
-          activeOffers.map((offer: Offer): ReactElement => (
+          sortedOffers.map((offer: OfferModel): ReactElement => (
             <OfferCard
               key={offer.id}
               id={offer.id}
@@ -31,7 +50,7 @@ function OffersList({offers, activeTab, setHoveredCard}: OffersListProps) {
               isFavorite={offer.isFavorite}
               isPremium={offer.isPremium}
               previewImage={offer.previewImage}
-              setHoveredCard={setHoveredCard}
+              setSelectedCard={setSelectedCard}
             />
           ))
         }

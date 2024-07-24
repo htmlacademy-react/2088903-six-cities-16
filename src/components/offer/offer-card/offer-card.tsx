@@ -1,7 +1,7 @@
-import Badge from '../../common/badge/badge.tsx';
-import OfferImage from '../offer-image/offer-image.tsx';
 import OfferInfo from '../offer-info/offer-info.tsx';
 import cn from 'classnames';
+import OfferPreviewImage from '../offer-preview-image/offer-preview-image.tsx';
+import OfferCardBadge from '../offer-card-badge/offer-card-badge.tsx';
 
 type PlaceCardProps = {
   id: string;
@@ -12,8 +12,8 @@ type PlaceCardProps = {
   previewImage: string;
   isFavorite: boolean;
   isPremium: boolean;
-  isFavoritesCard?: boolean;
-  setHoveredCard?: (id: string) => void;
+  className?: 'cities' | 'favorites' | 'near-places';
+  setSelectedCard?: (id: string) => void;
 };
 
 function OfferCard({
@@ -25,17 +25,14 @@ function OfferCard({
   isFavorite,
   isPremium,
   previewImage,
-  isFavoritesCard = false,
-  setHoveredCard,
+  className = 'cities',
+  setSelectedCard,
 }: PlaceCardProps) {
 
-  const cardClassNames = cn('place-card', {
-    'cities__card': !isFavoritesCard,
-    'favorites__card': isFavoritesCard,
-  });
+  const cardClassNames = cn('place-card', `${className}__card`);
 
-  const handleMouseEnter = () => setHoveredCard ? setHoveredCard(id) : null;
-  const handleMouseLeave = () => setHoveredCard ? setHoveredCard('') : null;
+  const handleMouseEnter = () => setSelectedCard ? setSelectedCard(id) : null;
+  const handleMouseLeave = () => setSelectedCard ? setSelectedCard('') : null;
 
   return (
     <article
@@ -44,12 +41,15 @@ function OfferCard({
       onMouseLeave={handleMouseLeave}
     >
       {
-        isPremium ? <Badge/> : null
+        isPremium &&
+        <OfferCardBadge>
+          <span>Premium</span>
+        </OfferCardBadge>
       }
-      <OfferImage
+      <OfferPreviewImage
         id={id}
         previewImage={previewImage}
-        isFavoritesCard={isFavoritesCard}
+        className={className}
       />
       <OfferInfo
         id={id}

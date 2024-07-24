@@ -1,8 +1,9 @@
 import {favorites} from '../../../mocks/favorites.ts';
-import {Favorite, Offer} from '../../../types/types.ts';
+import {FavoriteModel, OfferModel} from '../../../types/types.ts';
 import FavoritesLocation from '../favorites-location/favorites-location.tsx';
+import {SixCitiesModel} from '../../../const/const.ts';
 
-const favoritesSorted: Favorite = favorites.reduce((acc: Favorite, currentOffer: Offer) => {
+const favoritesSorted: FavoriteModel = favorites.reduce((acc: FavoriteModel, currentOffer: OfferModel) => {
   const cityName = currentOffer.city.name;
 
   if (!acc[cityName]) {
@@ -10,7 +11,7 @@ const favoritesSorted: Favorite = favorites.reduce((acc: Favorite, currentOffer:
   }
   acc[cityName].push(currentOffer);
   return acc;
-}, {});
+}, {} as FavoriteModel);
 
 function FavoritesList() {
   // нет переходов на страницу Offer - некорректные моки favorites.ts
@@ -19,7 +20,7 @@ function FavoritesList() {
       {Object.entries(favoritesSorted).map(([city, offers]) => (
         <FavoritesLocation
           key={city}
-          city={city}
+          city={city as SixCitiesModel}
           offers={offers}
         />
       ))}

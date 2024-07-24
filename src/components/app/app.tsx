@@ -1,4 +1,4 @@
-import {Offers} from '../../types/types.ts';
+import {OfferModel} from '../../types/types.ts';
 import MainPage from '../../pages/main-page/main-page.tsx';
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import FavoritesPage from '../../pages/favorites-page/favorites-page.tsx';
@@ -13,7 +13,7 @@ import ErrorPage from '../../pages/error-page/error-page.tsx';
 const status: AuthorizationStatusType = AuthorizationStatus.Auth;
 
 type AppProps = {
-  offers: Offers;
+  offers: OfferModel[];
 };
 
 function App({offers}: AppProps) {
@@ -22,7 +22,7 @@ function App({offers}: AppProps) {
       children: [
         {
           index: true,
-          element: <MainPage offers={offers}/>,
+          element: <MainPage/>,
         },
         {
           path: AppRoute.Favorites,

@@ -1,8 +1,7 @@
 import Gallery from '../../components/gallery/gallery.tsx';
 import NearPlaces from '../../components/near-places/near-places.tsx';
-import Badge from '../../components/common/badge/badge.tsx';
 import {Navigate, useParams} from 'react-router-dom';
-import {Offer, Offers} from '../../types/types.ts';
+import {OfferModel} from '../../types/types.ts';
 import BookmarkToggle from '../../components/common/bookmark-toggle';
 import {AppRoute} from '../../const/const.ts';
 import Layout from '../../components/layout/layout.tsx';
@@ -12,18 +11,23 @@ import OfferReviews from '../../components/offer/offer-reviews/offer-reviews.tsx
 import OfferFeatures from '../../components/offer/offer-features/offer-features.tsx';
 import OfferRating from '../../components/offer/offer-rating/offer-rating.tsx';
 import OfferPrice from '../../components/offer/offer-price/offer-price.tsx';
+import {useState} from 'react';
+import Map from '../../components/map/map.tsx';
+import OfferDetailBadge from '../../components/offer/offer-detail-badge/offer-detail-badge.tsx';
 
 type OfferPageProps = {
-  offers: Offers;
+  offers: OfferModel[];
 };
 
 function OfferPage({offers}: OfferPageProps) {
+  const [selectedCard, setSelectedCard] = useState('');
   const {id} = useParams<{ id: string }>();
-  const currentOffer: Offer | undefined = offers.find((offer: Offer) => offer.id === id);
+  const currentOffer: OfferModel | undefined = offers.find((offer: OfferModel) => offer.id === id);
   if (!currentOffer) {
     return <Navigate to={AppRoute.NotFound} replace/>;
   }
 
+  const offersNearby = offers.slice(0, 3);
   const {title, price, isFavorite} = currentOffer;
 
   return (
@@ -38,12 +42,17 @@ function OfferPage({offers}: OfferPageProps) {
           </div>
           <div className="offer__container container">
             <div className="offer__wrapper">
-              <Badge ifOfferDetail/>
+              <OfferDetailBadge>
+                <span>Premium</span>
+              </OfferDetailBadge>
               <div className="offer__name-wrapper">
                 <h1 className="offer__name">
                   {title}
                 </h1>
-                <BookmarkToggle isFavorite={isFavorite} ifOfferDetail/>
+                <BookmarkToggle
+                  isFavorite={isFavorite}
+                  className='offer'
+                />
               </div>
               <OfferRating/>
               <OfferFeatures/>
@@ -53,10 +62,17 @@ function OfferPage({offers}: OfferPageProps) {
               <OfferReviews/>
             </div>
           </div>
-          <section className="offer__map map"></section>
+          <Map
+            activeOffers={offersNearby}
+            selectedCard={selectedCard}
+            className='offer'
+          />
         </section>
         <div className="container">
-          <NearPlaces/>
+          <NearPlaces
+            offersNearby={offersNearby}
+            setSelectedCard={setSelectedCard}
+          />
         </div>
       </>
     </Layout>

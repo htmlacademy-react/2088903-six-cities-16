@@ -1,28 +1,26 @@
-import {ReactElement} from 'react';
-import * as classNames from 'classnames';
+import cn from 'classnames';
 import {Link} from 'react-router-dom';
-import {AppRoute} from '../../../const/const.ts';
+import {AppRoute, SixCitiesModel} from '../../../const/const.ts';
+import {useAppDispatch} from '../../../store';
+import {selectCity} from '../../../store/action.ts';
 
 type LocationItemProps = {
-  city: string;
-  activeTab?: string;
-  handleClick?: () => void | ReactElement;
+  city: SixCitiesModel;
+  activeCity?: SixCitiesModel;
 }
 
 function LocationItem({
   city,
-  activeTab,
-  handleClick,
+  activeCity,
 }: LocationItemProps) {
-
-  const buttonClass = classNames({
-    'locations__item-link tabs__item': true,
-    'tabs__item--active': activeTab === city,
+  const dispatch = useAppDispatch();
+  const buttonClass = cn('locations__item-link tabs__item', {
+    'tabs__item--active': activeCity === city,
   });
 
   return (
     <li className="locations__item">
-      <Link to={AppRoute.Root} onClick={handleClick} className={buttonClass}>
+      <Link to={AppRoute.Root} onClick={() => dispatch(selectCity(city))} className={buttonClass}>
         <span>{city}</span>
       </Link>
     </li>

@@ -1,19 +1,14 @@
-import cn from 'classnames';
+import {PropsWithChildren} from 'react';
 
-type CardMarkProps = {
-  text?: string;
-  ifOfferDetail?: boolean;
+type BadgeProps = {
+  className: string;
 }
 
-function Badge({text = 'Premium', ifOfferDetail = false}: CardMarkProps) {
-  const badgeClassNames = cn({
-    'offer__mark': ifOfferDetail,
-    'place-card__mark': !ifOfferDetail,
-  });
+function Badge({className, children}: PropsWithChildren<BadgeProps>) {
 
   return (
-    <div className={badgeClassNames}>
-      <span>{text}</span>
+    <div className={className}>
+      {children}
     </div>
   );
 }

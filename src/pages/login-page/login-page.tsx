@@ -1,13 +1,9 @@
 import LoginForm from '../../components/login-form/login-form.tsx';
 import LocationItem from '../../components/common/location-item/location-item.tsx';
 import Layout from '../../components/layout/layout.tsx';
-import {Navigate} from 'react-router-dom';
-import {AppRoute} from '../../const/const.ts';
 
 function LoginPage() {
   const currentCity = 'Amsterdam';
-
-  const handleClick = () => <Navigate to={AppRoute.Root}/>;
 
   return (
     <Layout
@@ -21,7 +17,7 @@ function LoginPage() {
           <LoginForm/>
         </section>
         <section className="locations locations--login locations--current">
-          <LocationItem city={currentCity} handleClick={handleClick}/>
+          <LocationItem city={currentCity}/>
         </section>
       </div>
     </Layout>

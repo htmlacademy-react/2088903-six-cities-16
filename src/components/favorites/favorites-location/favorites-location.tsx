@@ -1,11 +1,11 @@
-import {Offer, Offers} from '../../../types/types.ts';
+import {OfferModel} from '../../../types/types.ts';
 import OfferCard from '../../offer/offer-card/offer-card.tsx';
 import {Link} from 'react-router-dom';
-import {AppRoute} from '../../../const/const.ts';
+import {AppRoute, SixCitiesModel} from '../../../const/const.ts';
 
 type FavoritesLocationProps = {
-  city: string;
-  offers: Offers;
+  city: SixCitiesModel;
+  offers: OfferModel[];
 }
 
 function FavoritesLocation({city, offers}: FavoritesLocationProps) {
@@ -21,7 +21,7 @@ function FavoritesLocation({city, offers}: FavoritesLocationProps) {
       </div>
       <div className="favorites__places">
         {
-          offers.map((offer: Offer) => (
+          offers.map((offer: OfferModel) => (
             <OfferCard
               key={offer.id}
               id={offer.id}
@@ -32,7 +32,7 @@ function FavoritesLocation({city, offers}: FavoritesLocationProps) {
               previewImage={offer.previewImage}
               isFavorite={offer.isFavorite}
               isPremium={offer.isPremium}
-              isFavoritesCard
+              className='favorites'
             />
           )
           )

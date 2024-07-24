@@ -1,63 +1,50 @@
-export type Location = {
+import {SixCitiesModel} from '../const/const.ts';
+
+export type LocationModel = {
   latitude: number;
   longitude: number;
   zoom: number;
 }
 
-export type City = {
-  name: string;
-  location: Location;
+export type CityModel = {
+  name: SixCitiesModel;
+  location: LocationModel;
 }
 
-export type User = {
+export type UserModel = {
   name: string;
   avatarUrl: string;
   isPro: boolean;
 }
 
-export type FullUserInfo = User & {
-  email: string;
-  token: string;
-}
-
-export type Offer = {
+export type OfferModel = {
   id: string;
   title: string;
   type: string;
   price: number;
-  city: City;
-  location: Location;
+  city: CityModel;
+  location: LocationModel;
   isFavorite: boolean;
   isPremium: boolean;
   rating: number;
   previewImage: string;
 };
 
-type OfferWithoutPreview = Omit<Offer, 'previewImage'>
-
-export type FullOffer = OfferWithoutPreview & {
+export type FullOfferModel = Omit<OfferModel, 'previewImage'> & {
   description: string;
   bedrooms: number;
   goods: string[];
-  host: User;
+  host: UserModel;
   images: string[];
   maxAdults: number;
 }
 
-export type Offers = Offer[];
-
-export type FavoriteOffer = FullOffer & {
-  previewImage: string;
-}
-
-type Comment = {
+export type ReviewModel = {
   id: string;
   date: string;
-  user: User;
+  user: UserModel;
   comment: string;
   rating: number;
 }
 
-export type Comments = Comment[];
-
-export type Favorite = Record<string, Offers>;
+export type FavoriteModel = Record<SixCitiesModel, OfferModel[]>;
