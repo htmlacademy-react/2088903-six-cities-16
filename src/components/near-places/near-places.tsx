@@ -1,8 +1,8 @@
 import OfferCard from '../offer/offer-card/offer-card.tsx';
-import {TOffers} from '../../types/types.ts';
+import {OfferModel} from '../../types/types.ts';
 
 type NearPlacesProps = {
-  offersNearby: TOffers;
+  offersNearby: OfferModel[];
   setSelectedCard?: (id: string) => void;
 }
 

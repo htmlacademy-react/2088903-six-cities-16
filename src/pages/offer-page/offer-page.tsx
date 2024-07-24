@@ -1,8 +1,7 @@
 import Gallery from '../../components/gallery/gallery.tsx';
 import NearPlaces from '../../components/near-places/near-places.tsx';
-import Badge from '../../components/common/badge/badge.tsx';
 import {Navigate, useParams} from 'react-router-dom';
-import {TOffer, TOffers} from '../../types/types.ts';
+import {OfferModel} from '../../types/types.ts';
 import BookmarkToggle from '../../components/common/bookmark-toggle';
 import {AppRoute} from '../../const/const.ts';
 import Layout from '../../components/layout/layout.tsx';
@@ -14,15 +13,16 @@ import OfferRating from '../../components/offer/offer-rating/offer-rating.tsx';
 import OfferPrice from '../../components/offer/offer-price/offer-price.tsx';
 import {useState} from 'react';
 import Map from '../../components/map/map.tsx';
+import OfferDetailBadge from '../../components/offer/offer-detail-badge/offer-detail-badge.tsx';
 
 type OfferPageProps = {
-  offers: TOffers;
+  offers: OfferModel[];
 };
 
 function OfferPage({offers}: OfferPageProps) {
   const [selectedCard, setSelectedCard] = useState('');
   const {id} = useParams<{ id: string }>();
-  const currentOffer: TOffer | undefined = offers.find((offer: TOffer) => offer.id === id);
+  const currentOffer: OfferModel | undefined = offers.find((offer: OfferModel) => offer.id === id);
   if (!currentOffer) {
     return <Navigate to={AppRoute.NotFound} replace/>;
   }
@@ -42,7 +42,9 @@ function OfferPage({offers}: OfferPageProps) {
           </div>
           <div className="offer__container container">
             <div className="offer__wrapper">
-              <Badge className='offer'/>
+              <OfferDetailBadge>
+                <span>Premium</span>
+              </OfferDetailBadge>
               <div className="offer__name-wrapper">
                 <h1 className="offer__name">
                   {title}

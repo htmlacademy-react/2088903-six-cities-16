@@ -1,7 +1,7 @@
-import Badge from '../../common/badge/badge.tsx';
 import OfferInfo from '../offer-info/offer-info.tsx';
 import cn from 'classnames';
 import OfferPreviewImage from '../offer-preview-image/offer-preview-image.tsx';
+import OfferCardBadge from '../offer-card-badge/offer-card-badge.tsx';
 
 type PlaceCardProps = {
   id: string;
@@ -41,7 +41,10 @@ function OfferCard({
       onMouseLeave={handleMouseLeave}
     >
       {
-        isPremium && <Badge/>
+        isPremium &&
+        <OfferCardBadge>
+          <span>Premium</span>
+        </OfferCardBadge>
       }
       <OfferPreviewImage
         id={id}

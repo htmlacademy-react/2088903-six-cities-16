@@ -1,9 +1,9 @@
 import {ReactElement} from 'react';
-import {CITIES, TCities} from '../../const/const.ts';
+import {CITIES, SixCitiesModel} from '../../const/const.ts';
 import LocationItem from '../common/location-item/location-item.tsx';
 
 type TabsProps = {
-  activeCity: TCities;
+  activeCity: SixCitiesModel;
 }
 
 function Tabs({activeCity}: TabsProps) {

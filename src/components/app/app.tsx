@@ -1,4 +1,4 @@
-import {TOffers} from '../../types/types.ts';
+import {OfferModel} from '../../types/types.ts';
 import MainPage from '../../pages/main-page/main-page.tsx';
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import FavoritesPage from '../../pages/favorites-page/favorites-page.tsx';
@@ -13,7 +13,7 @@ import ErrorPage from '../../pages/error-page/error-page.tsx';
 const status: AuthorizationStatusType = AuthorizationStatus.Auth;
 
 type AppProps = {
-  offers: TOffers;
+  offers: OfferModel[];
 };
 
 function App({offers}: AppProps) {

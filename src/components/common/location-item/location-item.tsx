@@ -1,12 +1,12 @@
 import cn from 'classnames';
 import {Link} from 'react-router-dom';
-import {AppRoute, TCities} from '../../../const/const.ts';
+import {AppRoute, SixCitiesModel} from '../../../const/const.ts';
 import {useAppDispatch} from '../../../store';
 import {selectCity} from '../../../store/action.ts';
 
 type LocationItemProps = {
-  city: TCities;
-  activeCity?: TCities;
+  city: SixCitiesModel;
+  activeCity?: SixCitiesModel;
 }
 
 function LocationItem({

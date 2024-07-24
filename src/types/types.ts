@@ -1,65 +1,50 @@
-import {TCities} from '../const/const.ts';
+import {SixCitiesModel} from '../const/const.ts';
 
-export type TLocation = {
+export type LocationModel = {
   latitude: number;
   longitude: number;
   zoom: number;
 }
 
-export type TCity = {
-  name: TCities;
-  location: TLocation;
+export type CityModel = {
+  name: SixCitiesModel;
+  location: LocationModel;
 }
 
-export type TUser = {
+export type UserModel = {
   name: string;
   avatarUrl: string;
   isPro: boolean;
 }
 
-export type TFullUserInfo = TUser & {
-  email: string;
-  token: string;
-}
-
-export type TOffer = {
+export type OfferModel = {
   id: string;
   title: string;
   type: string;
   price: number;
-  city: TCity;
-  location: TLocation;
+  city: CityModel;
+  location: LocationModel;
   isFavorite: boolean;
   isPremium: boolean;
   rating: number;
   previewImage: string;
 };
 
-export type TOfferWithoutPreview = Omit<TOffer, 'previewImage'>
-
-export type TFullOffer = TOfferWithoutPreview & {
+export type FullOfferModel = Omit<OfferModel, 'previewImage'> & {
   description: string;
   bedrooms: number;
   goods: string[];
-  host: TUser;
+  host: UserModel;
   images: string[];
   maxAdults: number;
 }
 
-export type TOffers = TOffer[];
-
-export type TFavoriteOffer = TFullOffer & {
-  previewImage: string;
-}
-
-export type TComment = {
+export type ReviewModel = {
   id: string;
   date: string;
-  user: TUser;
+  user: UserModel;
   comment: string;
   rating: number;
 }
 
-export type TComments = TComment[];
-
-export type TFavorite = Record<TCities, TOffers>;
+export type FavoriteModel = Record<SixCitiesModel, OfferModel[]>;

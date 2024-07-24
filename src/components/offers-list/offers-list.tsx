@@ -1,11 +1,11 @@
 import {ReactElement, useMemo, useState} from 'react';
-import {TOffer, TOffers} from '../../types/types.ts';
+import {OfferModel} from '../../types/types.ts';
 import OfferCard from '../offer/offer-card/offer-card.tsx';
 import SortForm, {TSortTypes} from '../sort-form/sort-form.tsx';
 
 
 type OffersListProps = {
-  activeOffers: TOffers;
+  activeOffers: OfferModel[];
   setSelectedCard?: (id: string) => void;
 };
 
@@ -39,7 +39,7 @@ function OffersList({activeOffers, setSelectedCard}: OffersListProps) {
       />
       <div className="cities__places-list places__list tabs__content">
         {
-          sortedOffers.map((offer: TOffer): ReactElement => (
+          sortedOffers.map((offer: OfferModel): ReactElement => (
             <OfferCard
               key={offer.id}
               id={offer.id}

@@ -1,13 +1,14 @@
-type CardMarkProps = {
-  text?: 'Premium';
-  className?: 'offer' | 'place-card';
+import {PropsWithChildren} from 'react';
+
+type BadgeProps = {
+  className: string;
 }
 
-function Badge({text = 'Premium', className = 'place-card'}: CardMarkProps) {
+function Badge({className, children}: PropsWithChildren<BadgeProps>) {
 
   return (
-    <div className={`${className}__mark`}>
-      <span>{text}</span>
+    <div className={className}>
+      {children}
     </div>
   );
 }

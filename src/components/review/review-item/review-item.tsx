@@ -1,8 +1,8 @@
 import {getRatingPercentage} from '../../../utils/utils.ts';
-import {TComment} from '../../../types/types.ts';
+import {ReviewModel} from '../../../types/types.ts';
 
 type ReviewItemProps = {
-  review: TComment;
+  review: ReviewModel;
 }
 
 function ReviewItem({review}: ReviewItemProps) {

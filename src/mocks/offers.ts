@@ -1,6 +1,6 @@
-import {TOffers} from '../types/types.ts';
+import {OfferModel} from '../types/types.ts';
 
-export const offers: TOffers = [
+export const offers: OfferModel[] = [
   {
     'id': 'a13b9fbd-1328-4e59-baad-7353729df28e',
     'title': 'House in countryside',

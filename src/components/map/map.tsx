@@ -1,13 +1,13 @@
-import {TOffer, TOffers} from '../../types/types.ts';
+import {OfferModel} from '../../types/types.ts';
 import {Icon, layerGroup, Marker} from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import {useEffect, useRef} from 'react';
 import useMap from '../../hooks/use-map.tsx';
-import {TPoints} from '../../types/map.ts';
+import {PointModel} from '../../types/map.ts';
 import {URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from '../../const/const.ts';
 
 type MapProps = {
-  activeOffers: TOffers;
+  activeOffers: OfferModel[];
   selectedCard: string;
   className?: 'offer' | 'cities';
 }
@@ -25,7 +25,7 @@ const currentCustomIcon = new Icon({
 });
 
 function Map({activeOffers, selectedCard, className = 'cities'}: MapProps) {
-  const points: TPoints = activeOffers.reduce((acc: TPoints, currentOffer: TOffer) => {
+  const points: PointModel[] = activeOffers.reduce((acc: PointModel[], currentOffer: OfferModel) => {
     acc.push({
       'id': currentOffer.id,
       'title': currentOffer.title,
