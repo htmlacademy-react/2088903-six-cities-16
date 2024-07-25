@@ -1,7 +1,7 @@
 import {getRatingPercentage} from '../../../utils/utils.ts';
-import BookmarkToggle from '../../common/bookmark-toggle';
 import {generatePath, Link} from 'react-router-dom';
 import {AppRoute} from '../../../const/const.ts';
+import PlaceCardBookmarkButton from '../../place-card/place-card-bookmark-button';
 
 type OfferInfoProps = {
   id: string;
@@ -30,7 +30,7 @@ function OfferInfo({
           <b className="place-card__price-value">&euro;{price}</b>
           <span className="place-card__price-text">&#47;&nbsp;night</span>
         </div>
-        <BookmarkToggle isFavorite={isFavorite}/>
+        <PlaceCardBookmarkButton isFavorite={isFavorite}/>
       </div>
       <div className="place-card__rating rating">
         <div className="place-card__stars rating__stars">

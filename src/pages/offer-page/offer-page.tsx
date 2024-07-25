@@ -2,7 +2,6 @@ import Gallery from '../../components/gallery/gallery.tsx';
 import NearPlaces from '../../components/near-places/near-places.tsx';
 import {Navigate, useParams} from 'react-router-dom';
 import {OfferModel} from '../../types/types.ts';
-import BookmarkToggle from '../../components/common/bookmark-toggle';
 import {AppRoute} from '../../const/const.ts';
 import Layout from '../../components/layout/layout.tsx';
 import OfferInside from '../../components/offer/offer-inside/offer-inside.tsx';
@@ -13,7 +12,8 @@ import OfferRating from '../../components/offer/offer-rating/offer-rating.tsx';
 import OfferPrice from '../../components/offer/offer-price/offer-price.tsx';
 import {useState} from 'react';
 import Map from '../../components/map/map.tsx';
-import OfferDetailBadge from '../../components/offer/offer-detail-badge/offer-detail-badge.tsx';
+import OfferBadge from '../../components/offer/offer-badge';
+import OfferBookmarkButton from '../../components/offer/offer-bookmark-button';
 
 type OfferPageProps = {
   offers: OfferModel[];
@@ -42,17 +42,14 @@ function OfferPage({offers}: OfferPageProps) {
           </div>
           <div className="offer__container container">
             <div className="offer__wrapper">
-              <OfferDetailBadge>
+              <OfferBadge>
                 <span>Premium</span>
-              </OfferDetailBadge>
+              </OfferBadge>
               <div className="offer__name-wrapper">
                 <h1 className="offer__name">
                   {title}
                 </h1>
-                <BookmarkToggle
-                  isFavorite={isFavorite}
-                  className='offer'
-                />
+                <OfferBookmarkButton isFavorite={isFavorite}/>
               </div>
               <OfferRating/>
               <OfferFeatures/>
