@@ -8,7 +8,7 @@ import {URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from '../../const/const.ts';
 
 type MapProps = {
   activeOffers: OfferModel[];
-  selectedCard: string;
+  selectedCard?: string;
   className?: 'offer' | 'cities';
 }
 

@@ -10,7 +10,6 @@ import OfferReviews from '../../components/offer/offer-reviews/offer-reviews.tsx
 import OfferFeatures from '../../components/offer/offer-features/offer-features.tsx';
 import OfferRating from '../../components/offer/offer-rating/offer-rating.tsx';
 import OfferPrice from '../../components/offer/offer-price/offer-price.tsx';
-import {useState} from 'react';
 import Map from '../../components/map/map.tsx';
 import OfferBadge from '../../components/offer/offer-badge';
 import OfferBookmarkButton from '../../components/offer/offer-bookmark-button';
@@ -20,7 +19,6 @@ type OfferPageProps = {
 };
 
 function OfferPage({offers}: OfferPageProps) {
-  const [selectedCard, setSelectedCard] = useState('');
   const {id} = useParams<{ id: string }>();
   const currentOffer: OfferModel | undefined = offers.find((offer: OfferModel) => offer.id === id);
   if (!currentOffer) {
@@ -61,14 +59,12 @@ function OfferPage({offers}: OfferPageProps) {
           </div>
           <Map
             activeOffers={offersNearby}
-            selectedCard={selectedCard}
             className='offer'
           />
         </section>
         <div className="container">
           <NearPlaces
             offersNearby={offersNearby}
-            setSelectedCard={setSelectedCard}
           />
         </div>
       </>
