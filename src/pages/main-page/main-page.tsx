@@ -7,7 +7,7 @@ import {useAppSelector} from '../../store';
 import cn from 'classnames';
 
 function MainPage() {
-  const offers = useAppSelector((state) => state.offersList);
+  const offers = useAppSelector((state) => state.offers);
   const activeCity = useAppSelector((state) => state.activeCity);
   const activeOffers = offers.filter((offer) => offer.city.name === activeCity);
   const [selectedCard, setSelectedCard] = useState('');
@@ -37,6 +37,7 @@ function MainPage() {
             {activeOffers.length > 0 ?
               <OffersList
                 activeOffers={activeOffers}
+                activeCity={activeCity}
                 setSelectedCard={setSelectedCard}
               /> :
               <section className="cities__no-places">

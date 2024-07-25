@@ -1,10 +1,10 @@
 import {Navigate} from 'react-router-dom';
-import {AppRoute, AuthorizationStatus, AuthorizationStatusType} from '../../const/const.ts';
+import {AppRoute, AuthorizationStatus, AuthorizationStatusModel} from '../../const/const.ts';
 import {ReactNode} from 'react';
 
 
 type PrivateRouteProps = {
-  authorizationStatus: AuthorizationStatusType;
+  authorizationStatus: AuthorizationStatusModel;
   children: ReactNode;
 }
 

@@ -2,14 +2,16 @@ import {ReactElement, useMemo, useState} from 'react';
 import {OfferModel} from '../../types/types.ts';
 import OfferCard from '../offer/offer-card/offer-card.tsx';
 import SortForm, {TSortTypes} from '../sort-form/sort-form.tsx';
+import {SixCitiesModel} from '../../const/const.ts';
 
 
 type OffersListProps = {
   activeOffers: OfferModel[];
+  activeCity: SixCitiesModel;
   setSelectedCard?: (id: string) => void;
 };
 
-function OffersList({activeOffers, setSelectedCard}: OffersListProps) {
+function OffersList({activeOffers, activeCity, setSelectedCard}: OffersListProps) {
   const [sortType, setSortType] = useState<TSortTypes>('popular');
   const [showSortForm, setShowSortForm] = useState(false);
   const sortedOffers = useMemo(() => {
@@ -30,7 +32,7 @@ function OffersList({activeOffers, setSelectedCard}: OffersListProps) {
   return (
     <section className='cities__places places'>
       <h2 className="visually-hidden">Places</h2>
-      <b className="places__found">{activeOffers.length} places to stay in Amsterdam</b>
+      <b className="places__found">{activeOffers.length} places to stay in {activeCity}</b>
       <SortForm
         sortType={sortType}
         setSortType={setSortType}

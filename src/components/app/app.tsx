@@ -5,18 +5,21 @@ import FavoritesPage from '../../pages/favorites-page/favorites-page.tsx';
 import NotFoundPage from '../../pages/not-found-page/not-found-page.tsx';
 import LoginPage from '../../pages/login-page/login-page.tsx';
 import OfferPage from '../../pages/offer-page/offer-page.tsx';
-import {AppRoute, AuthorizationStatus, AuthorizationStatusType} from '../../const/const.ts';
+import {AppRoute, AuthorizationStatusModel} from '../../const/const.ts';
 import {NoAuthOnlyRoute, PrivateRoute} from '../private-route/private-route.tsx';
 import {HelmetProvider} from 'react-helmet-async';
 import ErrorPage from '../../pages/error-page/error-page.tsx';
-
-const status: AuthorizationStatusType = AuthorizationStatus.Auth;
+import {useDispatch} from 'react-redux';
+import {checkAuthAction} from '../../store/api-actions.ts';
 
 type AppProps = {
   offers: OfferModel[];
 };
 
 function App({offers}: AppProps) {
+  const dispatch = useDispatch();
+  const status: AuthorizationStatusModel = dispatch(checkAuthAction());
+
   const router = createBrowserRouter([
     {
       children: [
