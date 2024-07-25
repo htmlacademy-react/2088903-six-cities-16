@@ -3,10 +3,9 @@ import {OfferModel} from '../../types/types.ts';
 
 type NearPlacesProps = {
   offersNearby: OfferModel[];
-  setSelectedCard?: (id: string) => void;
 }
 
-function NearPlaces({offersNearby, setSelectedCard}: NearPlacesProps) {
+function NearPlaces({offersNearby}: NearPlacesProps) {
 
   return (
     <section className="near-places places">
@@ -24,7 +23,6 @@ function NearPlaces({offersNearby, setSelectedCard}: NearPlacesProps) {
               previewImage={offer.previewImage}
               isFavorite={offer.isFavorite}
               isPremium={offer.isPremium}
-              setSelectedCard={setSelectedCard}
               className='near-places'
             />
           ))

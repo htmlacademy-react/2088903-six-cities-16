@@ -1,7 +1,7 @@
 import OfferInfo from '../offer-info/offer-info.tsx';
 import cn from 'classnames';
 import OfferPreviewImage from '../offer-preview-image/offer-preview-image.tsx';
-import OfferCardBadge from '../offer-card-badge/offer-card-badge.tsx';
+import PlaceCardBadge from '../../place-card/place-card-badge/place-card-badge.tsx';
 
 type PlaceCardProps = {
   id: string;
@@ -42,9 +42,9 @@ function OfferCard({
     >
       {
         isPremium &&
-        <OfferCardBadge>
+        <PlaceCardBadge>
           <span>Premium</span>
-        </OfferCardBadge>
+        </PlaceCardBadge>
       }
       <OfferPreviewImage
         id={id}
