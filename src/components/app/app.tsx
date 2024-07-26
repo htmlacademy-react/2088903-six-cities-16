@@ -1,22 +1,27 @@
-import {OfferModel} from '../../types/types.ts';
 import MainPage from '../../pages/main-page/main-page.tsx';
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import FavoritesPage from '../../pages/favorites-page/favorites-page.tsx';
 import NotFoundPage from '../../pages/not-found-page/not-found-page.tsx';
 import LoginPage from '../../pages/login-page/login-page.tsx';
 import OfferPage from '../../pages/offer-page/offer-page.tsx';
-import {AppRoute, AuthorizationStatus, AuthorizationStatusType} from '../../const/const.ts';
+import {AppRoute, AuthorizationStatus} from '../../const/const.ts';
 import {NoAuthOnlyRoute, PrivateRoute} from '../private-route/private-route.tsx';
 import {HelmetProvider} from 'react-helmet-async';
 import ErrorPage from '../../pages/error-page/error-page.tsx';
+import {useAppSelector} from '../../store';
+import LoadingPage from '../../pages/loading-page/loading-page.tsx';
 
-const status: AuthorizationStatusType = AuthorizationStatus.Auth;
 
-type AppProps = {
-  offers: OfferModel[];
-};
+function App() {
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
 
-function App({offers}: AppProps) {
+  if (authorizationStatus === AuthorizationStatus.Unknown || isOffersDataLoading) {
+    return (
+      <LoadingPage/>
+    );
+  }
+
   const router = createBrowserRouter([
     {
       children: [
@@ -28,7 +33,7 @@ function App({offers}: AppProps) {
           path: AppRoute.Favorites,
           element: (
             <PrivateRoute
-              authorizationStatus={status}
+              authorizationStatus={authorizationStatus}
             >
               <FavoritesPage/>
             </PrivateRoute>
@@ -38,7 +43,7 @@ function App({offers}: AppProps) {
           path: AppRoute.Login,
           element: (
             <NoAuthOnlyRoute
-              authorizationStatus={status}
+              authorizationStatus={authorizationStatus}
             >
               <LoginPage/>
             </NoAuthOnlyRoute>
@@ -46,7 +51,7 @@ function App({offers}: AppProps) {
         },
         {
           path: AppRoute.Offer,
-          element: <OfferPage offers={offers}/>,
+          element: <OfferPage/>,
         },
         {
           path: AppRoute.NotFound,

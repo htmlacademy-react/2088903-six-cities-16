@@ -1,23 +1,35 @@
-import {createReducer, PayloadAction} from '@reduxjs/toolkit';
-import {offers} from '../mocks/offers.ts';
-import {selectCity} from './action.ts';
-import {SixCitiesModel} from '../const/const.ts';
+import {createReducer} from '@reduxjs/toolkit';
+import {loadOffers, requireAuthorization, selectCity, setOffersDataLoadingStatus} from './action.ts';
+import {AuthorizationStatus, AuthorizationStatusModel, SixCitiesModel} from '../const/const.ts';
 import {OfferModel} from '../types/types.ts';
 
-export type TInitialState = {
+export type InitialStateModel = {
   activeCity: SixCitiesModel;
-  offersList: OfferModel[];
+  offers: OfferModel[];
+  authorizationStatus: AuthorizationStatusModel;
+  isOffersDataLoading: boolean;
 }
 
-const initialState: TInitialState = {
+const initialState: InitialStateModel = {
   activeCity: 'Paris',
-  offersList: offers,
+  offers: [],
+  authorizationStatus: AuthorizationStatus.Unknown,
+  isOffersDataLoading: false,
 };
 
 const reducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(selectCity, (state, action: PayloadAction<SixCitiesModel>) => {
+    .addCase(selectCity, (state, action) => {
       state.activeCity = action.payload;
+    })
+    .addCase(loadOffers, (state, action) => {
+      state.offers = action.payload;
+    })
+    .addCase(requireAuthorization, (state, action) => {
+      state.authorizationStatus = action.payload;
+    })
+    .addCase(setOffersDataLoadingStatus, (state, action) => {
+      state.isOffersDataLoading = action.payload;
     });
 });
 

@@ -11,7 +11,7 @@ function OfferBookmarkButton({isFavorite}: OfferBookmarkButtonProps) {
     <BookmarkButton
       isFavorite={isFavorite}
       componentClassName={'offer__bookmark-button'}
-      childrenClassName={'offer__bookmark-icon'}
+      iconClassName={'offer__bookmark-icon'}
       width={31}
       height={33}
     />

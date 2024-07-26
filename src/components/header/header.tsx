@@ -1,7 +1,10 @@
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const/const.ts';
+import {useAppDispatch} from '../../store';
+import {logoutAction} from '../../store/api-actions.ts';
 
 function Header() {
+  const dispatch = useAppDispatch();
   return (
     <header className="header">
       <div className="container">
@@ -22,9 +25,13 @@ function Header() {
                 </Link>
               </li>
               <li className="header__nav-item">
-                <a className="header__nav-link" href="#">
+                <Link to={AppRoute.Root} className="header__nav-link" onClick={(evt) => {
+                  evt.preventDefault();
+                  dispatch(logoutAction());
+                }}
+                >
                   <span className="header__signout">Sign out</span>
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>
