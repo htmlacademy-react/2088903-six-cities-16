@@ -11,7 +11,7 @@ function PlaceCardBookmarkButton({isFavorite}: PlaceCardBookmarkButtonProps) {
     <BookmarkButton
       isFavorite={isFavorite}
       componentClassName={'place-card__bookmark-button'}
-      childrenClassName={'place-card__bookmark-icon'}
+      iconClassName={'place-card__bookmark-icon'}
       width={18}
       height={19}
     />

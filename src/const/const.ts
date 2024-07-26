@@ -10,6 +10,8 @@ export const OFFER_GALLERY_IMAGES = [
   'img/apartment-01.jpg'
 ];
 
+export type AppRouteModel = typeof AppRoute[keyof typeof AppRoute];
+
 export const AppRoute = {
   Root: '/',
   Offer: '/offer/:id',

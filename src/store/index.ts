@@ -2,7 +2,6 @@ import {configureStore} from '@reduxjs/toolkit';
 import {reducer} from './reducer';
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 import {createAPI} from '../services/api.ts';
-import {checkAuthAction, fetchOffersAction} from './api-actions.ts';
 
 export type State = ReturnType<typeof store.getState>;
 
@@ -23,6 +22,3 @@ export const store = configureStore({
       },
     }),
 });
-
-store.dispatch(fetchOffersAction());
-store.dispatch(checkAuthAction());

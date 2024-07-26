@@ -13,13 +13,12 @@ import OfferPrice from '../../components/offer/offer-price/offer-price.tsx';
 import Map from '../../components/map/map.tsx';
 import OfferBadge from '../../components/offer/offer-badge';
 import OfferBookmarkButton from '../../components/offer/offer-bookmark-button';
+import {useAppSelector} from '../../store';
 
-type OfferPageProps = {
-  offers: OfferModel[];
-};
 
-function OfferPage({offers}: OfferPageProps) {
+function OfferPage() {
   const {id} = useParams<{ id: string }>();
+  const offers = useAppSelector((state) => state.offers);
   const currentOffer: OfferModel | undefined = offers.find((offer: OfferModel) => offer.id === id);
   if (!currentOffer) {
     return <Navigate to={AppRoute.NotFound} replace/>;
