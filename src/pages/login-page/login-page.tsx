@@ -10,6 +10,7 @@ function LoginPage() {
       title='Login'
       pageClass='page--gray page--login'
       mainClass='page__main--login'
+      showUser={false}
     >
       <div className="page__login-container container">
         <section className="login">

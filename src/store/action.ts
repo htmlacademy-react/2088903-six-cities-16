@@ -8,4 +8,6 @@ export const loadOffers = createAction<OfferModel[]>('data/loadOffers');
 
 export const requireAuthorization = createAction<AuthorizationStatusModel>('user/requireAuthorization');
 
+export const saveUserEmail = createAction<string>('user/saveUserEmail');
+
 export const setOffersDataLoadingStatus = createAction<boolean>('data/setOffersDataLoadingStatus');

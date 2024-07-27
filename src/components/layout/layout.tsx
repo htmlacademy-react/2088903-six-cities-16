@@ -9,10 +9,11 @@ type LayoutProps = {
   children: ReactNode;
   pageClass?: string;
   mainClass?: string;
+  showUser?: boolean;
   showFooter?: boolean;
 }
 
-function Layout({title, children, pageClass = '', mainClass = '', showFooter = false}: LayoutProps) {
+function Layout({title, children, pageClass = '', mainClass = '', showUser = true, showFooter = false}: LayoutProps) {
   const pageClassNames = cn('page', pageClass);
   const mainClassName = cn('page__main', mainClass);
 
@@ -22,7 +23,7 @@ function Layout({title, children, pageClass = '', mainClass = '', showFooter = f
         <title>{title}</title>
       </Helmet>
       <div className={pageClassNames}>
-        <Header/>
+        <Header showUser={showUser}/>
         <main className={mainClassName}>
           {children}
         </main>
