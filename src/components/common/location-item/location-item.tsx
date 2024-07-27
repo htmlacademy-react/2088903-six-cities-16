@@ -20,7 +20,10 @@ function LocationItem({
 
   return (
     <li className="locations__item">
-      <Link to={AppRoute.Root} onClick={() => dispatch(selectCity(city))} className={buttonClass}>
+      <Link to={AppRoute.Root}
+        onClick={() => dispatch(selectCity(city))}
+        className={buttonClass}
+      >
         <span>{city}</span>
       </Link>
     </li>

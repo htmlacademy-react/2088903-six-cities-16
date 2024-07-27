@@ -6,7 +6,7 @@ import {APIRoute, AuthorizationStatus} from '../const/const.ts';
 import {UserData,} from '../types/user-data.ts';
 import {dropToken, saveToken} from '../services/token.ts';
 import {AuthData} from '../types/auth-data.ts';
-import {loadOffers, requireAuthorization, setOffersDataLoadingStatus} from './action.ts';
+import {loadOffers, requireAuthorization, saveUserEmail, setOffersDataLoadingStatus} from './action.ts';
 
 
 export const fetchOffersAction = createAsyncThunk<void, undefined, {
@@ -31,8 +31,9 @@ export const checkAuthAction = createAsyncThunk<void, undefined, {
   'user/checkAuth',
   async (_arg, {dispatch, extra: api}) => {
     try {
-      await api.get(APIRoute.Login);
+      const {data: {email}} = await api.get<UserData>(APIRoute.Login);
       dispatch(requireAuthorization(AuthorizationStatus.Auth));
+      dispatch(saveUserEmail(email));
     } catch {
       dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
     }
@@ -49,6 +50,7 @@ export const loginAction = createAsyncThunk<void, AuthData, {
     const {data: {token}} = await api.post<UserData>(APIRoute.Login, {email, password});
     saveToken(token);
     dispatch(requireAuthorization(AuthorizationStatus.Auth));
+    dispatch(saveUserEmail(email));
   },
 );
 

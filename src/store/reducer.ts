@@ -1,5 +1,5 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {loadOffers, requireAuthorization, selectCity, setOffersDataLoadingStatus} from './action.ts';
+import {loadOffers, requireAuthorization, saveUserEmail, selectCity, setOffersDataLoadingStatus} from './action.ts';
 import {AuthorizationStatus, AuthorizationStatusModel, SixCitiesModel} from '../const/const.ts';
 import {OfferModel} from '../types/types.ts';
 
@@ -7,6 +7,7 @@ export type InitialStateModel = {
   activeCity: SixCitiesModel;
   offers: OfferModel[];
   authorizationStatus: AuthorizationStatusModel;
+  user: string;
   isOffersDataLoading: boolean;
 }
 
@@ -14,6 +15,7 @@ const initialState: InitialStateModel = {
   activeCity: 'Paris',
   offers: [],
   authorizationStatus: AuthorizationStatus.Unknown,
+  user: '',
   isOffersDataLoading: false,
 };
 
@@ -30,6 +32,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setOffersDataLoadingStatus, (state, action) => {
       state.isOffersDataLoading = action.payload;
+    })
+    .addCase(saveUserEmail, (state, action) => {
+      state.user = action.payload;
     });
 });
 
