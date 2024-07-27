@@ -6,7 +6,7 @@ import {APIRoute, AuthorizationStatus} from '../const/const.ts';
 import {UserData,} from '../types/user-data.ts';
 import {dropToken, saveToken} from '../services/token.ts';
 import {AuthData} from '../types/auth-data.ts';
-import {loadOffers, requireAuthorization, saveUserEmail, setOffersDataLoadingStatus} from './action.ts';
+import {loadOfferById, loadOffers, requireAuthorization, saveUserEmail, setOffersDataLoadingStatus} from './action.ts';
 
 
 export const fetchOffersAction = createAsyncThunk<void, undefined, {
@@ -22,6 +22,19 @@ export const fetchOffersAction = createAsyncThunk<void, undefined, {
     dispatch(loadOffers(data));
   },
 );
+
+export const fetchOfferByIdAction = createAsyncThunk<void, Record<'id', string>, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchOfferById',
+  async ({id}, {dispatch, extra: api}) => {
+    const {data} = await api.get<OfferModel>(`${APIRoute.Offers}/${id}`);
+    dispatch(loadOfferById(data));
+  },
+);
+
 
 export const checkAuthAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;

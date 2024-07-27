@@ -24,7 +24,7 @@ export type OfferModel = {
   price: number;
   city: CityModel;
   location: LocationModel;
-  isFavorite: boolean;
+  isFavorite?: boolean;
   isPremium: boolean;
   rating: number;
   previewImage: string;

@@ -1,8 +1,6 @@
 import Gallery from '../../components/gallery/gallery.tsx';
 import NearPlaces from '../../components/near-places/near-places.tsx';
 import {Navigate, useParams} from 'react-router-dom';
-import {OfferModel} from '../../types/types.ts';
-import {AppRoute} from '../../const/const.ts';
 import Layout from '../../components/layout/layout.tsx';
 import OfferInside from '../../components/offer/offer-inside/offer-inside.tsx';
 import OfferHost from '../../components/offer/offer-host/offer-host.tsx';
@@ -13,19 +11,42 @@ import OfferPrice from '../../components/offer/offer-price/offer-price.tsx';
 import Map from '../../components/map/map.tsx';
 import OfferBadge from '../../components/offer/offer-badge';
 import OfferBookmarkButton from '../../components/offer/offer-bookmark-button';
-import {useAppSelector} from '../../store';
+import {useAppDispatch, useAppSelector} from '../../store';
+import {fetchOfferByIdAction} from '../../store/api-actions.ts';
+import {offers} from '../../mocks/offers.ts';
+import {OfferModel} from '../../types/types.ts';
+import {AppRoute} from '../../const/const.ts';
+import {useEffect, useState} from 'react';
+import LoadingPage from '../loading-page/loading-page.tsx';
 
 
 function OfferPage() {
   const {id} = useParams<{ id: string }>();
-  const offers = useAppSelector((state) => state.offers);
-  const currentOffer: OfferModel | undefined = offers.find((offer: OfferModel) => offer.id === id);
+  const [isLoading, setIsLoading] = useState(true);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+
+    if (id && isLoading) {
+      dispatch(fetchOfferByIdAction({id: id}))
+        .finally(() => setIsLoading(false));
+    }
+  }, [id, dispatch, isLoading]);
+
+  const currentOffer: OfferModel | null = useAppSelector((state) => state.currentOffer);
+
+  if (isLoading) {
+    return (
+      <LoadingPage/>
+    );
+  }
+
   if (!currentOffer) {
     return <Navigate to={AppRoute.NotFound} replace/>;
   }
 
   const offersNearby = offers.slice(0, 3);
-  const {title, price, isFavorite} = currentOffer;
+  const {title, price} = currentOffer;
 
   return (
     <Layout
@@ -46,7 +67,9 @@ function OfferPage() {
                 <h1 className="offer__name">
                   {title}
                 </h1>
-                <OfferBookmarkButton isFavorite={isFavorite}/>
+                <OfferBookmarkButton
+                  isFavorite={typeof currentOffer.isFavorite === 'boolean' && currentOffer.isFavorite}
+                />
               </div>
               <OfferRating/>
               <OfferFeatures/>
