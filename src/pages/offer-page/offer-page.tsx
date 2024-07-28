@@ -12,9 +12,9 @@ import Map from '../../components/map/map.tsx';
 import OfferBadge from '../../components/offer/offer-badge';
 import OfferBookmarkButton from '../../components/offer/offer-bookmark-button';
 import {useAppDispatch, useAppSelector} from '../../store';
-import {fetchOfferByIdAction} from '../../store/api-actions.ts';
+import {fetchOfferByIdAction, fetchReviewsAction} from '../../store/api-actions.ts';
 import {offers} from '../../mocks/offers.ts';
-import {FullOfferModel} from '../../types/types.ts';
+import {FullOfferModel, ReviewModel} from '../../types/types.ts';
 import {AppRoute, AuthorizationStatus} from '../../const/const.ts';
 import {useEffect, useState} from 'react';
 import LoadingPage from '../loading-page/loading-page.tsx';
@@ -28,12 +28,15 @@ function OfferPage() {
 
   useEffect(() => {
     if (id && isLoading) {
+      dispatch(fetchReviewsAction({id: id}));
       dispatch(fetchOfferByIdAction({id: id}))
         .finally(() => setIsLoading(false));
     }
   }, [id, dispatch, isLoading]);
 
   const currentOffer: FullOfferModel | null = useAppSelector((state) => state.currentOffer);
+  const currentReviews: ReviewModel[] = useAppSelector((state) => state.currentReviews);
+
   if (isLoading) {
     return (
       <LoadingPage/>
@@ -81,7 +84,11 @@ function OfferPage() {
               <OfferPrice price={price}/>
               <OfferAmenities goods={goods}/>
               <OfferHost host={host} description={description}/>
-              <OfferReviews authorizationStatus={authorizationStatus} id={id}/>
+              <OfferReviews
+                authorizationStatus={authorizationStatus}
+                id={id}
+                currentReviews={currentReviews}
+              />
             </div>
           </div>
           <Map

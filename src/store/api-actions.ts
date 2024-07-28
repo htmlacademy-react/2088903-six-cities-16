@@ -1,12 +1,19 @@
 import {AxiosInstance} from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppDispatch, State} from './index.ts';
-import {FullOfferModel, OfferModel} from '../types/types.ts';
+import {FullOfferModel, OfferModel, ReviewModel} from '../types/types.ts';
 import {APIRoute, AuthorizationStatus} from '../const/const.ts';
 import {UserData,} from '../types/user-data.ts';
 import {dropToken, saveToken} from '../services/token.ts';
 import {AuthData} from '../types/auth-data.ts';
-import {loadOfferById, loadOffers, requireAuthorization, saveUserEmail, setOffersDataLoadingStatus} from './action.ts';
+import {
+  loadOfferById,
+  loadOffers,
+  loadReviews,
+  requireAuthorization,
+  saveUserEmail,
+  setOffersDataLoadingStatus
+} from './action.ts';
 
 
 export const fetchOffersAction = createAsyncThunk<void, undefined, {
@@ -35,6 +42,17 @@ export const fetchOfferByIdAction = createAsyncThunk<void, Record<'id', string>,
   },
 );
 
+export const fetchReviewsAction = createAsyncThunk<void, Record<'id', string>, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/loadReviews',
+  async ({id}, {dispatch, extra: api}) => {
+    const {data} = await api.get<ReviewModel[]>(`${APIRoute.Reviews}/${id}`);
+    dispatch(loadReviews(data));
+  },
+);
 
 export const checkAuthAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;

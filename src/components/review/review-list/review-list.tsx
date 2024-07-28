@@ -1,11 +1,14 @@
-import {COMMENTS} from '../../../mocks/comments.ts';
 import ReviewItem from '../review-item/review-item.tsx';
 import {ReviewModel} from '../../../types/types.ts';
 
 const MAX_REVIEW_COUNT = 10;
 
-function ReviewList() {
-  const sortedComments: ReviewModel[] = [...COMMENTS]
+type ReviewListProps = {
+  currentReviews: ReviewModel[];
+};
+
+function ReviewList({currentReviews}: ReviewListProps) {
+  const sortedComments: ReviewModel[] = [...currentReviews]
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
     .slice(0, MAX_REVIEW_COUNT);
 
