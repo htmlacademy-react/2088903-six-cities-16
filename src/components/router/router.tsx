@@ -1,7 +1,7 @@
 import {createBrowserRouter} from 'react-router-dom';
 import MainPage from '../../pages/main-page/main-page.tsx';
 import {AppRoute} from '../../const/const.ts';
-import {NoAuthOnlyRoute, PrivateRoute} from '../private-route/private-route.tsx';
+import {AccessRoute, NoAuthOnlyRoute} from '../access-route/access-route.tsx';
 import FavoritesPage from '../../pages/favorites-page/favorites-page.tsx';
 import LoginPage from '../../pages/login-page/login-page.tsx';
 import OfferPage from '../../pages/offer-page/offer-page.tsx';
@@ -18,9 +18,9 @@ export const router = createBrowserRouter([
       {
         path: AppRoute.Favorites,
         element: (
-          <PrivateRoute>
+          <AccessRoute>
             <FavoritesPage/>
-          </PrivateRoute>
+          </AccessRoute>
         ),
       },
       {
