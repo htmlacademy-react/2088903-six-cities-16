@@ -1,14 +1,11 @@
 import {Navigate} from 'react-router-dom';
-import {AppRoute, AuthorizationStatus, AuthorizationStatusModel} from '../../const/const.ts';
-import {ReactNode} from 'react';
+import {AppRoute, AuthorizationStatus} from '../../const/const.ts';
+import {PropsWithChildren} from 'react';
+import {useAppSelector} from '../../store';
 
 
-type PrivateRouteProps = {
-  authorizationStatus: AuthorizationStatusModel;
-  children: ReactNode;
-}
-
-export function PrivateRoute({authorizationStatus, children}: PrivateRouteProps) {
+export function PrivateRoute({children}: PropsWithChildren) {
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   if (authorizationStatus === AuthorizationStatus.Unknown) {
     return 'Loading...';
   }
@@ -19,7 +16,8 @@ export function PrivateRoute({authorizationStatus, children}: PrivateRouteProps)
   );
 }
 
-export function NoAuthOnlyRoute({authorizationStatus, children}: PrivateRouteProps) {
+export function NoAuthOnlyRoute({children}: PropsWithChildren) {
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   if (authorizationStatus === AuthorizationStatus.Unknown) {
     return 'Loading...';
   }
