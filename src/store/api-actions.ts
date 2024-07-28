@@ -1,7 +1,7 @@
 import {AxiosInstance} from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppDispatch, State} from './index.ts';
-import {OfferModel} from '../types/types.ts';
+import {FullOfferModel, OfferModel} from '../types/types.ts';
 import {APIRoute, AuthorizationStatus} from '../const/const.ts';
 import {UserData,} from '../types/user-data.ts';
 import {dropToken, saveToken} from '../services/token.ts';
@@ -30,7 +30,7 @@ export const fetchOfferByIdAction = createAsyncThunk<void, Record<'id', string>,
 }>(
   'data/fetchOfferById',
   async ({id}, {dispatch, extra: api}) => {
-    const {data} = await api.get<OfferModel>(`${APIRoute.Offers}/${id}`);
+    const {data} = await api.get<FullOfferModel>(`${APIRoute.Offers}/${id}`);
     dispatch(loadOfferById(data));
   },
 );

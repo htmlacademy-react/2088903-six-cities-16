@@ -8,12 +8,12 @@ import {
   setOffersDataLoadingStatus
 } from './action.ts';
 import {AuthorizationStatus, AuthorizationStatusModel, SixCitiesModel} from '../const/const.ts';
-import {OfferModel} from '../types/types.ts';
+import {FullOfferModel, OfferModel} from '../types/types.ts';
 
 export type InitialStateModel = {
   activeCity: SixCitiesModel;
   offers: OfferModel[];
-  currentOffer: OfferModel | null;
+  currentOffer: FullOfferModel | null;
   authorizationStatus: AuthorizationStatusModel;
   user: string;
   isOffersDataLoading: boolean;

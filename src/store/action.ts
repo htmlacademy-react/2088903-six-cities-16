@@ -1,12 +1,12 @@
 import {createAction} from '@reduxjs/toolkit';
 import {AuthorizationStatusModel, SixCitiesModel} from '../const/const.ts';
-import {OfferModel} from '../types/types.ts';
+import {FullOfferModel, OfferModel} from '../types/types.ts';
 
 export const selectCity = createAction<SixCitiesModel>('main/selectCity');
 
 export const loadOffers = createAction<OfferModel[]>('data/loadOffers');
 
-export const loadOfferById = createAction<OfferModel>('data/loadOfferById');
+export const loadOfferById = createAction<FullOfferModel>('data/loadOfferById');
 
 export const requireAuthorization = createAction<AuthorizationStatusModel>('user/requireAuthorization');
 

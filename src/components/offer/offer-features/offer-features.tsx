@@ -1,14 +1,23 @@
-function OfferFeatures() {
+import {capitalize, pluralize} from '../../../utils/utils.ts';
+
+
+type OfferFeaturesProps = {
+  type: string;
+  bedrooms: number;
+  maxAdults: number;
+};
+
+function OfferFeatures({type, bedrooms, maxAdults}: OfferFeaturesProps) {
   return (
     <ul className="offer__features">
       <li className="offer__feature offer__feature--entire">
-        Apartment
+        {capitalize(type)}
       </li>
       <li className="offer__feature offer__feature--bedrooms">
-        3 Bedrooms
+        {`${bedrooms} ${pluralize('Bedroom', bedrooms)}`}
       </li>
       <li className="offer__feature offer__feature--adults">
-        Max 4 adults
+        {`Max ${maxAdults} ${pluralize('adult', maxAdults)}`}
       </li>
     </ul>
   );
