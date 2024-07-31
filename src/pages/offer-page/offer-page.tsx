@@ -22,22 +22,22 @@ import LoadingPage from '../loading-page/loading-page.tsx';
 
 function OfferPage() {
   const {id} = useParams<{ id: string }>();
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useAppDispatch();
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
   useEffect(() => {
-    if (id && isLoading) {
+    if (id && !isLoading) {
       dispatch(fetchReviewsAction({id: id}));
       dispatch(fetchOfferByIdAction({id: id}))
-        .finally(() => setIsLoading(false));
+        .finally(() => setIsLoading(true));
     }
   }, [id, dispatch, isLoading]);
 
   const currentOffer: FullOfferModel | null = useAppSelector((state) => state.currentOffer);
-  const currentReviews: ReviewModel[] = useAppSelector((state) => state.currentReviews);
+  const reviews: ReviewModel[] = useAppSelector((state) => state.currentReviews);
 
-  if (isLoading) {
+  if (!isLoading) {
     return (
       <LoadingPage/>
     );
@@ -87,7 +87,7 @@ function OfferPage() {
               <OfferReviews
                 authorizationStatus={authorizationStatus}
                 id={id}
-                currentReviews={currentReviews}
+                reviews={reviews}
               />
             </div>
           </div>

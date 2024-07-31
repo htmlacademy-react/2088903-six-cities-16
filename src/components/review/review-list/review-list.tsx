@@ -1,16 +1,15 @@
 import ReviewItem from '../review-item/review-item.tsx';
 import {ReviewModel} from '../../../types/types.ts';
+import {getSortedReviews} from '../../../utils/utils.ts';
 
 const MAX_REVIEW_COUNT = 10;
 
 type ReviewListProps = {
-  currentReviews: ReviewModel[];
+  reviews: ReviewModel[];
 };
 
-function ReviewList({currentReviews}: ReviewListProps) {
-  const sortedComments: ReviewModel[] = [...currentReviews]
-    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
-    .slice(0, MAX_REVIEW_COUNT);
+function ReviewList({reviews}: ReviewListProps) {
+  const sortedComments: ReviewModel[] = getSortedReviews(reviews, MAX_REVIEW_COUNT);
 
   return (
     <ul className="reviews__list">

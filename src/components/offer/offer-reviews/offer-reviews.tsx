@@ -7,18 +7,18 @@ import {ReviewModel} from '../../../types/types.ts';
 type OfferReviewsProps = {
   id?: string;
   authorizationStatus: AuthorizationStatusModel;
-  currentReviews: ReviewModel[];
+  reviews: ReviewModel[];
 }
 
-function OfferReviews({authorizationStatus, id, currentReviews}: OfferReviewsProps) {
+function OfferReviews({authorizationStatus, id, reviews}: OfferReviewsProps) {
   return (
     <section className="offer__reviews reviews">
       <h2 className="reviews__title">
         Reviews &middot;
-        <span className="reviews__amount">{currentReviews.length}</span>
+        <span className="reviews__amount">{reviews.length}</span>
         <span style={{display: 'none'}}>{id}</span>
       </h2>
-      <ReviewList currentReviews={currentReviews}/>
+      <ReviewList reviews={reviews}/>
       {authorizationStatus === AuthorizationStatus.Auth && <ReviewForm/>}
     </section>
   );
