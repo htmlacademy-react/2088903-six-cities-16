@@ -28,7 +28,7 @@ export type OfferModel = {
   isPremium: boolean;
   rating: number;
   previewImage: string;
-};
+}
 
 export type FullOfferModel = Omit<OfferModel, 'previewImage'> & {
   description: string;

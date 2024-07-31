@@ -1,27 +1,18 @@
-import {useMemo} from 'react';
-import {OFFER_GALLERY_IMAGES} from '../../const/const.ts';
 import GalleryImage from './gallery-image/gallery-image.tsx';
-import * as faker from 'faker';
 
 
-type GalleryWithId = {
-  id: string;
-  image: string;
-}
+type GalleryProps = {
+  images: string[];
+};
 
-function Gallery() {
-
-  const galleryWithId: GalleryWithId[] = useMemo(() => OFFER_GALLERY_IMAGES.map((image) => ({
-    id: faker.datatype.uuid(),
-    image
-  })), []);
+function Gallery({images}: GalleryProps) {
 
   return (
     <div className="offer__gallery">
       {
-        galleryWithId.map(({id, image}) => (
+        images.map((image) => (
           <GalleryImage
-            key={id}
+            key={image}
             imagePath={image}
           />
         ))
