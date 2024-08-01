@@ -1,5 +1,5 @@
 import {OfferModel} from '../../../types/types.ts';
-import OfferCard from '../../offer/offer-card/offer-card.tsx';
+import PlaceCard from '../../place-card/place-card.tsx';
 import {Link} from 'react-router-dom';
 import {AppRoute, SixCitiesModel} from '../../../const/const.ts';
 
@@ -22,7 +22,7 @@ function FavoritesLocation({city, offers}: FavoritesLocationProps) {
       <div className="favorites__places">
         {
           offers.map((offer: OfferModel) => (
-            <OfferCard
+            <PlaceCard
               key={offer.id}
               id={offer.id}
               title={offer.title}

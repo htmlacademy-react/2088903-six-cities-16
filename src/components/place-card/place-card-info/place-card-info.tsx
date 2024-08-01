@@ -1,9 +1,9 @@
 import {getRatingPercentage} from '../../../utils/utils.ts';
 import {generatePath, Link} from 'react-router-dom';
 import {AppRoute} from '../../../const/const.ts';
-import PlaceCardBookmarkButton from '../../place-card/place-card-bookmark-button';
+import PlaceCardBookmarkButton from '../place-card-bookmark-button';
 
-type OfferInfoProps = {
+type PlaceCardProps = {
   id: string;
   title: string;
   type: string;
@@ -12,14 +12,14 @@ type OfferInfoProps = {
   isFavorite: boolean;
 };
 
-function OfferInfo({
+function PlaceCardInfo({
   id,
   title,
   type,
   price,
   rating,
   isFavorite
-}: OfferInfoProps) {
+}: PlaceCardProps) {
 
   const path = generatePath(AppRoute.Offer, {id});
 
@@ -46,4 +46,4 @@ function OfferInfo({
   );
 }
 
-export default OfferInfo;
+export default PlaceCardInfo;

@@ -1,4 +1,4 @@
-import OfferCard from '../offer/offer-card/offer-card.tsx';
+import PlaceCard from '../place-card/place-card.tsx';
 import {OfferModel} from '../../types/types.ts';
 
 type NearPlacesProps = {
@@ -13,7 +13,7 @@ function NearPlaces({offersNearby}: NearPlacesProps) {
       <div className="near-places__list places__list">
         {
           offersNearby.map((offer) => (
-            <OfferCard
+            <PlaceCard
               key={offer.id}
               id={offer.id}
               title={offer.title}

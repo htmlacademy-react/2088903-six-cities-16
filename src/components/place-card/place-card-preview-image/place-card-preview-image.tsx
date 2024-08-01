@@ -12,17 +12,17 @@ const FavoritesStyle = {
   height: 100,
 } as const;
 
-export type OfferPreviewImageProps = {
+export type PlaceCardPreviewImageProps = {
   id: string;
   previewImage: string;
   className: 'cities' | 'favorites' | 'near-places';
 }
 
-function OfferPreviewImage({
+function PlaceCardPreviewImage({
   id,
   previewImage,
   className,
-}: OfferPreviewImageProps) {
+}: PlaceCardPreviewImageProps) {
 
   const {width, height} = (className === 'favorites') ? FavoritesStyle : DefaultStyle;
   const imageWrapperClasses = cn('place-card__image-wrapper', `${className}__image-wrapper`);
@@ -37,4 +37,4 @@ function OfferPreviewImage({
   );
 }
 
-export default OfferPreviewImage;
+export default PlaceCardPreviewImage;

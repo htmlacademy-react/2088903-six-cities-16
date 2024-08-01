@@ -1,7 +1,7 @@
-import OfferInfo from '../offer-info/offer-info.tsx';
+import PlaceCardInfo from './place-card-info/place-card-info.tsx';
 import cn from 'classnames';
-import OfferPreviewImage from '../offer-preview-image/offer-preview-image.tsx';
-import PlaceCardBadge from '../../place-card/place-card-badge/place-card-badge.tsx';
+import PlaceCardBadge from './place-card-badge/place-card-badge.tsx';
+import PlaceCardPreviewImage from './place-card-preview-image/place-card-preview-image.tsx';
 
 type PlaceCardProps = {
   id: string;
@@ -16,7 +16,7 @@ type PlaceCardProps = {
   setSelectedCard?: (id: string) => void;
 };
 
-function OfferCard({
+function PlaceCard({
   id,
   title,
   type,
@@ -46,12 +46,12 @@ function OfferCard({
           <span>Premium</span>
         </PlaceCardBadge>
       }
-      <OfferPreviewImage
+      <PlaceCardPreviewImage
         id={id}
         previewImage={previewImage}
         className={className}
       />
-      <OfferInfo
+      <PlaceCardInfo
         id={id}
         title={title}
         type={type}
@@ -63,4 +63,4 @@ function OfferCard({
   );
 }
 
-export default OfferCard;
+export default PlaceCard;
