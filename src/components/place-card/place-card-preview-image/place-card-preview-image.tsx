@@ -1,37 +1,27 @@
 import cn from 'classnames';
 import {generatePath, Link} from 'react-router-dom';
 import {AppRoute} from '../../../const/const.ts';
+import {ImgHTMLAttributes} from 'react';
 
-const DefaultStyle = {
-  width: 260,
-  height: 200,
-} as const;
 
-const FavoritesStyle = {
-  width: 150,
-  height: 100,
-} as const;
-
-export type PlaceCardPreviewImageProps = {
+type PlaceCardPreviewImageProps = {
   id: string;
-  previewImage: string;
-  className: 'cities' | 'favorites' | 'near-places';
-}
+  className: 'cities__image-wrapper' | 'favorites__image-wrapper' | 'near-places__image-wrapper';
+} & ImgHTMLAttributes<HTMLImageElement>;
 
 function PlaceCardPreviewImage({
   id,
-  previewImage,
   className,
+  ...restProps
 }: PlaceCardPreviewImageProps) {
 
-  const {width, height} = (className === 'favorites') ? FavoritesStyle : DefaultStyle;
-  const imageWrapperClasses = cn('place-card__image-wrapper', `${className}__image-wrapper`);
+  const imageWrapperClasses = cn('place-card__image-wrapper', `${className}`);
   const path = generatePath(AppRoute.Offer, {id});
 
   return (
     <div className={imageWrapperClasses}>
       <Link to={path}>
-        <img className="place-card__image" src={previewImage} width={width} height={height} alt="Photo studio"/>
+        <img className="place-card__image" alt="Photo studio" {...restProps} />
       </Link>
     </div>
   );

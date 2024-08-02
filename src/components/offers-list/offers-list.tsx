@@ -1,8 +1,8 @@
 import {ReactElement, useMemo, useState} from 'react';
 import {OfferModel} from '../../types/types.ts';
-import PlaceCard from '../place-card/place-card.tsx';
 import SortForm, {TSortTypes} from '../sort-form/sort-form.tsx';
 import {SixCitiesModel} from '../../const/const.ts';
+import CitiesCard from '../cities/cities-card/cities-card.tsx';
 
 
 type OffersListProps = {
@@ -42,15 +42,9 @@ function OffersList({activeOffers, activeCity, setSelectedCard}: OffersListProps
       <div className="cities__places-list places__list tabs__content">
         {
           sortedOffers.map((offer: OfferModel): ReactElement => (
-            <PlaceCard
+            <CitiesCard
               key={offer.id}
               id={offer.id}
-              title={offer.title}
-              type={offer.type}
-              price={offer.price}
-              rating={offer.rating}
-              isFavorite={offer.isFavorite}
-              isPremium={offer.isPremium}
               previewImage={offer.previewImage}
               setSelectedCard={setSelectedCard}
             />
