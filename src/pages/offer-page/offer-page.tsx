@@ -97,9 +97,7 @@ function OfferPage() {
           />
         </section>
         <div className="container">
-          <NearPlaces
-            offersNearby={offersNearby}
-          />
+          <NearPlaces />
         </div>
       </>
     </Layout>

@@ -7,12 +7,14 @@ import {UserData,} from '../types/user-data.ts';
 import {dropToken, saveToken} from '../services/token.ts';
 import {AuthData} from '../types/auth-data.ts';
 import {
+  loadFavorites,
   loadOfferById,
   loadOffers,
   loadReviews,
   requireAuthorization,
   saveUserEmail,
-  setOffersDataLoadingStatus
+  setFavoritesDataLoadingStatus,
+  setOffersDataLoadingStatus,
 } from './action.ts';
 
 
@@ -27,6 +29,20 @@ export const fetchOffersAction = createAsyncThunk<void, undefined, {
     const {data} = await api.get<OfferModel[]>(APIRoute.Offers);
     dispatch(setOffersDataLoadingStatus(false));
     dispatch(loadOffers(data));
+  },
+);
+
+export const fetchFavoritesAction = createAsyncThunk<void, undefined, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchFavorites',
+  async (_arg, {dispatch, extra: api}) => {
+    dispatch(setFavoritesDataLoadingStatus(true));
+    const {data} = await api.get<OfferModel[]>(APIRoute.Favorite);
+    dispatch(loadFavorites(data));
+    dispatch(setFavoritesDataLoadingStatus(false));
   },
 );
 

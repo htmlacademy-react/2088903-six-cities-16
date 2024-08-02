@@ -1,17 +1,10 @@
-import PlaceCard from '../place-card/place-card.tsx';
-import {OfferModel} from '../../types/types.ts';
-
-type NearPlacesProps = {
-  offersNearby: OfferModel[];
-}
-
-function NearPlaces({offersNearby}: NearPlacesProps) {
+function NearPlaces() {
 
   return (
     <section className="near-places places">
       <h2 className="near-places__title">Other places in the neighbourhood</h2>
       <div className="near-places__list places__list">
-        {
+        {/*        {
           offersNearby.map((offer) => (
             <PlaceCard
               key={offer.id}
@@ -26,7 +19,7 @@ function NearPlaces({offersNearby}: NearPlacesProps) {
               className='near-places'
             />
           ))
-        }
+        }*/}
       </div>
     </section>
   );

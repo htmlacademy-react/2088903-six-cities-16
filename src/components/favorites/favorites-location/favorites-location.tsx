@@ -26,6 +26,12 @@ function FavoritesLocation({city, offers}: FavoritesLocationProps) {
               key={offer.id}
               id={offer.id}
               previewImage={offer.previewImage}
+              title={offer.title}
+              type={offer.type}
+              price={offer.price}
+              rating={offer.rating}
+              isFavorite={offer.isFavorite}
+              isPremium={offer.isPremium}
             />
           )
           )
