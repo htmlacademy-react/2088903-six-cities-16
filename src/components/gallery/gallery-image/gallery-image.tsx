@@ -1,8 +1,8 @@
-type OfferImageProps = {
+type GalleryImageProps = {
   imagePath: string;
 }
 
-function OfferImage({imagePath}: OfferImageProps) {
+function GalleryImage({imagePath}: GalleryImageProps) {
 
   return (
     <div className="offer__image-wrapper">
@@ -11,4 +11,4 @@ function OfferImage({imagePath}: OfferImageProps) {
   );
 }
 
-export default OfferImage;
+export default GalleryImage;

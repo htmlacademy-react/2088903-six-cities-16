@@ -7,12 +7,15 @@ import {UserData,} from '../types/user-data.ts';
 import {dropToken, saveToken} from '../services/token.ts';
 import {AuthData} from '../types/auth-data.ts';
 import {
+  loadFavorites,
+  loadNearby,
   loadOfferById,
   loadOffers,
   loadReviews,
   requireAuthorization,
   saveUserEmail,
-  setOffersDataLoadingStatus
+  setFavoritesDataLoadingStatus,
+  setOffersDataLoadingStatus,
 } from './action.ts';
 
 
@@ -30,6 +33,20 @@ export const fetchOffersAction = createAsyncThunk<void, undefined, {
   },
 );
 
+export const fetchFavoritesAction = createAsyncThunk<void, undefined, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchFavorites',
+  async (_arg, {dispatch, extra: api}) => {
+    dispatch(setFavoritesDataLoadingStatus(true));
+    const {data} = await api.get<OfferModel[]>(APIRoute.Favorite);
+    dispatch(loadFavorites(data));
+    dispatch(setFavoritesDataLoadingStatus(false));
+  },
+);
+
 export const fetchOfferByIdAction = createAsyncThunk<void, Record<'id', string>, {
   dispatch: AppDispatch;
   state: State;
@@ -39,6 +56,18 @@ export const fetchOfferByIdAction = createAsyncThunk<void, Record<'id', string>,
   async ({id}, {dispatch, extra: api}) => {
     const {data} = await api.get<FullOfferModel>(`${APIRoute.Offers}/${id}`);
     dispatch(loadOfferById(data));
+  },
+);
+
+export const fetchNearbyAction = createAsyncThunk<void, Record<'id', string>, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchNearbyAction',
+  async ({id}, {dispatch, extra: api}) => {
+    const {data} = await api.get<OfferModel[]>(`${APIRoute.Offers}/${id}/nearby`);
+    dispatch(loadNearby(data));
   },
 );
 

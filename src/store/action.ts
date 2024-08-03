@@ -6,6 +6,10 @@ export const selectCity = createAction<SixCitiesModel>('main/selectCity');
 
 export const loadOffers = createAction<OfferModel[]>('data/loadOffers');
 
+export const loadFavorites = createAction<OfferModel[]>('data/loadFavorites');
+
+export const loadNearby = createAction<OfferModel[]>('data/loadNearby');
+
 export const loadOfferById = createAction<FullOfferModel>('data/loadOfferById');
 
 export const loadReviews = createAction<ReviewModel[]>('data/loadReviews');
@@ -15,3 +19,5 @@ export const requireAuthorization = createAction<AuthorizationStatusModel>('user
 export const saveUserEmail = createAction<string>('user/saveUserEmail');
 
 export const setOffersDataLoadingStatus = createAction<boolean>('data/setOffersDataLoadingStatus');
+
+export const setFavoritesDataLoadingStatus = createAction<boolean>('data/setFavoritesDataLoadingStatus');
