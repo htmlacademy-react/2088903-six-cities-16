@@ -9,7 +9,6 @@ import OfferFeatures from '../../components/offer/offer-features/offer-features.
 import OfferRating from '../../components/offer/offer-rating/offer-rating.tsx';
 import OfferPrice from '../../components/offer/offer-price/offer-price.tsx';
 import Map from '../../components/map/map.tsx';
-import OfferBadge from '../../components/offer/offer-badge';
 import OfferBookmarkButton from '../../components/offer/offer-bookmark-button';
 import {useAppDispatch, useAppSelector} from '../../store';
 import {fetchOfferByIdAction, fetchReviewsAction} from '../../store/api-actions.ts';
@@ -63,9 +62,9 @@ function OfferPage() {
           <div className="offer__container container">
             <div className="offer__wrapper">
               {isPremium &&
-                <OfferBadge>
+                <div className='offer__mark'>
                   <span>Premium</span>
-                </OfferBadge>}
+                </div>}
               <div className="offer__name-wrapper">
                 <h1 className="offer__name">
                   {title}
@@ -97,7 +96,7 @@ function OfferPage() {
           />
         </section>
         <div className="container">
-          <NearPlaces />
+          <NearPlaces/>
         </div>
       </>
     </Layout>

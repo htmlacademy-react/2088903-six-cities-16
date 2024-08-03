@@ -1,6 +1,5 @@
 import cn from 'classnames';
 import {HTMLAttributes, PropsWithChildren} from 'react';
-import PlaceCardBadge from './place-card-badge';
 import PlaceCardInfo from './place-card-info/place-card-info.tsx';
 
 type PlaceCardProps = {
@@ -34,12 +33,10 @@ function PlaceCard({
       className={cardClassNames}
       {...restProps}
     >
-      {
-        isPremium &&
-        <PlaceCardBadge>
+      {isPremium &&
+        <div className='place-card__mark'>
           <span>Premium</span>
-        </PlaceCardBadge>
-      }
+        </div>}
       {children}
       <PlaceCardInfo
         id={id}
