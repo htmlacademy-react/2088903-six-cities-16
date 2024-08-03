@@ -1,17 +1,9 @@
 import cn from 'classnames';
 import {HTMLAttributes, PropsWithChildren} from 'react';
 import PlaceCardInfo from './place-card-info/place-card-info.tsx';
+import {PlaceCardModel} from '../../types/place-card.ts';
 
-type PlaceCardProps = {
-  id: string;
-  title: string;
-  type: string;
-  price: number;
-  rating: number;
-  isFavorite: boolean;
-  isPremium: boolean;
-  className: 'cities__card' | 'favorites__card' | 'near-places__card';
-} & HTMLAttributes<HTMLDivElement>;
+type PlaceCardProps = PlaceCardModel & HTMLAttributes<HTMLDivElement>;
 
 function PlaceCard({
   id,

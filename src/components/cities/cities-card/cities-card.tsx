@@ -1,7 +1,7 @@
 import PlaceCard from '../../place-card/place-card.tsx';
-import CitiesCardPreviewImage from '../cities-card-preview-image/cities-card-preview-image.tsx';
 import {useAppSelector} from '../../../store';
 import LoadingPage from '../../../pages/loading-page/loading-page.tsx';
+import PlaceCardPreviewImage from '../../place-card/place-card-preview-image/place-card-preview-image.tsx';
 
 
 type CitiesCardProps = {
@@ -47,9 +47,12 @@ function CitiesCard({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <CitiesCardPreviewImage
+      <PlaceCardPreviewImage
         id={id}
-        previewImage={previewImage}
+        className={'cities__image-wrapper'}
+        src={previewImage}
+        width={260}
+        height={200}
       />
     </PlaceCard>
   );

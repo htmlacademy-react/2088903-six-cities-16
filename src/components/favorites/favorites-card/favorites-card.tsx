@@ -1,27 +1,21 @@
 import PlaceCard from '../../place-card/place-card.tsx';
-import FavoritesCardPreviewImage from '../favorites-card-preview-image/favorites-card-preview-image.tsx';
+import {PlaceCardModel} from '../../../types/place-card.ts';
+import PlaceCardPreviewImage from '../../place-card/place-card-preview-image/place-card-preview-image.tsx';
 
 
 type FavoritesCardProps = {
-  id: string;
   previewImage: string;
-  title: string;
-  type: string;
-  price: number;
-  rating: number;
-  isFavorite: boolean;
-  isPremium: boolean;
-};
+} & Omit<PlaceCardModel, 'className'>;
 
 function FavoritesCard({
   id,
-  previewImage,
   title,
   type,
   price,
   rating,
   isFavorite,
   isPremium,
+  previewImage,
 }: FavoritesCardProps) {
 
   return (
@@ -35,9 +29,12 @@ function FavoritesCard({
       isPremium={isPremium}
       className={'favorites__card'}
     >
-      <FavoritesCardPreviewImage
+      <PlaceCardPreviewImage
         id={id}
-        previewImage={previewImage}
+        className={'favorites__image-wrapper'}
+        src={previewImage}
+        width={150}
+        height={100}
       />
     </PlaceCard>
   );
