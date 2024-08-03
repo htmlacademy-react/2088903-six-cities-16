@@ -8,6 +8,8 @@ export const loadOffers = createAction<OfferModel[]>('data/loadOffers');
 
 export const loadFavorites = createAction<OfferModel[]>('data/loadFavorites');
 
+export const loadNearby = createAction<OfferModel[]>('data/loadNearby');
+
 export const loadOfferById = createAction<FullOfferModel>('data/loadOfferById');
 
 export const loadReviews = createAction<ReviewModel[]>('data/loadReviews');

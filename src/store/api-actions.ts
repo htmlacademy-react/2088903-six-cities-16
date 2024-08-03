@@ -8,6 +8,7 @@ import {dropToken, saveToken} from '../services/token.ts';
 import {AuthData} from '../types/auth-data.ts';
 import {
   loadFavorites,
+  loadNearby,
   loadOfferById,
   loadOffers,
   loadReviews,
@@ -55,6 +56,18 @@ export const fetchOfferByIdAction = createAsyncThunk<void, Record<'id', string>,
   async ({id}, {dispatch, extra: api}) => {
     const {data} = await api.get<FullOfferModel>(`${APIRoute.Offers}/${id}`);
     dispatch(loadOfferById(data));
+  },
+);
+
+export const fetchNearbyAction = createAsyncThunk<void, Record<'id', string>, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchNearbyAction',
+  async ({id}, {dispatch, extra: api}) => {
+    const {data} = await api.get<OfferModel[]>(`${APIRoute.Offers}/${id}/nearby`);
+    dispatch(loadNearby(data));
   },
 );
 

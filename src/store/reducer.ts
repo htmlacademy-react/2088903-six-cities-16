@@ -1,6 +1,7 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {
   loadFavorites,
+  loadNearby,
   loadOfferById,
   loadOffers,
   loadReviews,
@@ -17,6 +18,7 @@ export type InitialStateModel = {
   activeCity: SixCitiesModel;
   offers: OfferModel[];
   favorites: OfferModel[];
+  nearby: OfferModel[];
   currentOffer: FullOfferModel | null;
   currentReviews: ReviewModel[];
   authorizationStatus: AuthorizationStatusModel;
@@ -29,6 +31,7 @@ const initialState: InitialStateModel = {
   activeCity: 'Paris',
   offers: [],
   favorites: [],
+  nearby: [],
   currentOffer: null,
   currentReviews: [],
   authorizationStatus: AuthorizationStatus.Unknown,
@@ -47,6 +50,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadFavorites, (state, action) => {
       state.favorites = action.payload;
+    })
+    .addCase(loadNearby, (state, action) => {
+      state.nearby = action.payload;
     })
     .addCase(loadOfferById, (state, action) => {
       state.currentOffer = action.payload;

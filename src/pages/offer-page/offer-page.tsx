@@ -11,7 +11,7 @@ import OfferPrice from '../../components/offer/offer-price/offer-price.tsx';
 import Map from '../../components/map/map.tsx';
 import OfferBookmarkButton from '../../components/offer/offer-bookmark-button';
 import {useAppDispatch, useAppSelector} from '../../store';
-import {fetchOfferByIdAction, fetchReviewsAction} from '../../store/api-actions.ts';
+import {fetchNearbyAction, fetchOfferByIdAction, fetchReviewsAction} from '../../store/api-actions.ts';
 import {offers} from '../../mocks/offers.ts';
 import {FullOfferModel, ReviewModel} from '../../types/types.ts';
 import {AppRoute, AuthorizationStatus} from '../../const/const.ts';
@@ -27,8 +27,9 @@ function OfferPage() {
 
   useEffect(() => {
     if (id && !isLoading) {
-      dispatch(fetchReviewsAction({id: id}));
-      dispatch(fetchOfferByIdAction({id: id}))
+      dispatch(fetchOfferByIdAction({id}));
+      dispatch(fetchReviewsAction({id}));
+      dispatch(fetchNearbyAction({id}))
         .finally(() => setIsLoading(true));
     }
   }, [id, dispatch, isLoading]);
