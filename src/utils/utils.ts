@@ -1,5 +1,6 @@
-import {FullOfferModel, OfferModel, ReviewModel} from '../types/types.ts';
+import {FullOfferModel, OfferModel,} from '../types/types.ts';
 import {PointModel} from '../types/point-model.ts';
+import {ReviewModel} from '../types/review-model.ts';
 
 const getRatingPercentage = (rating: number): string => {
   if (rating < 0) {

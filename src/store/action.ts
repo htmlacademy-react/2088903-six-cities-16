@@ -1,6 +1,7 @@
 import {createAction} from '@reduxjs/toolkit';
 import {AuthorizationStatusModel, SixCitiesModel} from '../const/const.ts';
-import {FullOfferModel, OfferModel, ReviewModel} from '../types/types.ts';
+import {FullOfferModel, OfferModel,} from '../types/types.ts';
+import {ReviewModel} from '../types/review-model.ts';
 
 export const selectCity = createAction<SixCitiesModel>('main/selectCity');
 

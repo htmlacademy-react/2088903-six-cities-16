@@ -1,6 +1,6 @@
 import ReviewItem from '../review-item/review-item.tsx';
-import {ReviewModel} from '../../../types/types.ts';
 import {getSortedReviews} from '../../../utils/utils.ts';
+import {ReviewModel} from '../../../types/review-model.ts';
 
 const MAX_REVIEW_COUNT = 10;
 

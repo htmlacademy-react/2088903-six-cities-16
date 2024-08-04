@@ -1,4 +1,4 @@
-import {ReviewModel} from '../types/types.ts';
+import {ReviewModel} from '../types/review-model.ts';
 
 export const COMMENTS: ReviewModel[] = [
   {

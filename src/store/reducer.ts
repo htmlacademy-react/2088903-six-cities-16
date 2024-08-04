@@ -12,7 +12,8 @@ import {
   setOffersDataLoadingStatus
 } from './action.ts';
 import {AuthorizationStatus, AuthorizationStatusModel, SixCitiesModel} from '../const/const.ts';
-import {FullOfferModel, OfferModel, ReviewModel} from '../types/types.ts';
+import {FullOfferModel, OfferModel} from '../types/types.ts';
+import {ReviewModel} from '../types/review-model.ts';
 
 export type InitialStateModel = {
   activeCity: SixCitiesModel;

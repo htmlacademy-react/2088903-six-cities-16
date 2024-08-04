@@ -12,11 +12,12 @@ import Map from '../../components/map/map.tsx';
 import OfferBookmarkButton from '../../components/offer/offer-bookmark-button';
 import {useAppDispatch, useAppSelector} from '../../store';
 import {fetchNearbyAction, fetchOfferByIdAction, fetchReviewsAction} from '../../store/api-actions.ts';
-import {FullOfferModel, ReviewModel} from '../../types/types.ts';
+import {FullOfferModel,} from '../../types/types.ts';
 import {AppRoute, AuthorizationStatus} from '../../const/const.ts';
 import {useEffect, useState} from 'react';
 import LoadingPage from '../loading-page/loading-page.tsx';
 import {getMapPointFromOffer, getMapPoints} from '../../utils/utils.ts';
+import {ReviewModel} from '../../types/review-model.ts';
 
 const MAX_NEARBY_COUNT = 3;
 
@@ -47,7 +48,7 @@ function OfferPage() {
     );
   }
 
-  if (!currentFullOffer) {
+  if (!currentFullOffer || !id) {
     return <Navigate to={AppRoute.NotFound} replace/>;
   }
 

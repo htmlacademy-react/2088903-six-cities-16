@@ -1,5 +1,5 @@
 import {getRatingPercentage} from '../../../utils/utils.ts';
-import {ReviewModel} from '../../../types/types.ts';
+import {ReviewModel} from '../../../types/review-model.ts';
 
 type ReviewItemProps = {
   review: ReviewModel;

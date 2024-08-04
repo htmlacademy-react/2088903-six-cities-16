@@ -1,11 +1,17 @@
 import {ChangeEvent, FormEvent, useState} from 'react';
 import ReviewRatingForm from '../review-rating-form/review-rating-form.tsx';
+import {sendReviewAction} from '../../../store/api-actions.ts';
+import {useAppDispatch} from '../../../store';
 
-function ReviewForm() {
+type ReviewFormProps = {
+  id: string;
+}
+
+function ReviewForm({id}: ReviewFormProps) {
+  const dispatch = useAppDispatch();
   const [formData, setFormData] = useState({
     rating: '',
-    review: '',
-    isSubmitDisable: true,
+    comment: '',
   });
 
   const handleInputChange = (evt: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
@@ -18,6 +24,8 @@ function ReviewForm() {
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
+    dispatch(sendReviewAction({id: id, comment: formData.comment, rating: +formData.rating}));
+
   };
 
   return (
@@ -27,9 +35,9 @@ function ReviewForm() {
         rating={formData.rating}
         handleInputChange={handleInputChange}
       />
-      <textarea className="reviews__textarea form__textarea" id="review" name="review"
+      <textarea className="reviews__textarea form__textarea" id="review" name="comment"
         placeholder="Tell how was your stay, what you like and what can be improved"
-        value={formData.review}
+        value={formData.comment}
         onChange={handleInputChange}
       >
       </textarea>
@@ -38,11 +46,9 @@ function ReviewForm() {
           To submit review please make sure to set
           <span className="reviews__star">rating</span>
           and describe your stay with at least
-          <b className="reviews__text-amount">50characters</b>.
+          <b className="reviews__text-amount"> 50characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit"
-          disabled={formData.isSubmitDisable}
-        >Submit
+        <button className="reviews__submit form__submit button" type="submit">Submit
         </button>
       </div>
     </form>
