@@ -8,6 +8,7 @@ import {
   requireAuthorization,
   saveUserEmail,
   selectCity,
+  setCommentSendStatus,
   setFavoritesDataLoadingStatus,
   setOffersDataLoadingStatus
 } from './action.ts';
@@ -26,6 +27,7 @@ export type InitialStateModel = {
   user: string;
   isOffersDataLoading: boolean;
   isFavoritesDataLoading: boolean;
+  hasCommentSuccessfullyBeenSent: boolean;
 }
 
 const initialState: InitialStateModel = {
@@ -39,6 +41,7 @@ const initialState: InitialStateModel = {
   user: '',
   isOffersDataLoading: false,
   isFavoritesDataLoading: false,
+  hasCommentSuccessfullyBeenSent: false,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -72,6 +75,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(saveUserEmail, (state, action) => {
       state.user = action.payload;
+    })
+    .addCase(setCommentSendStatus, (state, action) => {
+      state.hasCommentSuccessfullyBeenSent = action.payload;
     });
 });
 

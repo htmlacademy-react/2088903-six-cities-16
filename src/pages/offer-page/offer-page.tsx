@@ -29,6 +29,10 @@ function OfferPage() {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
   useEffect(() => {
+    setIsLoading(false);
+  }, [id]);
+
+  useEffect(() => {
     if (id && !isLoading) {
       dispatch(fetchOfferByIdAction({id}));
       dispatch(fetchReviewsAction({id}));

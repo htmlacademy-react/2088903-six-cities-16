@@ -14,10 +14,12 @@ import {
   loadReviews,
   requireAuthorization,
   saveUserEmail,
+  setCommentSendStatus,
   setFavoritesDataLoadingStatus,
   setOffersDataLoadingStatus,
 } from './action.ts';
 import {NewReviewModel, ReviewModel} from '../types/review-model.ts';
+import {toast} from 'react-toastify';
 
 
 export const fetchOffersAction = createAsyncThunk<void, undefined, {
@@ -90,8 +92,14 @@ export const sendReviewAction = createAsyncThunk<void, NewReviewModel, {
   extra: AxiosInstance;
 }>(
   'data/sendReview',
-  async ({id, comment, rating}, {extra: api}) => {
-    await api.post<ReviewModel>(`${APIRoute.Reviews}/${id}`, {comment, rating});
+  async ({id, comment, rating}, {dispatch, extra: api}) => {
+    try {
+      await api.post<ReviewModel>(`${APIRoute.Reviews}/${id}`, {comment, rating});
+      dispatch(fetchReviewsAction({id}));
+      dispatch(setCommentSendStatus(true));
+    } catch {
+      toast.warn('Не удалось отправить комментарий!');
+    }
   },
 );
 

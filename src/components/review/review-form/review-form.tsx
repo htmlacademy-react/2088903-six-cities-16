@@ -1,7 +1,8 @@
-import {ChangeEvent, FormEvent, useState} from 'react';
+import {ChangeEvent, FormEvent, useEffect, useState} from 'react';
 import ReviewRatingForm from '../review-rating-form/review-rating-form.tsx';
 import {sendReviewAction} from '../../../store/api-actions.ts';
-import {useAppDispatch} from '../../../store';
+import {useAppDispatch, useAppSelector} from '../../../store';
+import {setCommentSendStatus} from '../../../store/action.ts';
 
 type ReviewFormProps = {
   id: string;
@@ -9,10 +10,18 @@ type ReviewFormProps = {
 
 function ReviewForm({id}: ReviewFormProps) {
   const dispatch = useAppDispatch();
+  const hasCommentSuccessfullyBeenSent = useAppSelector((state) => state.hasCommentSuccessfullyBeenSent);
   const [formData, setFormData] = useState({
     rating: '',
     comment: '',
   });
+
+  useEffect(() => {
+    if (hasCommentSuccessfullyBeenSent) {
+      setFormData({rating: '', comment: '',});
+      dispatch(setCommentSendStatus(false));
+    }
+  }, [hasCommentSuccessfullyBeenSent, dispatch]);
 
   const handleInputChange = (evt: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
     const {value, name} = evt.target;
@@ -24,8 +33,7 @@ function ReviewForm({id}: ReviewFormProps) {
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    dispatch(sendReviewAction({id: id, comment: formData.comment, rating: +formData.rating}));
-
+    dispatch(sendReviewAction({id, comment: formData.comment, rating: +formData.rating}));
   };
 
   return (

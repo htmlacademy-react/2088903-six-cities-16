@@ -22,3 +22,5 @@ export const saveUserEmail = createAction<string>('user/saveUserEmail');
 export const setOffersDataLoadingStatus = createAction<boolean>('data/setOffersDataLoadingStatus');
 
 export const setFavoritesDataLoadingStatus = createAction<boolean>('data/setFavoritesDataLoadingStatus');
+
+export const setCommentSendStatus = createAction<boolean>('data/setCommentSendStatus');
