@@ -5,6 +5,7 @@ import Map from '../../components/map/map.tsx';
 import Layout from '../../components/layout/layout.tsx';
 import {useAppSelector} from '../../store';
 import cn from 'classnames';
+import {getMapPoints} from '../../utils/utils.ts';
 
 function MainPage() {
   const offers = useAppSelector((state) => state.offers);
@@ -52,7 +53,8 @@ function MainPage() {
             <div className="cities__right-section">
               {activeOffers.length &&
                 <Map
-                  activeOffers={activeOffers}
+                  activeCity={activeOffers[0].city}
+                  points={getMapPoints(activeOffers)}
                   selectedCard={selectedCard}
                 />}
             </div>

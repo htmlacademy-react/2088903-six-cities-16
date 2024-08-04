@@ -1,19 +1,20 @@
-import {useAppSelector} from '../../store';
 import PlaceCardPreviewImage from '../place-card/place-card-preview-image/place-card-preview-image.tsx';
 import PlaceCard from '../place-card/place-card.tsx';
+import {OfferModel} from '../../types/types.ts';
 
 
-const MAX_NEARBY_COUNT = 3;
+type NearPlacesProps = {
+  offersNearby: OfferModel[];
+}
 
-function NearPlaces() {
-  const offersNearby = useAppSelector((state) => state.nearby);
+function NearPlaces({offersNearby}: NearPlacesProps) {
 
   return (
     <section className="near-places places">
       <h2 className="near-places__title">Other places in the neighbourhood</h2>
       <div className="near-places__list places__list">
         {
-          offersNearby.slice(0, MAX_NEARBY_COUNT).map((offer) => (
+          offersNearby.map((offer) => (
             <PlaceCard
               key={offer.id}
               id={offer.id}

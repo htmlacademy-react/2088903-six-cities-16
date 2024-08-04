@@ -12,11 +12,13 @@ import Map from '../../components/map/map.tsx';
 import OfferBookmarkButton from '../../components/offer/offer-bookmark-button';
 import {useAppDispatch, useAppSelector} from '../../store';
 import {fetchNearbyAction, fetchOfferByIdAction, fetchReviewsAction} from '../../store/api-actions.ts';
-import {offers} from '../../mocks/offers.ts';
 import {FullOfferModel, ReviewModel} from '../../types/types.ts';
 import {AppRoute, AuthorizationStatus} from '../../const/const.ts';
 import {useEffect, useState} from 'react';
 import LoadingPage from '../loading-page/loading-page.tsx';
+import {getMapPointFromOffer, getMapPoints} from '../../utils/utils.ts';
+
+const MAX_NEARBY_COUNT = 3;
 
 
 function OfferPage() {
@@ -34,8 +36,10 @@ function OfferPage() {
     }
   }, [id, dispatch, isLoading]);
 
-  const currentOffer: FullOfferModel | null = useAppSelector((state) => state.currentOffer);
+  const currentFullOffer: FullOfferModel | null = useAppSelector((state) => state.currentOffer);
   const reviews: ReviewModel[] = useAppSelector((state) => state.currentReviews);
+  const offersNearby = useAppSelector((state) => state.nearby)
+    .slice(0, MAX_NEARBY_COUNT);
 
   if (!isLoading) {
     return (
@@ -43,12 +47,25 @@ function OfferPage() {
     );
   }
 
-  if (!currentOffer) {
+  if (!currentFullOffer) {
     return <Navigate to={AppRoute.NotFound} replace/>;
   }
 
-  const offersNearby = offers.slice(0, 3);
-  const {title, price, images, isPremium, rating, goods, type, bedrooms, maxAdults, host, description} = currentOffer;
+  const mapPoints = [...getMapPoints(offersNearby), getMapPointFromOffer(currentFullOffer)];
+
+  const {
+    title,
+    type,
+    price,
+    images,
+    isPremium,
+    rating,
+    description,
+    bedrooms,
+    goods,
+    host,
+    maxAdults,
+  } = currentFullOffer;
 
   return (
     <Layout
@@ -72,7 +89,7 @@ function OfferPage() {
                 </h1>
                 {authorizationStatus === AuthorizationStatus.Auth &&
                   <OfferBookmarkButton
-                    isFavorite={currentOffer.isFavorite}
+                    isFavorite={currentFullOffer.isFavorite}
                   />}
               </div>
               <OfferRating rating={rating}/>
@@ -92,12 +109,14 @@ function OfferPage() {
             </div>
           </div>
           <Map
-            activeOffers={offersNearby}
+            activeCity={currentFullOffer.city}
+            points={mapPoints}
+            selectedCard={id}
             className='offer'
           />
         </section>
         <div className="container">
-          <NearPlaces/>
+          <NearPlaces offersNearby={offersNearby}/>
         </div>
       </>
     </Layout>

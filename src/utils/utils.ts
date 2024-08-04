@@ -1,4 +1,5 @@
-import {ReviewModel} from '../types/types.ts';
+import {FullOfferModel, OfferModel, ReviewModel} from '../types/types.ts';
+import {PointModel} from '../types/point-model.ts';
 
 const getRatingPercentage = (rating: number): string => {
   if (rating < 0) {
@@ -18,4 +19,18 @@ const getSortedReviews = (reviews: ReviewModel[], maxCount: number): ReviewModel
   .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
   .slice(0, maxCount);
 
-export {getRatingPercentage, capitalize, pluralize, getSortedReviews};
+const getMapPointFromOffer = (offer: OfferModel | FullOfferModel): PointModel => ({
+  'id': offer.id,
+  'location': {
+    'latitude': offer.location.latitude,
+    'longitude': offer.location.longitude,
+    'zoom': offer.location.zoom,
+  }
+});
+
+const getMapPoints = (offers: OfferModel[]): PointModel[] => offers.reduce((acc: PointModel[], currentOffer: OfferModel) => {
+  acc.push(getMapPointFromOffer(currentOffer));
+  return acc;
+}, []);
+
+export {getRatingPercentage, capitalize, pluralize, getSortedReviews, getMapPointFromOffer, getMapPoints};
