@@ -9,6 +9,7 @@ type UserProfileLinkProps = {
 
 function UserProfileLink({authorizationStatus}: UserProfileLinkProps) {
   const userName = useAppSelector((state) => state.user);
+  const favorites = useAppSelector((state) => state.favorites);
   const link = authorizationStatus === AuthorizationStatus.Auth
     ? AppRoute.Favorites
     : AppRoute.Login;
@@ -22,7 +23,7 @@ function UserProfileLink({authorizationStatus}: UserProfileLinkProps) {
           authorizationStatus === AuthorizationStatus.Auth ?
             <>
               <span className="header__user-name user__name">{userName}</span>
-              <span className="header__favorite-count">3</span>
+              <span className="header__favorite-count">{favorites.length}</span>
             </>
             : <span className="header__login">Sign in</span>
         }
