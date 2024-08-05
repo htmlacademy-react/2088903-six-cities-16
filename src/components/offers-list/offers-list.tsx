@@ -1,8 +1,9 @@
-import {ReactElement, useMemo, useState} from 'react';
+import {ReactElement, useState} from 'react';
 import {OfferModel} from '../../types/types.ts';
-import SortForm, {TSortTypes} from '../sort-form/sort-form.tsx';
+import SortForm from '../sort-form/sort-form.tsx';
 import {SixCitiesModel} from '../../const/const.ts';
 import CitiesCard from '../cities/cities-card/cities-card.tsx';
+import useSortOffers from '../../hooks/use-sort-offers.tsx';
 
 
 type OffersListProps = {
@@ -12,30 +13,16 @@ type OffersListProps = {
 };
 
 function OffersList({activeOffers, activeCity, setSelectedCard}: OffersListProps) {
-  const [sortType, setSortType] = useState<TSortTypes>('popular');
+  const [sortedOffers, currentSortingType, setCurrentSortingType] = useSortOffers(activeOffers);
   const [showSortForm, setShowSortForm] = useState(false);
-  const sortedOffers = useMemo(() => {
-    switch (sortType) {
-      case 'popular':
-        return activeOffers;
-      case 'priceToHigh':
-        return [...activeOffers].sort((a, b) => a.price - b.price);
-      case 'priceToLow':
-        return [...activeOffers].sort((a, b) => b.price - a.price);
-      case 'topRatedFirst':
-        return [...activeOffers].sort((a, b) => b.rating - a.rating);
-      default:
-        return activeOffers;
-    }
-  }, [activeOffers, sortType]);
 
   return (
     <section className='cities__places places'>
       <h2 className="visually-hidden">Places</h2>
       <b className="places__found">{activeOffers.length} places to stay in {activeCity}</b>
       <SortForm
-        sortType={sortType}
-        setSortType={setSortType}
+        sortType={currentSortingType}
+        setSortType={setCurrentSortingType}
         showSortForm={showSortForm}
         setShowSortForm={setShowSortForm}
       />

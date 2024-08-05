@@ -1,8 +1,8 @@
 import cn from 'classnames';
 
-export type TSortTypes = keyof typeof SortTypes;
+export type SortTypesModel = keyof typeof SortTypes;
 
-const SortTypes = {
+export const SortTypes = {
   popular: 'Popular',
   priceToHigh: 'Price: low to high',
   priceToLow: 'Price: high to low',
@@ -10,14 +10,14 @@ const SortTypes = {
 } as const;
 
 type SortFormProps = {
-  sortType: TSortTypes;
-  setSortType: (sortType: TSortTypes) => void;
+  sortType: SortTypesModel;
+  setSortType: (sortType: SortTypesModel) => void;
   showSortForm: boolean;
   setShowSortForm: (showSortForm: boolean) => void;
 };
 
 function SortForm({sortType, setSortType, showSortForm, setShowSortForm}: SortFormProps) {
-  const handleClick = (key: TSortTypes) => {
+  const handleClick = (key: SortTypesModel) => {
     setSortType(key);
     setShowSortForm(false);
   };
@@ -37,7 +37,7 @@ function SortForm({sortType, setSortType, showSortForm, setShowSortForm}: SortFo
             className={cn('places__option', {'places__option--active': key === sortType})}
             tabIndex={0}
             value={key}
-            onClick={() => handleClick(key as TSortTypes)}
+            onClick={() => handleClick(key as SortTypesModel)}
           >
             {value}
           </li>
