@@ -14,11 +14,20 @@ function ReviewForm({id}: ReviewFormProps) {
   const [formData, setFormData] = useState({
     rating: '',
     comment: '',
+    buttonDisable: true,
   });
 
   useEffect(() => {
+    const isButtonDisabled = !(formData.rating && formData.comment.length > 50 && formData.comment.length < 200);
+    setFormData((prevState) => ({
+      ...prevState,
+      buttonDisable: isButtonDisabled,
+    }));
+  }, [formData.rating, formData.comment]);
+
+  useEffect(() => {
     if (hasCommentSuccessfullyBeenSent) {
-      setFormData({rating: '', comment: '',});
+      setFormData((prevState) => ({...prevState, rating: '', comment: ''}));
       dispatch(setCommentSendStatus(false));
     }
   }, [hasCommentSuccessfullyBeenSent, dispatch]);
@@ -56,7 +65,7 @@ function ReviewForm({id}: ReviewFormProps) {
           and describe your stay with at least
           <b className="reviews__text-amount"> 50characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit">Submit
+        <button className="reviews__submit form__submit button" type="submit" disabled={formData.buttonDisable}>Submit
         </button>
       </div>
     </form>
