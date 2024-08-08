@@ -1,17 +1,15 @@
-import {AuthorizationStatus} from '../../const/const.ts';
-import {useAppSelector} from '../../store';
 import UserProfileLink from './user-profile-link/user-profile-link.tsx';
 import UserLogout from './user-logout/user-logout.tsx';
+import useAuth from '../../hooks/use-auth.tsx';
 
 function User() {
-
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const isAuthorized = useAuth();
   return (
     <nav className="header__nav">
       <ul className="header__nav-list">
-        <UserProfileLink authorizationStatus={authorizationStatus}/>
+        <UserProfileLink isAuthorized={isAuthorized}/>
         {
-          authorizationStatus === AuthorizationStatus.Auth && <UserLogout/>
+          isAuthorized && <UserLogout/>
         }
       </ul>
     </nav>

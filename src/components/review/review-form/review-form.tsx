@@ -1,36 +1,45 @@
-import {ChangeEvent, FormEvent, useState} from 'react';
+import {FormEvent, useEffect, useState} from 'react';
 import ReviewRatingForm from '../review-rating-form/review-rating-form.tsx';
+import {sendReviewAction} from '../../../store/api-actions.ts';
+import {useAppDispatch, useAppSelector} from '../../../store';
+import {setCommentSendStatus} from '../../../store/action.ts';
 
-function ReviewForm() {
-  const [formData, setFormData] = useState({
-    rating: '',
-    review: '',
-    isSubmitDisable: true,
-  });
+type ReviewFormProps = {
+  id: string;
+}
 
-  const handleInputChange = (evt: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
-    const {value, name} = evt.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value
-    }));
-  };
+function ReviewForm({id}: ReviewFormProps) {
+  const dispatch = useAppDispatch();
+  const successfullySentComment = useAppSelector((state) => state.successfullySentComment);
+  const [rating, setRating] = useState('');
+  const [comment, setComment] = useState('');
+
+  const isButtonDisabled = !(rating && comment.length > 50 && comment.length < 200);
+
+  useEffect(() => {
+    if (successfullySentComment) {
+      setRating('');
+      setComment('');
+      dispatch(setCommentSendStatus(false));
+    }
+  }, [successfullySentComment, dispatch]);
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
+    dispatch(sendReviewAction({id, comment: comment, rating: +rating}));
   };
 
   return (
     <form className="reviews__form form" action="#" method="post" onSubmit={handleSubmit}>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <ReviewRatingForm
-        rating={formData.rating}
-        handleInputChange={handleInputChange}
+        rating={rating}
+        handleInputChange={(evt) => setRating(evt.target.value)}
       />
-      <textarea className="reviews__textarea form__textarea" id="review" name="review"
+      <textarea className="reviews__textarea form__textarea" id="review" name="comment"
         placeholder="Tell how was your stay, what you like and what can be improved"
-        value={formData.review}
-        onChange={handleInputChange}
+        value={comment}
+        onChange={(evt) => setComment(evt.target.value)}
       >
       </textarea>
       <div className="reviews__button-wrapper">
@@ -38,11 +47,9 @@ function ReviewForm() {
           To submit review please make sure to set
           <span className="reviews__star">rating</span>
           and describe your stay with at least
-          <b className="reviews__text-amount">50characters</b>.
+          <b className="reviews__text-amount"> 50characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit"
-          disabled={formData.isSubmitDisable}
-        >Submit
+        <button className="reviews__submit form__submit button" type="submit" disabled={isButtonDisabled}>Submit
         </button>
       </div>
     </form>

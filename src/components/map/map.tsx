@@ -1,51 +1,49 @@
-import {OfferModel} from '../../types/types.ts';
+import {CityModel} from '../../types/types.ts';
 import {Icon, layerGroup, Marker} from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import {useEffect, useRef} from 'react';
 import useMap from '../../hooks/use-map.tsx';
-import {PointModel} from '../../types/map.ts';
-import {URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from '../../const/const.ts';
+import {PointModel} from '../../types/point-model.ts';
+import {URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from './const.ts';
+import cn from 'classnames';
+
 
 type MapProps = {
-  activeOffers: OfferModel[];
+  activeCity: CityModel;
+  points: PointModel[];
   selectedCard?: string;
-  className?: 'offer' | 'cities';
+  className: 'offer__map' | 'cities__map';
 }
 
 const defaultCustomIcon = new Icon({
   iconUrl: URL_MARKER_DEFAULT,
-  iconSize: [40, 40],
-  iconAnchor: [20, 40]
+  iconSize: [26, 39],
+  iconAnchor: [13, 39]
 });
 
 const currentCustomIcon = new Icon({
   iconUrl: URL_MARKER_CURRENT,
-  iconSize: [40, 40],
-  iconAnchor: [20, 40]
+  iconSize: [26, 39],
+  iconAnchor: [13, 39]
 });
 
-function Map({activeOffers, selectedCard, className = 'cities'}: MapProps) {
-  const points: PointModel[] = activeOffers.reduce((acc: PointModel[], currentOffer: OfferModel) => {
-    acc.push({
-      'id': currentOffer.id,
-      'title': currentOffer.title,
-      'lat': currentOffer.location.latitude,
-      'lng': currentOffer.location.longitude,
-    });
-    return acc;
-  }, []);
-
+function Map({activeCity, points, selectedCard, className}: MapProps) {
   const mapRef = useRef(null);
+  const map = useMap(mapRef, activeCity.location);
 
-  const map = useMap(mapRef, activeOffers[0].city);
+  useEffect(() => {
+    if (map) {
+      map.setView([activeCity.location.latitude, activeCity.location.longitude], activeCity.location.zoom);
+    }
+  }, [map, activeCity]);
 
   useEffect(() => {
     if (map) {
       const markerLayer = layerGroup().addTo(map);
       points.forEach((point) => {
         const marker = new Marker({
-          lat: point.lat,
-          lng: point.lng
+          lat: point.location.latitude,
+          lng: point.location.longitude
         });
 
         marker
@@ -64,7 +62,7 @@ function Map({activeOffers, selectedCard, className = 'cities'}: MapProps) {
   }, [map, points, selectedCard]);
 
   return (
-    <section className={`${className}__map map`}
+    <section className={cn('map', className)}
       style={{minHeight: '500px', height: '100%'}}
       ref={mapRef}
     >

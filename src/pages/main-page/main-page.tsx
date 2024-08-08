@@ -5,6 +5,8 @@ import Map from '../../components/map/map.tsx';
 import Layout from '../../components/layout/layout.tsx';
 import {useAppSelector} from '../../store';
 import cn from 'classnames';
+import {getMapPoints} from '../../utils/utils.ts';
+import CitiesNoPlaces from '../../components/cities/cities-no-places/cities-no-places.tsx';
 
 function MainPage() {
   const offers = useAppSelector((state) => state.offers);
@@ -19,7 +21,6 @@ function MainPage() {
     'cities__places-container--empty': activeOffers.length === 0
   });
 
-
   return (
     <Layout
       title='Main'
@@ -32,28 +33,22 @@ function MainPage() {
           activeCity={activeCity}
         />
         <div className="cities">
-
           <div className={citiesPlacesClasses}>
             {activeOffers.length > 0 ?
               <OffersList
                 activeOffers={activeOffers}
                 activeCity={activeCity}
                 setSelectedCard={setSelectedCard}
-              /> :
-              <section className="cities__no-places">
-                <div className="cities__status-wrapper tabs__content">
-                  <b className="cities__status">No places to stay available</b>
-                  <p className="cities__status-description">We could not find any property available at the moment
-                    in&nbsp;
-                  {activeCity}
-                  </p>
-                </div>
-              </section>}
+              />
+              : <CitiesNoPlaces city={activeCity}/>}
+
             <div className="cities__right-section">
               {activeOffers.length &&
                 <Map
-                  activeOffers={activeOffers}
+                  activeCity={activeOffers[0].city}
+                  points={getMapPoints(activeOffers)}
                   selectedCard={selectedCard}
+                  className='cities__map'
                 />}
             </div>
           </div>

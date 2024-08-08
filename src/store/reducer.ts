@@ -8,11 +8,13 @@ import {
   requireAuthorization,
   saveUserEmail,
   selectCity,
+  setCommentSendStatus,
   setFavoritesDataLoadingStatus,
   setOffersDataLoadingStatus
 } from './action.ts';
 import {AuthorizationStatus, AuthorizationStatusModel, SixCitiesModel} from '../const/const.ts';
-import {FullOfferModel, OfferModel, ReviewModel} from '../types/types.ts';
+import {FullOfferModel, OfferModel} from '../types/types.ts';
+import {ReviewModel} from '../types/review-model.ts';
 
 export type InitialStateModel = {
   activeCity: SixCitiesModel;
@@ -25,6 +27,7 @@ export type InitialStateModel = {
   user: string;
   isOffersDataLoading: boolean;
   isFavoritesDataLoading: boolean;
+  successfullySentComment: boolean;
 }
 
 const initialState: InitialStateModel = {
@@ -38,6 +41,7 @@ const initialState: InitialStateModel = {
   user: '',
   isOffersDataLoading: false,
   isFavoritesDataLoading: false,
+  successfullySentComment: false,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -71,6 +75,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(saveUserEmail, (state, action) => {
       state.user = action.payload;
+    })
+    .addCase(setCommentSendStatus, (state, action) => {
+      state.successfullySentComment = action.payload;
     });
 });
 

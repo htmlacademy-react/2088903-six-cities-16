@@ -39,12 +39,4 @@ export type FullOfferModel = Omit<OfferModel, 'previewImage'> & {
   maxAdults: number;
 }
 
-export type ReviewModel = {
-  id: string;
-  date: string;
-  user: UserModel;
-  comment: string;
-  rating: number;
-}
-
 export type FavoriteModel = Record<SixCitiesModel, OfferModel[]>;
