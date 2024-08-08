@@ -1,6 +1,6 @@
 import {OfferModel} from '../types/types.ts';
 import {SortTypesModel} from '../components/sort-form/sort-form.tsx';
-import {useMemo, useState} from 'react';
+import {useState} from 'react';
 
 
 const getSortedOffers = (offers: OfferModel[], sortType: SortTypesModel) => {
@@ -22,8 +22,7 @@ function useSortOffers(offers: OfferModel[]) {
   const [currentSortingType, setCurrentSortingType] = useState<SortTypesModel>(
     'popular'
   );
-
-  const sortedOffers = useMemo(() => getSortedOffers(offers, currentSortingType), [offers, currentSortingType]);
+  const sortedOffers = getSortedOffers(offers, currentSortingType);
 
   return [sortedOffers, currentSortingType, setCurrentSortingType] as const;
 }
