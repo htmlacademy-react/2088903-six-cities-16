@@ -1,18 +1,16 @@
 import {Link} from 'react-router-dom';
-import {AppRoute, AuthorizationStatus, AuthorizationStatusModel} from '../../../const/const.ts';
+import {AppRoute} from '../../../const/const.ts';
 import {useAppSelector} from '../../../store';
 
 
 type UserProfileLinkProps = {
-  authorizationStatus: AuthorizationStatusModel;
+  isAuthorized: boolean;
 };
 
-function UserProfileLink({authorizationStatus}: UserProfileLinkProps) {
+function UserProfileLink(isAuthorized: UserProfileLinkProps) {
   const userName = useAppSelector((state) => state.user);
   const favorites = useAppSelector((state) => state.favorites);
-  const link = authorizationStatus === AuthorizationStatus.Auth
-    ? AppRoute.Favorites
-    : AppRoute.Login;
+  const link = isAuthorized ? AppRoute.Favorites : AppRoute.Login;
 
   return (
     <li className="header__nav-item user">
@@ -20,7 +18,7 @@ function UserProfileLink({authorizationStatus}: UserProfileLinkProps) {
         <div className="header__avatar-wrapper user__avatar-wrapper">
         </div>
         {
-          authorizationStatus === AuthorizationStatus.Auth ?
+          isAuthorized ?
             <>
               <span className="header__user-name user__name">{userName}</span>
               <span className="header__favorite-count">{favorites.length}</span>

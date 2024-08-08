@@ -27,7 +27,7 @@ export type InitialStateModel = {
   user: string;
   isOffersDataLoading: boolean;
   isFavoritesDataLoading: boolean;
-  hasCommentSuccessfullyBeenSent: boolean;
+  successfullySentComment: boolean;
 }
 
 const initialState: InitialStateModel = {
@@ -41,7 +41,7 @@ const initialState: InitialStateModel = {
   user: '',
   isOffersDataLoading: false,
   isFavoritesDataLoading: false,
-  hasCommentSuccessfullyBeenSent: false,
+  successfullySentComment: false,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -77,7 +77,7 @@ const reducer = createReducer(initialState, (builder) => {
       state.user = action.payload;
     })
     .addCase(setCommentSendStatus, (state, action) => {
-      state.hasCommentSuccessfullyBeenSent = action.payload;
+      state.successfullySentComment = action.payload;
     });
 });
 

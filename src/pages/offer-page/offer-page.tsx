@@ -13,11 +13,12 @@ import OfferBookmarkButton from '../../components/offer/offer-bookmark-button';
 import {useAppDispatch, useAppSelector} from '../../store';
 import {fetchNearbyAction, fetchOfferByIdAction, fetchReviewsAction} from '../../store/api-actions.ts';
 import {FullOfferModel,} from '../../types/types.ts';
-import {AppRoute, AuthorizationStatus} from '../../const/const.ts';
+import {AppRoute} from '../../const/const.ts';
 import {useEffect, useState} from 'react';
 import LoadingPage from '../loading-page/loading-page.tsx';
 import {getMapPointFromOffer, getMapPoints} from '../../utils/utils.ts';
 import {ReviewModel} from '../../types/review-model.ts';
+import useAuth from '../../hooks/use-auth.tsx';
 
 const MAX_NEARBY_COUNT = 3;
 
@@ -26,7 +27,7 @@ function OfferPage() {
   const {id} = useParams<{ id: string }>();
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useAppDispatch();
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const isAuthorized = useAuth();
 
   useEffect(() => {
     setIsLoading(false);
@@ -92,7 +93,7 @@ function OfferPage() {
                 <h1 className="offer__name">
                   {title}
                 </h1>
-                {authorizationStatus === AuthorizationStatus.Auth &&
+                {isAuthorized &&
                   <OfferBookmarkButton
                     isFavorite={currentFullOffer.isFavorite}
                   />}
@@ -107,7 +108,7 @@ function OfferPage() {
               <OfferAmenities goods={goods}/>
               <OfferHost host={host} description={description}/>
               <OfferReviews
-                authorizationStatus={authorizationStatus}
+                isAuthorized={isAuthorized}
                 id={id}
                 reviews={reviews}
               />
@@ -117,7 +118,7 @@ function OfferPage() {
             activeCity={currentFullOffer.city}
             points={mapPoints}
             selectedCard={id}
-            className='offer'
+            className='offer__map'
           />
         </section>
         <div className="container">

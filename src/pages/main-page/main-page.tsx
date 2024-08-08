@@ -48,6 +48,7 @@ function MainPage() {
                   activeCity={activeOffers[0].city}
                   points={getMapPoints(activeOffers)}
                   selectedCard={selectedCard}
+                  className='cities__map'
                 />}
             </div>
           </div>

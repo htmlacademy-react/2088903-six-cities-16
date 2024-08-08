@@ -5,13 +5,14 @@ import {useEffect, useRef} from 'react';
 import useMap from '../../hooks/use-map.tsx';
 import {PointModel} from '../../types/point-model.ts';
 import {URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from './const.ts';
+import cn from 'classnames';
 
 
 type MapProps = {
   activeCity: CityModel;
   points: PointModel[];
   selectedCard?: string;
-  className?: 'offer' | 'cities';
+  className: 'offer__map' | 'cities__map';
 }
 
 const defaultCustomIcon = new Icon({
@@ -26,9 +27,7 @@ const currentCustomIcon = new Icon({
   iconAnchor: [13, 39]
 });
 
-// Не передавать оффер целиком а передавать сразу данные в формате PointModel, дополнить PointModel
-// Вынести получение в функцию и передавать уже готовый объект, только с необходимми данными
-function Map({activeCity, points, selectedCard, className = 'cities'}: MapProps) {
+function Map({activeCity, points, selectedCard, className}: MapProps) {
   const mapRef = useRef(null);
   const map = useMap(mapRef, activeCity.location);
 
@@ -63,7 +62,7 @@ function Map({activeCity, points, selectedCard, className = 'cities'}: MapProps)
   }, [map, points, selectedCard]);
 
   return (
-    <section className={`${className}__map map`}
+    <section className={cn('map', className)}
       style={{minHeight: '500px', height: '100%'}}
       ref={mapRef}
     >
