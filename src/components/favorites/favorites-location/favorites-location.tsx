@@ -1,4 +1,4 @@
-import {OfferModel} from '../../../types/types.ts';
+import {OfferModel} from '../../../types/offer-model.ts';
 import {Link} from 'react-router-dom';
 import {AppRoute, SixCitiesModel} from '../../../const/const.ts';
 import FavoritesCard from '../favorites-card/favorites-card.tsx';

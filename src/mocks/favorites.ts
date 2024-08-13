@@ -1,4 +1,4 @@
-import {OfferModel} from '../types/types.ts';
+import {OfferModel} from '../types/offer-model.ts';
 
 export const favorites: OfferModel[] = [
   {

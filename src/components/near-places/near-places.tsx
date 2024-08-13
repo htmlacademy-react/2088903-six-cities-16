@@ -1,6 +1,6 @@
 import PlaceCardPreviewImage from '../place-card/place-card-preview-image/place-card-preview-image.tsx';
 import PlaceCard from '../place-card/place-card.tsx';
-import {OfferModel} from '../../types/types.ts';
+import {OfferModel} from '../../types/offer-model.ts';
 
 
 type NearPlacesProps = {

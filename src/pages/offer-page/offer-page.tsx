@@ -12,7 +12,7 @@ import Map from '../../components/map/map.tsx';
 import OfferBookmarkButton from '../../components/offer/offer-bookmark-button';
 import {useAppDispatch, useAppSelector} from '../../store';
 import {fetchNearbyAction, fetchOfferByIdAction, fetchReviewsAction} from '../../store/api-actions.ts';
-import {FullOfferModel,} from '../../types/types.ts';
+import {FullOfferModel,} from '../../types/offer-model.ts';
 import {AppRoute} from '../../const/const.ts';
 import {useEffect, useState} from 'react';
 import LoadingPage from '../loading-page/loading-page.tsx';
@@ -24,7 +24,7 @@ const MAX_NEARBY_COUNT = 3;
 
 
 function OfferPage() {
-  const {id} = useParams<{ id: string }>();
+  const {id = ''} = useParams<{ id: string }>();
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useAppDispatch();
   const isAuthorized = useAuth();

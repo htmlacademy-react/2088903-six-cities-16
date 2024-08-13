@@ -1,4 +1,3 @@
-import {CityModel} from '../../types/types.ts';
 import {Icon, layerGroup, Marker} from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import {useEffect, useRef} from 'react';
@@ -6,6 +5,7 @@ import useMap from '../../hooks/use-map.tsx';
 import {PointModel} from '../../types/point-model.ts';
 import {URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from './const.ts';
 import cn from 'classnames';
+import {CityModel} from '../../types/city-model.ts';
 
 
 type MapProps = {

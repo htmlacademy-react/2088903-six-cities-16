@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import {HTMLAttributes, PropsWithChildren} from 'react';
 import PlaceCardInfo from './place-card-info/place-card-info.tsx';
-import {PlaceCardModel} from '../../types/place-card.ts';
+import {PlaceCardModel} from '../../types/place-card-model.ts';
 
 type PlaceCardProps = PlaceCardModel & HTMLAttributes<HTMLDivElement>;
 

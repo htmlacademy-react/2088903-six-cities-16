@@ -1,21 +1,8 @@
 import {SixCitiesModel} from '../const/const.ts';
+import {UserModel} from './user-model.ts';
+import {LocationModel} from './location-model.ts';
+import {CityModel} from './city-model.ts';
 
-export type LocationModel = {
-  latitude: number;
-  longitude: number;
-  zoom: number;
-}
-
-export type CityModel = {
-  name: SixCitiesModel;
-  location: LocationModel;
-}
-
-export type UserModel = {
-  name: string;
-  avatarUrl: string;
-  isPro: boolean;
-}
 
 export type OfferModel = {
   id: string;

@@ -1,4 +1,4 @@
-import {UserModel} from './types.ts';
+import {UserModel} from './user-model.ts';
 
 export type ReviewModel = {
   id: string;

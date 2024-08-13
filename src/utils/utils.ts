@@ -1,4 +1,4 @@
-import {FullOfferModel, OfferModel,} from '../types/types.ts';
+import {FullOfferModel, OfferModel,} from '../types/offer-model.ts';
 import {PointModel} from '../types/point-model.ts';
 import {ReviewModel} from '../types/review-model.ts';
 

@@ -1,4 +1,4 @@
-import {FavoriteModel, OfferModel} from '../../../types/types.ts';
+import {FavoriteModel, OfferModel} from '../../../types/offer-model.ts';
 import FavoritesLocation from '../favorites-location/favorites-location.tsx';
 import {SixCitiesModel} from '../../../const/const.ts';
 import {useAppDispatch, useAppSelector} from '../../../store';
