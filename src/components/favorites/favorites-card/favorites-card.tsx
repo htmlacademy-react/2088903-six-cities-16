@@ -1,5 +1,5 @@
 import PlaceCard from '../../place-card/place-card.tsx';
-import {PlaceCardModel} from '../../../types/place-card.ts';
+import {PlaceCardModel} from '../../../types/place-card-model.ts';
 import PlaceCardPreviewImage from '../../place-card/place-card-preview-image/place-card-preview-image.tsx';
 
 

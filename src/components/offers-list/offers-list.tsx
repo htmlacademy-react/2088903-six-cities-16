@@ -1,5 +1,5 @@
 import {ReactElement, useState} from 'react';
-import {OfferModel} from '../../types/types.ts';
+import {OfferModel} from '../../types/offer-model.ts';
 import SortForm from '../sort-form/sort-form.tsx';
 import {SixCitiesModel} from '../../const/const.ts';
 import CitiesCard from '../cities/cities-card/cities-card.tsx';

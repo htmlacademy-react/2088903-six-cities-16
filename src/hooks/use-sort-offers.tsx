@@ -1,4 +1,4 @@
-import {OfferModel} from '../types/types.ts';
+import {OfferModel} from '../types/offer-model.ts';
 import {SortTypesModel} from '../components/sort-form/sort-form.tsx';
 import {useState} from 'react';
 

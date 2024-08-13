@@ -20,7 +20,7 @@ export const AuthorizationStatus = {
 
 export type AuthorizationStatusModel = typeof AuthorizationStatus[keyof typeof AuthorizationStatus];
 
-export const APIRoute = {
+export const Endpoint = {
   Offers: '/offers',
   Favorite: '/favorite',
   Reviews: '/comments',

@@ -1,4 +1,4 @@
-import {UserModel} from '../../../types/types.ts';
+import {UserModel} from '../../../types/user-model.ts';
 
 
 type OfferHostProps = {
