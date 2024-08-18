@@ -1,8 +1,9 @@
 import {AuthorizationStatus} from '../const/const.ts';
 import {useAppSelector} from '../store';
+import {getAuthorizationStatus} from '../store/user-process/selectors.ts';
 
 function useAuth() {
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   return authorizationStatus === AuthorizationStatus.Auth;
 }

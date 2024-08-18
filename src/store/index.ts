@@ -1,5 +1,5 @@
 import {configureStore} from '@reduxjs/toolkit';
-import {reducer} from './reducer';
+import {rootReducer} from './root-reducer.ts';
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 import {createAPI} from '../services/api.ts';
 
@@ -14,7 +14,7 @@ export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<State> = useSelector;
 
 export const store = configureStore({
-  reducer,
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       thunk: {

@@ -2,7 +2,9 @@ import {FormEvent, useEffect, useState} from 'react';
 import ReviewRatingForm from '../review-rating-form/review-rating-form.tsx';
 import {sendReviewAction} from '../../../store/api-actions.ts';
 import {useAppDispatch, useAppSelector} from '../../../store';
-import {setCommentSendStatus} from '../../../store/action.ts';
+import {getSuccessfullySentComment} from '../../../store/review-process/selectors.ts';
+import {setCommentSendStatus} from '../../../store/review-process/review-process.ts';
+
 
 type ReviewFormProps = {
   id: string;
@@ -10,7 +12,7 @@ type ReviewFormProps = {
 
 function ReviewForm({id}: ReviewFormProps) {
   const dispatch = useAppDispatch();
-  const successfullySentComment = useAppSelector((state) => state.successfullySentComment);
+  const successfullySentComment = useAppSelector(getSuccessfullySentComment);
   const [rating, setRating] = useState('');
   const [comment, setComment] = useState('');
 

@@ -7,10 +7,11 @@ import {useAppSelector} from '../../store';
 import cn from 'classnames';
 import {getMapPoints} from '../../utils/utils.ts';
 import CitiesNoPlaces from '../../components/cities/cities-no-places/cities-no-places.tsx';
+import {getOffers, getSelectCity} from '../../store/offer-process/selectors.ts';
 
 function MainPage() {
-  const offers = useAppSelector((state) => state.offers);
-  const activeCity = useAppSelector((state) => state.activeCity);
+  const offers = useAppSelector(getOffers);
+  const activeCity = useAppSelector(getSelectCity);
   const activeOffers = offers.filter((offer) => offer.city.name === activeCity);
   const [selectedCard, setSelectedCard] = useState('');
 

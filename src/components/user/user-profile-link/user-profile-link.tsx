@@ -1,6 +1,8 @@
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../../const/const.ts';
 import {useAppSelector} from '../../../store';
+import {getUserName} from '../../../store/user-process/selectors.ts';
+import {getFavorites} from '../../../store/offer-process/selectors.ts';
 
 
 type UserProfileLinkProps = {
@@ -8,8 +10,8 @@ type UserProfileLinkProps = {
 };
 
 function UserProfileLink(isAuthorized: UserProfileLinkProps) {
-  const userName = useAppSelector((state) => state.user);
-  const favorites = useAppSelector((state) => state.favorites);
+  const userName = useAppSelector(getUserName);
+  const favorites = useAppSelector(getFavorites);
   const link = isAuthorized ? AppRoute.Favorites : AppRoute.Login;
 
   return (

@@ -19,6 +19,8 @@ import LoadingPage from '../loading-page/loading-page.tsx';
 import {getMapPointFromOffer, getMapPoints} from '../../utils/utils.ts';
 import {ReviewModel} from '../../types/review-model.ts';
 import useAuth from '../../hooks/use-auth.tsx';
+import {getCurrentOffer, getNearby} from '../../store/offer-process/selectors.ts';
+import {getCurrentReviews} from '../../store/review-process/selectors.ts';
 
 const MAX_NEARBY_COUNT = 3;
 
@@ -42,9 +44,9 @@ function OfferPage() {
     }
   }, [id, dispatch, isLoading]);
 
-  const currentFullOffer: FullOfferModel | null = useAppSelector((state) => state.currentOffer);
-  const reviews: ReviewModel[] = useAppSelector((state) => state.currentReviews);
-  const offersNearby = useAppSelector((state) => state.nearby)
+  const currentFullOffer: FullOfferModel | null = useAppSelector(getCurrentOffer);
+  const reviews: ReviewModel[] = useAppSelector(getCurrentReviews);
+  const offersNearby = useAppSelector(getNearby)
     .slice(0, MAX_NEARBY_COUNT);
 
   if (!isLoading) {

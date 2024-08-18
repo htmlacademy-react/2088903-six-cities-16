@@ -27,3 +27,9 @@ export const Endpoint = {
   Login: '/login',
   Logout: '/logout',
 } as const;
+
+export enum NameSpace {
+  Offer = 'OFFER',
+  User = 'USER',
+  Review = 'REVIEW',
+}

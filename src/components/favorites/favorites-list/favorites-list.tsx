@@ -5,6 +5,7 @@ import {useAppDispatch, useAppSelector} from '../../../store';
 import {useEffect} from 'react';
 import {fetchFavoritesAction} from '../../../store/api-actions.ts';
 import useAuth from '../../../hooks/use-auth.tsx';
+import {getFavorites} from '../../../store/offer-process/selectors.ts';
 
 
 function FavoritesList() {
@@ -17,7 +18,7 @@ function FavoritesList() {
     }
   }, [dispatch, isAuthorized]);
 
-  const favorites = useAppSelector((state) => state.favorites);
+  const favorites = useAppSelector(getFavorites);
 
   const favoritesSorted: FavoriteModel = favorites.reduce((acc: FavoriteModel, currentOffer: OfferModel) => {
     const cityName = currentOffer.city.name;

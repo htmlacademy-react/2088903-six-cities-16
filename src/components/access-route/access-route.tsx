@@ -2,11 +2,12 @@ import {Navigate} from 'react-router-dom';
 import {AppRoute, AppRouteModel, AuthorizationStatus, AuthorizationStatusModel} from '../../const/const.ts';
 import {PropsWithChildren} from 'react';
 import {useAppSelector} from '../../store';
+import {getAuthorizationStatus} from '../../store/user-process/selectors.ts';
 
 
 const createAccessRoute = (statusToCheck: AuthorizationStatusModel, fallbackPath: AppRouteModel) =>
   function AccessRoute({children}: PropsWithChildren) {
-    const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+    const authorizationStatus = useAppSelector(getAuthorizationStatus);
     switch (authorizationStatus) {
       case statusToCheck:
         return children;
