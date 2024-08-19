@@ -1,25 +1,13 @@
 import {FavoriteModel, OfferModel} from '../../../types/offer-model.ts';
 import FavoritesLocation from '../favorites-location/favorites-location.tsx';
 import {SixCitiesModel} from '../../../const/const.ts';
-import {useAppDispatch, useAppSelector} from '../../../store';
-import {useEffect} from 'react';
-import {fetchFavoritesAction} from '../../../store/api-actions.ts';
-import useAuth from '../../../hooks/use-auth.tsx';
-import {getFavorites} from '../../../store/offer-process/selectors.ts';
 
 
-function FavoritesList() {
-  const dispatch = useAppDispatch();
-  const isAuthorized = useAuth();
+type FavoritesListProps = {
+  favorites: OfferModel[];
+}
 
-  useEffect(() => {
-    if (isAuthorized) {
-      dispatch(fetchFavoritesAction());
-    }
-  }, [dispatch, isAuthorized]);
-
-  const favorites = useAppSelector(getFavorites);
-
+function FavoritesList({favorites}: FavoritesListProps) {
   const favoritesSorted: FavoriteModel = favorites.reduce((acc: FavoriteModel, currentOffer: OfferModel) => {
     const cityName = currentOffer.city.name;
 
