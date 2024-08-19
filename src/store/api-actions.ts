@@ -8,6 +8,8 @@ import {dropToken, saveToken} from '../services/token.ts';
 import {AuthModel} from '../types/auth-model.ts';
 import {NewReviewModel, ReviewModel} from '../types/review-model.ts';
 import {toast} from 'react-toastify';
+import {FavoriteChangeProps, FavoriteChangeResponse} from './offer-process/types.ts';
+import {updateOffer} from './offer-process/offer-process.ts';
 
 
 export const fetchOffersAction = createAsyncThunk<OfferModel[], undefined, {
@@ -34,12 +36,25 @@ export const fetchFavoritesAction = createAsyncThunk<OfferModel[], undefined, {
   },
 );
 
+export const changeFavoriteAction = createAsyncThunk<FavoriteChangeResponse, FavoriteChangeProps, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'offer/changeFavorite',
+  async ({offerId, status}, {dispatch, extra: api}) => {
+    const response = await api.post<OfferModel & FullOfferModel>(`${Endpoint.Favorite}/${offerId}/${status}`);
+    dispatch(updateOffer(response.data));
+    return {offer: response.data, status};
+  },
+);
+
 export const fetchOfferByIdAction = createAsyncThunk<FullOfferModel, Record<'id', string>, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
-  'data/fetchOfferById',
+  'offer/fetchOfferById',
   async ({id}, {extra: api}) => {
     const {data} = await api.get<FullOfferModel>(`${Endpoint.Offers}/${id}`);
     return data;
@@ -51,7 +66,7 @@ export const fetchNearbyAction = createAsyncThunk<OfferModel[], Record<'id', str
   state: State;
   extra: AxiosInstance;
 }>(
-  'data/fetchNearbyAction',
+  'offer/fetchNearbyAction',
   async ({id}, {extra: api}) => {
     const {data} = await api.get<OfferModel[]>(`${Endpoint.Offers}/${id}/nearby`);
     return data;
@@ -75,7 +90,7 @@ export const sendReviewAction = createAsyncThunk<void, NewReviewModel, {
   state: State;
   extra: AxiosInstance;
 }>(
-  'data/sendReview',
+  'review/sendReview',
   async ({id, comment, rating}, {dispatch, extra: api}) => {
     try {
       await api.post<ReviewModel>(`${Endpoint.Reviews}/${id}`, {comment, rating});

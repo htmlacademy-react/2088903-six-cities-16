@@ -30,6 +30,7 @@ export const Endpoint = {
 
 export enum NameSpace {
   Offer = 'OFFER',
+  Favorite = 'FAVORITE',
   User = 'USER',
   Review = 'REVIEW',
 }

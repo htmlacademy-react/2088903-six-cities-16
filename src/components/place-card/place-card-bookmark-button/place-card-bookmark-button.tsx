@@ -2,13 +2,15 @@ import BookmarkButton from '../../common/bookmark-button';
 
 
 type PlaceCardBookmarkButtonProps = {
+  id: string;
   isFavorite: boolean;
 };
 
-function PlaceCardBookmarkButton({isFavorite}: PlaceCardBookmarkButtonProps) {
+function PlaceCardBookmarkButton({id, isFavorite}: PlaceCardBookmarkButtonProps) {
 
   return (
     <BookmarkButton
+      id={id}
       isFavorite={isFavorite}
       componentClassName={'place-card__bookmark-button'}
       iconClassName={'place-card__bookmark-icon'}

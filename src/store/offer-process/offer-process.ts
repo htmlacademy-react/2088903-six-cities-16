@@ -1,18 +1,26 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {NameSpace, SixCitiesModel} from '../../const/const.ts';
-import {fetchFavoritesAction, fetchNearbyAction, fetchOfferByIdAction, fetchOffersAction} from '../api-actions.ts';
+import {
+  changeFavoriteAction,
+  fetchFavoritesAction,
+  fetchNearbyAction,
+  fetchOfferByIdAction,
+  fetchOffersAction
+} from '../api-actions.ts';
 import {OfferProcessModel} from './types.ts';
+import {FavoriteStatus, RequestStatus} from './const.ts';
+import {FullOfferModel, OfferModel} from '../../types/offer-model.ts';
 
 const initialState: OfferProcessModel = {
   activeCity: 'Paris',
   currentOffer: null,
   offers: [],
-  favorites: [],
   nearby: [],
+  favorites: [],
   isCurrentOfferDataLoading: false,
   isOffersDataLoading: false,
-  isFavoritesDataLoading: false,
   isNearbyDataLoading: false,
+  status: RequestStatus.Idle,
 };
 
 export const offerProcess = createSlice({
@@ -21,6 +29,13 @@ export const offerProcess = createSlice({
   reducers: {
     selectCity: (state, action: PayloadAction<SixCitiesModel>) => {
       state.activeCity = action.payload;
+    },
+    updateOffer(state, action: PayloadAction<OfferModel & FullOfferModel>) {
+      const offerToChange = action.payload;
+      const foundOffer = state.offers.find((offer) => offer.id === offerToChange.id);
+      if (foundOffer) {
+        foundOffer.isFavorite = offerToChange.isFavorite;
+      }
     }
   },
   extraReducers(builder) {
@@ -39,21 +54,40 @@ export const offerProcess = createSlice({
         state.isOffersDataLoading = false;
         state.offers = action.payload;
       })
-      .addCase(fetchFavoritesAction.pending, (state) => {
-        state.isFavoritesDataLoading = true;
-      })
-      .addCase(fetchFavoritesAction.fulfilled, (state, action) => {
-        state.isFavoritesDataLoading = false;
-        state.favorites = action.payload;
-      })
       .addCase(fetchNearbyAction.pending, (state) => {
         state.isNearbyDataLoading = true;
       })
       .addCase(fetchNearbyAction.fulfilled, (state, action) => {
         state.isNearbyDataLoading = false;
         state.nearby = action.payload;
+      })
+      .addCase(fetchFavoritesAction.pending, (state) => {
+        state.status = RequestStatus.Loading;
+      })
+      .addCase(fetchFavoritesAction.fulfilled, (state, action) => {
+        state.favorites = action.payload;
+        state.status = RequestStatus.Success;
+      })
+      .addCase(fetchFavoritesAction.rejected, (state) => {
+        state.status = RequestStatus.Failed;
+      })
+      .addCase(changeFavoriteAction.pending, (state) => {
+        state.status = RequestStatus.Loading;
+      })
+      .addCase(changeFavoriteAction.fulfilled, (state, action) => {
+        switch (action.payload.status) {
+          case FavoriteStatus.Added:
+            state.favorites.push(action.payload.offer);
+            break;
+          case FavoriteStatus.Removed:
+            state.favorites = state.favorites.filter(({id}) => id !== action.payload.offer.id);
+        }
+        state.status = RequestStatus.Success;
+      })
+      .addCase(changeFavoriteAction.rejected, (state) => {
+        state.status = RequestStatus.Failed;
       });
   }
 });
 
-export const {selectCity} = offerProcess.actions;
+export const {selectCity, updateOffer} = offerProcess.actions;

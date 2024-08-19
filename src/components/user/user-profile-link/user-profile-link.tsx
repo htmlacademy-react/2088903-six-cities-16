@@ -9,7 +9,7 @@ type UserProfileLinkProps = {
   isAuthorized: boolean;
 };
 
-function UserProfileLink(isAuthorized: UserProfileLinkProps) {
+function UserProfileLink({isAuthorized}: UserProfileLinkProps) {
   const userName = useAppSelector(getUserName);
   const favorites = useAppSelector(getFavorites);
   const link = isAuthorized ? AppRoute.Favorites : AppRoute.Login;

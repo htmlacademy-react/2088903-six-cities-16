@@ -26,7 +26,7 @@ const MAX_NEARBY_COUNT = 3;
 
 
 function OfferPage() {
-  const {id = ''} = useParams<{ id: string }>();
+  const {id} = useParams<{ id: string }>();
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useAppDispatch();
   const isAuthorized = useAuth();
@@ -95,10 +95,10 @@ function OfferPage() {
                 <h1 className="offer__name">
                   {title}
                 </h1>
-                {isAuthorized &&
-                  <OfferBookmarkButton
-                    isFavorite={currentFullOffer.isFavorite}
-                  />}
+                <OfferBookmarkButton
+                  id={id}
+                  isFavorite={currentFullOffer.isFavorite}
+                />
               </div>
               <OfferRating rating={rating}/>
               <OfferFeatures
