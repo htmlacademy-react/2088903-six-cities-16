@@ -65,12 +65,12 @@ function ReviewRatingForm({rating, handleInputChange}: ReviewRatingFormProps) {
       </label>
 
       <input className="form__rating-input visually-hidden" name="rating" value="1"
-        id="1-star"
+        id="1-stars"
         type="radio"
         checked={rating === '1'}
         onChange={handleInputChange}
       />
-      <label htmlFor="1-star" className="reviews__rating-label form__rating-label"
+      <label htmlFor="1-stars" className="reviews__rating-label form__rating-label"
         title="terribly"
       >
         <svg className="form__star-image" width="37" height="33">

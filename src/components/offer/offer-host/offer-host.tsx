@@ -1,4 +1,5 @@
 import {UserModel} from '../../../types/user-model.ts';
+import cn from 'classnames';
 
 
 type OfferHostProps = {
@@ -8,12 +9,16 @@ type OfferHostProps = {
 
 function OfferHost({host, description}: OfferHostProps) {
   const {name, avatarUrl, isPro} = host;
+  const wrapperClasses = cn('offer__avatar-wrapper user__avatar-wrapper', {
+    'offer__avatar-wrapper--pro': isPro
+  });
+
   return (
     <div className="offer__host">
       <h2 className="offer__host-title">Meet the host</h2>
       <div className="offer__host-user user">
         <div
-          className="offer__avatar-wrapper offer__avatar-wrapper--pro user__avatar-wrapper"
+          className={wrapperClasses}
         >
           <img
             className="offer__avatar user__avatar"

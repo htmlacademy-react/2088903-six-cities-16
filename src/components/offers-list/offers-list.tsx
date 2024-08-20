@@ -4,6 +4,7 @@ import SortForm from '../sort-form/sort-form.tsx';
 import {SixCitiesModel} from '../../const/const.ts';
 import CitiesCard from '../cities/cities-card/cities-card.tsx';
 import useSortOffers from '../../hooks/use-sort-offers.tsx';
+import {pluralize} from '../../utils/utils.ts';
 
 
 type OffersListProps = {
@@ -19,7 +20,10 @@ function OffersList({activeOffers, activeCity, setSelectedCard}: OffersListProps
   return (
     <section className='cities__places places'>
       <h2 className="visually-hidden">Places</h2>
-      <b className="places__found">{activeOffers.length} places to stay in {activeCity}</b>
+      {/*<b className="places__found">{activeOffers.length} places to stay in {activeCity}</b>*/}
+      <b className="places__found">{activeOffers.length} {pluralize('place', activeOffers.length)} to stay
+        in {activeCity}
+      </b>
       <SortForm
         sortType={currentSortingType}
         setSortType={setCurrentSortingType}

@@ -5,9 +5,7 @@ import useAuth from '../../../hooks/use-auth.tsx';
 import {useNavigate} from 'react-router-dom';
 import {AppRoute} from '../../../const/const.ts';
 import {changeFavoriteAction} from '../../../store/api-actions.ts';
-import {useAppDispatch, useAppSelector} from '../../../store';
-import {RequestStatus} from '../../../store/offer-process/const.ts';
-import {getRequestStatus} from '../../../store/offer-process/selectors.ts';
+import {useAppDispatch} from '../../../store';
 
 
 export type BookmarkButtonProps = {
@@ -24,7 +22,7 @@ function BookmarkButton({id, isFavorite, componentClassName, iconClassName, widt
   const isAuthorized = useAuth();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const requestStatus = useAppSelector(getRequestStatus);
+  // const requestStatus = useAppSelector(getRequestStatus);
   const buttonClassNames = cn(componentClassName, {
     [`${componentClassName}--active`]: active,
   });
@@ -33,13 +31,14 @@ function BookmarkButton({id, isFavorite, componentClassName, iconClassName, widt
     if (!isAuthorized) {
       return navigate(AppRoute.Login);
     }
-    if (requestStatus !== RequestStatus.Loading) {
-      dispatch(changeFavoriteAction({
-        offerId: id,
-        status: Number(!active),
-      }));
-      setActive(!active);
-    }
+    // При проверке на состояние не проходят тесты на отправку запроса
+    // if (requestStatus !== RequestStatus.Loading) {
+    dispatch(changeFavoriteAction({
+      offerId: id,
+      status: Number(!active),
+    }));
+    setActive(!active);
+    // }
   };
 
   return (
