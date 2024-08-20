@@ -20,7 +20,7 @@ export const capitalize = (string: string) => string
 export const pluralize = (string: string, number: number) => number > 1 ? `${string}s` : string;
 
 export const getSortedReviews = (reviews: ReviewModel[], maxCount: number): ReviewModel[] => [...reviews]
-  .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
   .slice(0, maxCount);
 
 export const getMapPointFromOffer = (offer: OfferModel | FullOfferModel): PointModel => ({

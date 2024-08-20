@@ -7,7 +7,6 @@ import {FullUserModel,} from '../types/user-model.ts';
 import {dropToken, saveToken} from '../services/token.ts';
 import {AuthModel} from '../types/auth-model.ts';
 import {NewReviewModel, ReviewModel} from '../types/review-model.ts';
-import {toast} from 'react-toastify';
 import {FavoriteChangeProps, FavoriteChangeResponse} from './offer-process/types.ts';
 import {updateOffer} from './offer-process/offer-process.ts';
 
@@ -92,12 +91,8 @@ export const sendReviewAction = createAsyncThunk<void, NewReviewModel, {
 }>(
   'review/sendReview',
   async ({id, comment, rating}, {dispatch, extra: api}) => {
-    try {
-      await api.post<ReviewModel>(`${Endpoint.Reviews}/${id}`, {comment, rating});
-      dispatch(fetchReviewsAction({id}));
-    } catch {
-      toast.warn('Не удалось отправить комментарий!');
-    }
+    await api.post<ReviewModel>(`${Endpoint.Reviews}/${id}`, {comment, rating});
+    dispatch(fetchReviewsAction({id}));
   },
 );
 
@@ -107,8 +102,9 @@ export const checkAuthAction = createAsyncThunk<string, undefined, {
   extra: AxiosInstance;
 }>(
   'user/checkAuth',
-  async (_arg, {extra: api}) => {
+  async (_arg, {dispatch, extra: api}) => {
     const {data: {email}} = await api.get<FullUserModel>(Endpoint.Login);
+    dispatch(fetchFavoritesAction());
     return email;
   },
 );

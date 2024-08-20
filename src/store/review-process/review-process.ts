@@ -2,11 +2,14 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {NameSpace} from '../../const/const.ts';
 import {fetchReviewsAction, sendReviewAction} from '../api-actions.ts';
 import {ReviewProcessModel} from './types.ts';
+import {RequestStatus} from '../offer-process/const.ts';
+import {toast} from 'react-toastify';
 
 
 const initialState: ReviewProcessModel = {
   currentReviews: [],
   successfullySentComment: false,
+  status: RequestStatus.Idle,
 };
 
 export const reviewProcess = createSlice({
@@ -24,6 +27,14 @@ export const reviewProcess = createSlice({
       })
       .addCase(sendReviewAction.fulfilled, (state) => {
         state.successfullySentComment = true;
+        state.status = RequestStatus.Success;
+      })
+      .addCase(sendReviewAction.pending, (state) => {
+        state.status = RequestStatus.Loading;
+      })
+      .addCase(sendReviewAction.rejected, (state) => {
+        state.status = RequestStatus.Failed;
+        toast.warn('Не удалось отправить комментарий!');
       });
   }
 });

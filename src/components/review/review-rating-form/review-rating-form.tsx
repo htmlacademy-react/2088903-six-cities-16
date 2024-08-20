@@ -1,11 +1,13 @@
 import {ChangeEvent} from 'react';
+import {RequestStatus} from '../../../store/offer-process/const.ts';
 
 type ReviewRatingFormProps = {
   rating: string;
+  status: RequestStatus;
   handleInputChange: (evt: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => void;
 };
 
-function ReviewRatingForm({rating, handleInputChange}: ReviewRatingFormProps) {
+function ReviewRatingForm({rating, status, handleInputChange}: ReviewRatingFormProps) {
   return (
     <div className="reviews__rating-form form__rating">
       <input className="form__rating-input visually-hidden" name="rating" value="5"
@@ -13,6 +15,7 @@ function ReviewRatingForm({rating, handleInputChange}: ReviewRatingFormProps) {
         type="radio"
         checked={rating === '5'}
         onChange={handleInputChange}
+        disabled={status === RequestStatus.Loading}
       />
       <label htmlFor="5-stars" className="reviews__rating-label form__rating-label"
         title="perfect"
@@ -27,6 +30,7 @@ function ReviewRatingForm({rating, handleInputChange}: ReviewRatingFormProps) {
         type="radio"
         checked={rating === '4'}
         onChange={handleInputChange}
+        disabled={status === RequestStatus.Loading}
       />
       <label htmlFor="4-stars" className="reviews__rating-label form__rating-label"
         title="good"
@@ -41,6 +45,7 @@ function ReviewRatingForm({rating, handleInputChange}: ReviewRatingFormProps) {
         type="radio"
         checked={rating === '3'}
         onChange={handleInputChange}
+        disabled={status === RequestStatus.Loading}
       />
       <label htmlFor="3-stars" className="reviews__rating-label form__rating-label"
         title="not bad"
@@ -55,6 +60,7 @@ function ReviewRatingForm({rating, handleInputChange}: ReviewRatingFormProps) {
         type="radio"
         checked={rating === '2'}
         onChange={handleInputChange}
+        disabled={status === RequestStatus.Loading}
       />
       <label htmlFor="2-stars" className="reviews__rating-label form__rating-label"
         title="badly"
@@ -69,6 +75,7 @@ function ReviewRatingForm({rating, handleInputChange}: ReviewRatingFormProps) {
         type="radio"
         checked={rating === '1'}
         onChange={handleInputChange}
+        disabled={status === RequestStatus.Loading}
       />
       <label htmlFor="1-stars" className="reviews__rating-label form__rating-label"
         title="terribly"
