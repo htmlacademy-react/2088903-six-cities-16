@@ -1,10 +1,9 @@
 import LoginForm from '../../components/login-form/login-form.tsx';
 import LocationItem from '../../components/common/location-item/location-item.tsx';
 import Layout from '../../components/layout/layout.tsx';
+import {getRandomCity} from '../../utils/utils.ts';
 
 function LoginPage() {
-  const currentCity = 'Amsterdam';
-
   return (
     <Layout
       title='Login'
@@ -18,7 +17,7 @@ function LoginPage() {
           <LoginForm/>
         </section>
         <section className="locations locations--login locations--current">
-          <LocationItem city={currentCity}/>
+          <LocationItem city={getRandomCity()}/>
         </section>
       </div>
     </Layout>
