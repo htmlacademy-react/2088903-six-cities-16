@@ -19,12 +19,14 @@ import LoadingPage from '../loading-page/loading-page.tsx';
 import {getMapPointFromOffer, getMapPoints} from '../../utils/utils.ts';
 import {ReviewModel} from '../../types/review-model.ts';
 import useAuth from '../../hooks/use-auth.tsx';
+import {getCurrentOffer, getNearby} from '../../store/offer-process/selectors.ts';
+import {getCurrentReviews} from '../../store/review-process/selectors.ts';
 
 const MAX_NEARBY_COUNT = 3;
 
 
 function OfferPage() {
-  const {id = ''} = useParams<{ id: string }>();
+  const {id} = useParams<{ id: string }>();
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useAppDispatch();
   const isAuthorized = useAuth();
@@ -42,9 +44,9 @@ function OfferPage() {
     }
   }, [id, dispatch, isLoading]);
 
-  const currentFullOffer: FullOfferModel | null = useAppSelector((state) => state.currentOffer);
-  const reviews: ReviewModel[] = useAppSelector((state) => state.currentReviews);
-  const offersNearby = useAppSelector((state) => state.nearby)
+  const currentFullOffer: FullOfferModel | null = useAppSelector(getCurrentOffer);
+  const reviews: ReviewModel[] = useAppSelector(getCurrentReviews);
+  const offersNearby = useAppSelector(getNearby)
     .slice(0, MAX_NEARBY_COUNT);
 
   if (!isLoading) {
@@ -93,10 +95,10 @@ function OfferPage() {
                 <h1 className="offer__name">
                   {title}
                 </h1>
-                {isAuthorized &&
-                  <OfferBookmarkButton
-                    isFavorite={currentFullOffer.isFavorite}
-                  />}
+                <OfferBookmarkButton
+                  id={id}
+                  isFavorite={currentFullOffer.isFavorite}
+                />
               </div>
               <OfferRating rating={rating}/>
               <OfferFeatures

@@ -2,7 +2,8 @@ import cn from 'classnames';
 import {Link} from 'react-router-dom';
 import {AppRoute, SixCitiesModel} from '../../../const/const.ts';
 import {useAppDispatch} from '../../../store';
-import {selectCity} from '../../../store/action.ts';
+import {selectCity} from '../../../store/offer-process/offer-process.ts';
+
 
 type LocationItemProps = {
   city: SixCitiesModel;

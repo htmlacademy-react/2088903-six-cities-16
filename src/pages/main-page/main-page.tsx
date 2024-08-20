@@ -7,14 +7,15 @@ import {useAppSelector} from '../../store';
 import cn from 'classnames';
 import {getMapPoints} from '../../utils/utils.ts';
 import CitiesNoPlaces from '../../components/cities/cities-no-places/cities-no-places.tsx';
+import {getOffers, getSelectCity} from '../../store/offer-process/selectors.ts';
 
 function MainPage() {
-  const offers = useAppSelector((state) => state.offers);
-  const activeCity = useAppSelector((state) => state.activeCity);
+  const offers = useAppSelector(getOffers);
+  const activeCity = useAppSelector(getSelectCity);
   const activeOffers = offers.filter((offer) => offer.city.name === activeCity);
   const [selectedCard, setSelectedCard] = useState('');
 
-  const mainIndexClasses = cn('page__main--index', {
+  const mainClasses = cn('page__main--index', {
     'page__main--index-empty': activeOffers.length === 0
   });
   const citiesPlacesClasses = cn('cities__places-container container', {
@@ -25,7 +26,7 @@ function MainPage() {
     <Layout
       title='Main'
       pageClass='page--gray page--main'
-      mainClass={mainIndexClasses}
+      mainClass={mainClasses}
     >
       <>
         <h1 className="visually-hidden">Cities</h1>
@@ -43,7 +44,7 @@ function MainPage() {
               : <CitiesNoPlaces city={activeCity}/>}
 
             <div className="cities__right-section">
-              {activeOffers.length &&
+              {activeOffers.length > 0 &&
                 <Map
                   activeCity={activeOffers[0].city}
                   points={getMapPoints(activeOffers)}

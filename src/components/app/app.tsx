@@ -4,11 +4,13 @@ import {HelmetProvider} from 'react-helmet-async';
 import {useAppSelector} from '../../store';
 import LoadingPage from '../../pages/loading-page/loading-page.tsx';
 import {router} from '../router/router.tsx';
+import {getAuthorizationStatus} from '../../store/user-process/selectors.ts';
+import {getIsOffersDataLoading} from '../../store/offer-process/selectors.ts';
 
 
 function App() {
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const isOffersDataLoading = useAppSelector(getIsOffersDataLoading);
 
   if (authorizationStatus === AuthorizationStatus.Unknown || isOffersDataLoading) {
     return (

@@ -2,6 +2,7 @@ import PlaceCard from '../../place-card/place-card.tsx';
 import {useAppSelector} from '../../../store';
 import LoadingPage from '../../../pages/loading-page/loading-page.tsx';
 import PlaceCardPreviewImage from '../../place-card/place-card-preview-image/place-card-preview-image.tsx';
+import {getOffers} from '../../../store/offer-process/selectors.ts';
 
 
 type CitiesCardProps = {
@@ -19,7 +20,7 @@ function CitiesCard({
   const handleMouseEnter = () => setSelectedCard ? setSelectedCard(id) : null;
   const handleMouseLeave = () => setSelectedCard ? setSelectedCard('') : null;
 
-  const offer = useAppSelector((state) => state.offers.find((item) => item.id === id));
+  const offer = useAppSelector(getOffers).find((item) => item.id === id);
 
   if (!offer) {
     return <LoadingPage/>;

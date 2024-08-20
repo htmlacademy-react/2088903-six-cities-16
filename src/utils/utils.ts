@@ -1,8 +1,9 @@
 import {FullOfferModel, OfferModel,} from '../types/offer-model.ts';
 import {PointModel} from '../types/point-model.ts';
 import {ReviewModel} from '../types/review-model.ts';
+import {CITIES} from '../const/const.ts';
 
-const getRatingPercentage = (rating: number): string => {
+export const getRatingPercentage = (rating: number): string => {
   if (rating < 0) {
     return '0%';
   }
@@ -10,17 +11,19 @@ const getRatingPercentage = (rating: number): string => {
   return rating <= 5 ? `${Math.round(rating) * 20}%` : '100%';
 };
 
-const capitalize = (string: string) => string
+export const getRandomCity = () => CITIES[Math.floor(Math.random() * CITIES.length)];
+
+export const capitalize = (string: string) => string
   ? string.charAt(0).toUpperCase() + string.slice(1)
   : string;
 
-const pluralize = (string: string, number: number) => number > 1 ? `${string}s` : string;
+export const pluralize = (string: string, number: number) => number > 1 ? `${string}s` : string;
 
-const getSortedReviews = (reviews: ReviewModel[], maxCount: number): ReviewModel[] => [...reviews]
-  .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+export const getSortedReviews = (reviews: ReviewModel[], maxCount: number): ReviewModel[] => [...reviews]
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
   .slice(0, maxCount);
 
-const getMapPointFromOffer = (offer: OfferModel | FullOfferModel): PointModel => ({
+export const getMapPointFromOffer = (offer: OfferModel | FullOfferModel): PointModel => ({
   'id': offer.id,
   'location': {
     'latitude': offer.location.latitude,
@@ -29,9 +32,7 @@ const getMapPointFromOffer = (offer: OfferModel | FullOfferModel): PointModel =>
   }
 });
 
-const getMapPoints = (offers: OfferModel[]): PointModel[] => offers.reduce((acc: PointModel[], currentOffer: OfferModel) => {
+export const getMapPoints = (offers: OfferModel[]): PointModel[] => offers.reduce((acc: PointModel[], currentOffer: OfferModel) => {
   acc.push(getMapPointFromOffer(currentOffer));
   return acc;
 }, []);
-
-export {getRatingPercentage, capitalize, pluralize, getSortedReviews, getMapPointFromOffer, getMapPoints};
