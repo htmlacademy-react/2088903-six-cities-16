@@ -14,11 +14,6 @@ export type OfferProcessModel = {
   status: RequestStatus;
 };
 
-export type FavoriteProcessModel = {
-  favorites: OfferModel[];
-  status: RequestStatus;
-};
-
 export type FavoriteChangeProps = {
   offerId: string;
   status: FavoriteStatus;

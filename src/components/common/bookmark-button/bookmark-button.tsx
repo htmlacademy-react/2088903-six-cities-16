@@ -22,7 +22,6 @@ function BookmarkButton({id, isFavorite, componentClassName, iconClassName, widt
   const isAuthorized = useAuth();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  // const requestStatus = useAppSelector(getRequestStatus);
   const buttonClassNames = cn(componentClassName, {
     [`${componentClassName}--active`]: active,
   });
@@ -31,14 +30,11 @@ function BookmarkButton({id, isFavorite, componentClassName, iconClassName, widt
     if (!isAuthorized) {
       return navigate(AppRoute.Login);
     }
-    // При проверке на состояние не проходят тесты на отправку запроса
-    // if (requestStatus !== RequestStatus.Loading) {
     dispatch(changeFavoriteAction({
       offerId: id,
       status: Number(!active),
     }));
     setActive(!active);
-    // }
   };
 
   return (
