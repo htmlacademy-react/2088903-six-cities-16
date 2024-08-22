@@ -1,5 +1,5 @@
 import ReviewItem from '../review-item/review-item.tsx';
-import {getSortedReviews} from '../../../utils/utils.ts';
+import {sortReviews} from '../../../utils/utils.ts';
 import {ReviewModel} from '../../../types/review-model.ts';
 
 const MAX_REVIEW_COUNT = 10;
@@ -9,7 +9,7 @@ type ReviewListProps = {
 };
 
 function ReviewList({reviews}: ReviewListProps) {
-  const sortedComments: ReviewModel[] = getSortedReviews(reviews, MAX_REVIEW_COUNT);
+  const sortedComments: ReviewModel[] = sortReviews(reviews, MAX_REVIEW_COUNT);
 
   return (
     <ul className="reviews__list">

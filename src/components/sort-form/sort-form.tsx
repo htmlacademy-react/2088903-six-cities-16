@@ -1,24 +1,17 @@
 import cn from 'classnames';
+import {SortType, SortTypeLabels} from '../../const/const.ts';
 
-export type SortTypesModel = keyof typeof SortTypes;
-
-export const SortTypes = {
-  popular: 'Popular',
-  priceToHigh: 'Price: low to high',
-  priceToLow: 'Price: high to low',
-  topRatedFirst: 'Top rated first',
-} as const;
 
 type SortFormProps = {
-  sortType: SortTypesModel;
-  setSortType: (sortType: SortTypesModel) => void;
+  selectedSortType: SortType;
+  setSortType: (selectedSortType: SortType) => void;
   showSortForm: boolean;
   setShowSortForm: (showSortForm: boolean) => void;
 };
 
-function SortForm({sortType, setSortType, showSortForm, setShowSortForm}: SortFormProps) {
-  const handleClick = (key: SortTypesModel) => {
-    setSortType(key);
+function SortForm({selectedSortType, setSortType, showSortForm, setShowSortForm}: SortFormProps) {
+  const handleClick = (value: SortType) => {
+    setSortType(value);
     setShowSortForm(false);
   };
 
@@ -26,20 +19,20 @@ function SortForm({sortType, setSortType, showSortForm, setShowSortForm}: SortFo
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by </span>
       <span className="places__sorting-type" tabIndex={0} onClick={() => setShowSortForm(!showSortForm)}>
-        {SortTypes[sortType]}
+        {SortTypeLabels[selectedSortType]}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
       </span>
       <ul className={cn('places__options places__options--custom', {'places__options--opened': showSortForm})}>
-        {Object.entries(SortTypes).map(([key, value]) => (
+        {Object.entries(SortType).map(([key, value]) => (
           <li key={key}
-            className={cn('places__option', {'places__option--active': key === sortType})}
+            className={cn('places__option', {'places__option--active': value === selectedSortType})}
             tabIndex={0}
-            value={key}
-            onClick={() => handleClick(key as SortTypesModel)}
+            value={value}
+            onClick={() => handleClick(value)}
           >
-            {value}
+            {SortTypeLabels[value]}
           </li>
         ))}
       </ul>

@@ -7,12 +7,13 @@ import FavoritesEmpty from '../../components/favorites/favorites-empty/favorites
 
 function FavoritesPage() {
   const favorites = useFavorites();
+  const isEmpty = favorites.length === 0;
 
   const pageClasses = cn({
-    'page--favorites-empty': favorites.length === 0
+    'page--favorites-empty': isEmpty
   });
   const mainClasses = cn('page__main--favorites', {
-    'page__main--favorites-empty': favorites.length === 0
+    'page__main--favorites-empty': isEmpty
   });
 
   return (
