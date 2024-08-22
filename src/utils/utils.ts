@@ -13,13 +13,11 @@ export const getRatingPercentage = (rating: number): string => {
 
 export const getRandomCity = () => CITIES[Math.floor(Math.random() * CITIES.length)];
 
-export const capitalize = (string: string) => string
-  ? string.charAt(0).toUpperCase() + string.slice(1)
-  : string;
+export const capitalize = (string: string) => string?.charAt(0).toUpperCase() + string?.slice(1);
 
 export const pluralize = (string: string, number: number) => number > 1 ? `${string}s` : string;
 
-export const getSortedReviews = (reviews: ReviewModel[], maxCount: number): ReviewModel[] => [...reviews]
+export const sortReviews = (reviews: ReviewModel[], maxCount: number): ReviewModel[] => [...reviews]
   .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
   .slice(0, maxCount);
 

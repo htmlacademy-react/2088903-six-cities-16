@@ -30,7 +30,20 @@ export const Endpoint = {
 
 export enum NameSpace {
   Offer = 'OFFER',
-  Favorite = 'FAVORITE',
   User = 'USER',
   Review = 'REVIEW',
 }
+
+export enum SortType {
+  Popular = 'popular',
+  PriceToHigh = 'priceToHigh',
+  PriceToLow = 'priceToLow',
+  TopRatedFirst = 'topRatedFirst',
+}
+
+export const SortTypeLabels: Record<SortType, string> = {
+  [SortType.Popular]: 'Popular',
+  [SortType.PriceToHigh]: 'Price: low to high',
+  [SortType.PriceToLow]: 'Price: high to low',
+  [SortType.TopRatedFirst]: 'Top rated first',
+} as const;

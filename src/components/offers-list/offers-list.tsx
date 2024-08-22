@@ -14,18 +14,17 @@ type OffersListProps = {
 };
 
 function OffersList({activeOffers, activeCity, setSelectedCard}: OffersListProps) {
-  const [sortedOffers, currentSortingType, setCurrentSortingType] = useSortOffers(activeOffers);
+  const [sortedOffers, selectedSortType, setCurrentSortingType] = useSortOffers(activeOffers);
   const [showSortForm, setShowSortForm] = useState(false);
 
   return (
     <section className='cities__places places'>
       <h2 className="visually-hidden">Places</h2>
-      {/*<b className="places__found">{activeOffers.length} places to stay in {activeCity}</b>*/}
       <b className="places__found">{activeOffers.length} {pluralize('place', activeOffers.length)} to stay
         in {activeCity}
       </b>
       <SortForm
-        sortType={currentSortingType}
+        selectedSortType={selectedSortType}
         setSortType={setCurrentSortingType}
         showSortForm={showSortForm}
         setShowSortForm={setShowSortForm}

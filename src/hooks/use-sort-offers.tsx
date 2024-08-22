@@ -1,17 +1,17 @@
 import {OfferModel} from '../types/offer-model.ts';
-import {SortTypesModel} from '../components/sort-form/sort-form.tsx';
 import {useState} from 'react';
+import {SortType} from '../const/const.ts';
 
 
-const getSortedOffers = (offers: OfferModel[], sortType: SortTypesModel) => {
-  switch (sortType) {
-    case 'popular':
+const getSortedOffers = (offers: OfferModel[], selectedSortType: SortType) => {
+  switch (selectedSortType) {
+    case SortType.Popular:
       return offers;
-    case 'priceToHigh':
+    case SortType.PriceToHigh:
       return [...offers].sort((a, b) => a.price - b.price);
-    case 'priceToLow':
+    case SortType.PriceToLow:
       return [...offers].sort((a, b) => b.price - a.price);
-    case 'topRatedFirst':
+    case SortType.TopRatedFirst:
       return [...offers].sort((a, b) => b.rating - a.rating);
     default:
       return offers;
@@ -19,12 +19,12 @@ const getSortedOffers = (offers: OfferModel[], sortType: SortTypesModel) => {
 };
 
 function useSortOffers(offers: OfferModel[]) {
-  const [currentSortingType, setCurrentSortingType] = useState<SortTypesModel>(
-    'popular'
+  const [selectedSortType, setCurrentSortingType] = useState<SortType>(
+    SortType.Popular
   );
-  const sortedOffers = getSortedOffers(offers, currentSortingType);
+  const sortedOffers = getSortedOffers(offers, selectedSortType);
 
-  return [sortedOffers, currentSortingType, setCurrentSortingType] as const;
+  return [sortedOffers, selectedSortType, setCurrentSortingType] as const;
 }
 
 export default useSortOffers;
